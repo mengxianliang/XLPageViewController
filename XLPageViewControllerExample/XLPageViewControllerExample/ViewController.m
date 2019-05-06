@@ -7,8 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "XLPageViewController.h"
+#import "ExampleTableViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+
+@property (nonatomic, strong) XLPageViewController *pageViewController;
+
+@property (nonatomic, strong) NSArray *vcTitleArr;
 
 @end
 
@@ -16,33 +22,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initPageViewController];
 }
 
-- (void)buildTable {
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
+- (void)initPageViewController {
+    self.vcTitleArr = [self defaultTitles];
+    self.pageViewController = [[XLPageViewController alloc] init];
+    self.pageViewController.view.frame = self.view.bounds;
+    self.pageViewController.delegate = self;
+    self.pageViewController.dataSource = self;
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
 }
 
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+- (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
+    ExampleTableViewController *vc = [[ExampleTableViewController alloc] init];
+    vc.title = self.vcTitleArr[index];
+    return vc;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+- (NSArray *)pageViewControllerTitles {
+    return self.vcTitleArr;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    return cell;
+- (NSArray *)defaultTitles {
+    return @[@"vc1",@"vc2",@"vc3",@"vc4",@"vc5",@"vc6",@"vc7"];
 }
+
+- (NSArray *)newVCTitles {
+    return @[@"vc1",@"111",@"vc2",@"222",@"vc3",@"333",@"vc4",@"444",@"vc5",@"555",@"vc6",@"666",@"vc7",@"777"];
+}
+
+
+
 @end

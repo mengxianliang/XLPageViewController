@@ -13,6 +13,9 @@
 @property (nonatomic, strong) UIPageViewController *pageVC;
 //显示过的vc数组，用于试图控制器缓存
 @property (nonatomic, strong) NSMutableArray *shownVCArr;
+
+@property (nonatomic, assign) BOOL haveLoadedPageVC;
+
 @end
 
 @implementation XLPageViewController
@@ -30,6 +33,7 @@
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
     [self.view addSubview:self.pageVC.view];
+    [self addChildViewController:self.pageVC];
 }
 
 - (void)initData {
@@ -39,6 +43,10 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     _pageVC.view.frame = self.view.bounds;
+    if (!self.haveLoadedPageVC) {
+        self.haveLoadedPageVC = true;
+        self.selectedIndex = 0;
+    }
 }
 
 #pragma mark -
@@ -46,9 +54,9 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
     UIViewController *currentVC = pageViewController.viewControllers.firstObject;
     NSString *currentTitle = currentVC.title;
-    NSInteger index = [self.titles indexOfObject:currentTitle];
+    NSInteger index = [self.vcTitles indexOfObject:currentTitle];
     //保存当前位置
-    _index = index;
+    _selectedIndex = index;
     //回调代理方法
     if ([self.delegate respondsToSelector:@selector(pageViewController:didSelectedAtIndex:)]) {
         [self.delegate pageViewController:self didSelectedAtIndex:index];
@@ -58,13 +66,27 @@
 #pragma mark -
 #pragma mark UIPageViewControllerDataSource
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    NSInteger index = [self.titles indexOfObject:viewController.title];
+    NSInteger index = [self.vcTitles indexOfObject:viewController.title];
     return [self viewControllerForIndex:index - 1];
 }
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    NSInteger index = [self.titles indexOfObject:viewController.title];
+    NSInteger index = [self.vcTitles indexOfObject:viewController.title];
     return [self viewControllerForIndex:index + 1];
+}
+
+#pragma mark -
+#pragma mark Setter
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+    _selectedIndex = selectedIndex;
+    [self switchToViewControllerAdIndex:selectedIndex animated:false];
+}
+
+#pragma mark -
+#pragma mark 切换位置方法
+- (void)switchToViewControllerAdIndex:(NSInteger)index animated:(BOOL)animated {
+    if ([self vcTitles].count == 0) {return;}
+    [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:UIPageViewControllerNavigationDirectionForward animated:animated completion:nil];
 }
 
 #pragma mark -
@@ -72,14 +94,14 @@
 //获取视图控制器
 - (UIViewController *)viewControllerForIndex:(NSInteger)index {
     //如果越界，则返回nil
-    if (index < 0 || index >= self.titles.count) {
+    if (index < 0 || index >= self.vcTitles.count) {
         return nil;
     }
     
     //获取当前vc和当前标题
     UIViewController *currentVC = self.pageVC.viewControllers.firstObject;
     NSString *currentTitle = currentVC.title;
-    NSString *targetTitle = self.titles[index];
+    NSString *targetTitle = self.vcTitles[index];
     
     //如果和当前位置一样，则返回当前vc
     if ([currentTitle isEqualToString:targetTitle]) {
@@ -101,6 +123,13 @@
     [self.shownVCArr addObject:targetVC];
     [self addChildViewController:targetVC];
     return targetVC;
+}
+
+- (NSArray *)vcTitles {
+    if (![self.dataSource respondsToSelector:@selector(pageViewControllerTitles)]) {
+        return @[];
+    }
+    return [self.dataSource pageViewControllerTitles];
 }
 
 @end

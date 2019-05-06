@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index;
 
+- (NSArray *)pageViewControllerTitles;
+
 @end
 
 @interface XLPageViewController : UIViewController
@@ -30,14 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id <XLPageViewControllerDataSrouce> dataSource;
 
 /**
- 要显示的标题
+ 当前位置 默认是0
  */
-@property (nonatomic, strong) NSArray *titles;
-
-/**
- 当前位置
- */
-@property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) NSInteger selectedIndex;
 
 @end
 

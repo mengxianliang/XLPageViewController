@@ -16,7 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UILabel *label = [[UILabel alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:label];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:50];
+    label.text = self.title;
 }
 
 /*
