@@ -7,83 +7,67 @@
 //
 
 #import "ViewController.h"
-#import "XLPageViewController.h"
-#import "ExampleTableViewController.h"
+#import "ExampleViewController1.h"
 
-@interface ViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, strong) XLPageViewController *pageViewController;
-
-@property (nonatomic, strong) NSArray *vcTitleArr;
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initPageViewController];
-    [self addSwitchButton];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"XLPageViewController";
+    [self buildTable];
 }
 
-- (void)initPageViewController {
-    self.vcTitleArr = [self defaultTitles];
-    self.pageViewController = [[XLPageViewController alloc] init];
-    self.pageViewController.view.frame = CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20);
-    self.pageViewController.delegate = self;
-    self.pageViewController.dataSource = self;
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-}
-
-- (void)addSwitchButton {
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 100, self.view.bounds.size.height - 100, 100, 100)];
-    button.backgroundColor = [UIColor purpleColor];
-    [button setTitle:@"标题组2" forState:UIControlStateNormal];
-    [button setTitle:@"标题组1" forState:UIControlStateSelected];
-    [button addTarget:self action:@selector(switchTitleMethod:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+- (void)buildTable {
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
-- (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
-    ExampleTableViewController *vc = [[ExampleTableViewController alloc] init];
-    vc.title = self.vcTitleArr[index];
-    return vc;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
 }
 
-- (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index {
-    return self.vcTitleArr[index];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self cellTitles].count;
 }
 
-- (NSInteger)pageViewControllerNumberOfPage {
-    return self.vcTitleArr.count;
-}
-
-- (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index {
-    NSLog(@"选中了index:%zd",index);
-}
-
-#pragma mark -
-#pragma mark 数据源
-
-- (NSArray *)defaultTitles {
-    return @[@"vc1",@"vc2",@"vc3",@"vc4",@"vc5",@"vc6",@"vc7"];
-}
-
-- (NSArray *)newVCTitles {
-    return @[@"vc1",@"111",@"vc2",@"222",@"vc3",@"333",@"vc4",@"444",@"vc5",@"555",@"vc6",@"666",@"vc7",@"777"];
-}
-
-- (void)switchTitleMethod:(UIButton *)button {
-    button.selected  = !button.selected;
-    if (button.selected) {
-        self.vcTitleArr = [[NSMutableArray alloc] initWithArray:[self newVCTitles]];
-    }else {
-        self.vcTitleArr = [[NSMutableArray alloc] initWithArray:[self defaultTitles]];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString* cellIdentifier = @"cell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    self.pageViewController.selectedIndex = 0;
+    cell.textLabel.text = [self cellTitles][indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0: {
+            ExampleViewController1 *vc = [[ExampleViewController1 alloc] init];
+            vc.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (NSArray *)cellTitles {
+    return @[@"基本样式",@"标题显示在导航栏上",@"Segmented样式",@"整合频道管理"];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLPageViewControllerConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,11 +32,58 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol XLPageTitleViewDelegate <NSObject>
+
+/**
+ 选中位置代理方法
+
+ @param index 所选位置
+ */
+- (void)pageTitleViewDidSelectedAtIndex:(NSInteger)index;
+
+@end
+
 @interface XLPageTitleView : UIView
 
+
+/**
+ 数据源
+ */
 @property (nonatomic, weak) id <XLPageTitleViewDataSrouce> dataSource;
 
+/**
+ 代理方法
+ */
+@property (nonatomic, weak) id <XLPageTitleViewDelegate> delegate;
+
+/**
+ 选中位置
+ */
 @property (nonatomic, assign) NSInteger selectedIndex;
+
+/**
+ 动画的进度
+ */
+@property (nonatomic, assign) CGFloat animationProgress;
+
+
+/**
+ 停止动画，在手动设置位置时，不显示动画效果
+ */
+@property (nonatomic, assign) BOOL stopAnimation;
+
+/**
+ 初始化方法
+
+ @param config 配置信息
+ @return TitleView 实例
+ */
+- (instancetype)initWithConfig:(XLPageViewControllerConfig *)config;
+
+/**
+ 刷新数据，当标题信息改变时调用
+ */
+- (void)reloadData;
 
 @end
 

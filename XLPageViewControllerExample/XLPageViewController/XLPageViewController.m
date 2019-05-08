@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     XLScrollDirectionRight = 2,
 };
 
-@interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce>
+@interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce,XLPageTitleViewDelegate>
 //标题
 @property (nonatomic, strong) XLPageTitleView *titleView;
 //分页控制器
@@ -35,19 +35,19 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 #pragma mark -
 #pragma mark 初始化方法
-
-- (instancetype)init {
+- (instancetype)initWithConfig:(XLPageViewControllerConfig *)config {
     if (self = [super init]) {
-        [self initUI];
+        [self initUIWithConfig:config];
         [self initData];
     }
     return self;
 }
 
-- (void)initUI {
+- (void)initUIWithConfig:(XLPageViewControllerConfig *)config {
     //创建标题
-    self.titleView = [[XLPageTitleView alloc] init];
+    self.titleView = [[XLPageTitleView alloc] initWithConfig:config];
     self.titleView.dataSource = self;
+    self.titleView.delegate = self;
     [self.view addSubview:self.titleView];
     
     //创建PageVC
@@ -80,7 +80,6 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     if (!self.haveLoadedPageVC) {
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
-    
 }
 
 #pragma mark -
@@ -90,7 +89,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     if (self.scrollDirection == XLScrollDirectionLeft) {
         _selectedIndex = _selectedIndex <= 0 ? 0 : _selectedIndex - 1;
     }
-    //如果向左滚动，当前位置+1
+    //如果向右滚动，当前位置+1
     if (self.scrollDirection == XLScrollDirectionRight) {
         _selectedIndex = _selectedIndex >= [self numberOfPage] - 1 ? [self numberOfPage] - 1 : _selectedIndex + 1;
     }
@@ -122,16 +121,27 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     }else if (value > 0) {
         self.scrollDirection = XLScrollDirectionRight;
     }
+    self.titleView.animationProgress = value/scrollView.bounds.size.width;
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    self.titleView.stopAnimation = false;
 }
 
 #pragma mark -
-#pragma mark PageTitleViewDataSource
+#pragma mark PageTitleViewDataSource&Delegate
 - (NSInteger)pageTitleViewNumberOfTitle {
     return [self numberOfPage];
 }
 
 - (NSString *)pageTitleViewTitleForIndex:(NSInteger)index {
     return [self titleForIndex:index];
+}
+
+- (void)pageTitleViewDidSelectedAtIndex:(NSInteger)index {
+    self.titleView.stopAnimation = true;
+    [self switchToViewControllerAdIndex:index animated:true];
+    [self delegateSelectedAdIndex:index];
 }
 
 #pragma mark -
@@ -145,9 +155,20 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 #pragma mark 切换位置方法
 - (void)switchToViewControllerAdIndex:(NSInteger)index animated:(BOOL)animated {
     if ([self numberOfPage] == 0) {return;}
-    _selectedIndex = index;
+    //设置加载标记为已加载
     self.haveLoadedPageVC = true;
+    //更新当前位置
+    _selectedIndex = index;
+    //设置当前展示VC
     [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:UIPageViewControllerNavigationDirectionForward animated:animated completion:nil];
+    //标题居中
+    self.titleView.selectedIndex = _selectedIndex;
+}
+
+#pragma mark -
+#pragma mark 刷新方法
+- (void)reloadData {
+    [self.titleView reloadData];
 }
 
 #pragma mark -

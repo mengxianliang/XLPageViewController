@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLPageViewControllerConfig.h"
+
 @class XLPageViewController;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -63,6 +65,19 @@ NS_ASSUME_NONNULL_BEGIN
  当前位置 默认是0
  */
 @property (nonatomic, assign) NSInteger selectedIndex;
+
+/**
+ 初始化方法
+
+ @param config 配置信息
+ @return XLPageViewController 实例
+ */
+- (instancetype)initWithConfig:(XLPageViewControllerConfig *)config;
+
+/**
+ 刷新方法，当标题改变时，执行此方法
+ */
+- (void)reloadData;
 
 @end
 
