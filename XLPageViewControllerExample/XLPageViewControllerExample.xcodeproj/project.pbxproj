@@ -16,6 +16,8 @@
 		5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702D4228028880006D0C2 /* XLPageViewController.m */; };
 		5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */; };
 		5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702DE2280310A0006D0C2 /* ExampleModel.m */; };
+		5EA702E222827D580006D0C2 /* XLPageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E122827D580006D0C2 /* XLPageTitleView.m */; };
+		5EA702E522827E430006D0C2 /* XLPageViewControllerFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E422827E430006D0C2 /* XLPageViewControllerFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,10 @@
 		5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTableViewController.m; sourceTree = "<group>"; };
 		5EA702DD2280310A0006D0C2 /* ExampleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleModel.h; sourceTree = "<group>"; };
 		5EA702DE2280310A0006D0C2 /* ExampleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleModel.m; sourceTree = "<group>"; };
+		5EA702E022827D580006D0C2 /* XLPageTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageTitleView.h; sourceTree = "<group>"; };
+		5EA702E122827D580006D0C2 /* XLPageTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageTitleView.m; sourceTree = "<group>"; };
+		5EA702E322827E430006D0C2 /* XLPageViewControllerFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageViewControllerFlowLayout.h; sourceTree = "<group>"; };
+		5EA702E422827E430006D0C2 /* XLPageViewControllerFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageViewControllerFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,10 @@
 			children = (
 				5EA702D3228028880006D0C2 /* XLPageViewController.h */,
 				5EA702D4228028880006D0C2 /* XLPageViewController.m */,
+				5EA702E022827D580006D0C2 /* XLPageTitleView.h */,
+				5EA702E122827D580006D0C2 /* XLPageTitleView.m */,
+				5EA702E322827E430006D0C2 /* XLPageViewControllerFlowLayout.h */,
+				5EA702E422827E430006D0C2 /* XLPageViewControllerFlowLayout.m */,
 			);
 			path = XLPageViewController;
 			sourceTree = "<group>";
@@ -198,9 +208,11 @@
 			files = (
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
+				5EA702E522827E430006D0C2 /* XLPageViewControllerFlowLayout.m in Sources */,
 				5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */,
 				5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */,
 				5EA702C9228026FC0006D0C2 /* main.m in Sources */,
+				5EA702E222827D580006D0C2 /* XLPageTitleView.m in Sources */,
 				5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

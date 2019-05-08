@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol XLPageViewControllerDataSrouce <NSObject>
 
+@required
 /**
  根据index返回对应的ViewController
 
@@ -48,8 +49,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XLPageViewController : UIViewController
 
+/**
+ 代理
+ */
 @property (nonatomic, weak) id <XLPageViewControllerDelegate> delegate;
 
+/**
+ 数据源
+ */
 @property (nonatomic, weak) id <XLPageViewControllerDataSrouce> dataSource;
 
 /**

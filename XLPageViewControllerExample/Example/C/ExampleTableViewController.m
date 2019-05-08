@@ -22,6 +22,8 @@
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:50];
     label.text = self.title;
+    
+    self.view.layer.borderWidth = 1.0f;
 }
 
 @end

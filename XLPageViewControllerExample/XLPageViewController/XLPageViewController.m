@@ -7,6 +7,9 @@
 //
 
 #import "XLPageViewController.h"
+#import "XLPageTitleView.h"
+
+static CGFloat XLPageTitleViewDefaultHeight = 40.0f;
 
 typedef NS_ENUM(NSInteger,XLScrollDirection) {
     XLScrollDirectionNone = 0,
@@ -14,7 +17,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     XLScrollDirectionRight = 2,
 };
 
-@interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate>
+@interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce>
+//标题
+@property (nonatomic, strong) XLPageTitleView *titleView;
 //分页控制器
 @property (nonatomic, strong) UIPageViewController *pageVC;
 //显示过的vc数组，用于试图控制器缓存
@@ -30,13 +35,21 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 #pragma mark -
 #pragma mark 初始化方法
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self initUI];
-    [self initData];
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self initUI];
+        [self initData];
+    }
+    return self;
 }
 
 - (void)initUI {
+    //创建标题
+    self.titleView = [[XLPageTitleView alloc] init];
+    self.titleView.dataSource = self;
+    [self.view addSubview:self.titleView];
+    
     //创建PageVC
     self.pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageVC.delegate = self;
@@ -58,11 +71,16 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    _pageVC.view.frame = self.view.bounds;
+    
+    self.titleView.frame = CGRectMake(0, 0, self.view.bounds.size.width, XLPageTitleViewDefaultHeight);
+    
+    _pageVC.view.frame = CGRectMake(0, XLPageTitleViewDefaultHeight, self.view.bounds.size.width, self.view.bounds.size.height - XLPageTitleViewDefaultHeight);
+    
     //自动选中当前位置_selectedIndex
     if (!self.haveLoadedPageVC) {
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
+    
 }
 
 #pragma mark -
@@ -76,6 +94,8 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     if (self.scrollDirection == XLScrollDirectionRight) {
         _selectedIndex = _selectedIndex >= [self numberOfPage] - 1 ? [self numberOfPage] - 1 : _selectedIndex + 1;
     }
+    //标题居中
+    self.titleView.selectedIndex = _selectedIndex;
     //回调代理方法
     [self delegateSelectedAdIndex:_selectedIndex];
 }
@@ -102,6 +122,16 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     }else if (value > 0) {
         self.scrollDirection = XLScrollDirectionRight;
     }
+}
+
+#pragma mark -
+#pragma mark PageTitleViewDataSource
+- (NSInteger)pageTitleViewNumberOfTitle {
+    return [self numberOfPage];
+}
+
+- (NSString *)pageTitleViewTitleForIndex:(NSInteger)index {
+    return [self titleForIndex:index];
 }
 
 #pragma mark -
@@ -146,29 +176,20 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
         }
     }
     //如果之前没显示过，则通过dataSource创建
-    if ([self.dataSource respondsToSelector:@selector(pageViewController:viewControllerForIndex:)]) {
-        UIViewController *vc = [self.dataSource pageViewController:self viewControllerForIndex:index];
-        [self.shownVCArr addObject:vc];
-        [self addChildViewController:vc];
-        return vc;
-    }
-    return nil;
+    UIViewController *vc = [self.dataSource pageViewController:self viewControllerForIndex:index];
+    [self.shownVCArr addObject:vc];
+    [self addChildViewController:vc];
+    return vc;
 }
 
 //指定位置的标题
 - (NSString *)titleForIndex:(NSInteger)index {
-    if ([self.dataSource respondsToSelector:@selector(pageViewController:titleForIndex:)]) {
-        return [self.dataSource pageViewController:self titleForIndex:index];
-    }
-    return nil;
+    return [self.dataSource pageViewController:self titleForIndex:index];
 }
 
 //总页数
 - (NSInteger)numberOfPage {
-    if ([self.dataSource respondsToSelector:@selector(pageViewControllerNumberOfPage)]) {
-        return [self.dataSource pageViewControllerNumberOfPage];
-    }
-    return 0;
+    return [self.dataSource pageViewControllerNumberOfPage];
 }
 
 //执行代理方法

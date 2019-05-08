@@ -29,7 +29,7 @@
 - (void)initPageViewController {
     self.vcTitleArr = [self defaultTitles];
     self.pageViewController = [[XLPageViewController alloc] init];
-    self.pageViewController.view.frame = self.view.bounds;
+    self.pageViewController.view.frame = CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20);
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     [self addChildViewController:self.pageViewController];
