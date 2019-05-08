@@ -8,10 +8,10 @@
 
 #import "XLPageViewController.h"
 
-typedef NS_ENUM(NSInteger,XLPageScrollsDirection) {
-    XLPageScrollsDirectionNone = 0,
-    XLPageScrollsDirectionLeft = 1,
-    XLPageScrollsDirectionRight = 2,
+typedef NS_ENUM(NSInteger,XLScrollDirection) {
+    XLScrollDirectionNone = 0,
+    XLScrollDirectionLeft = 1,
+    XLScrollDirectionRight = 2,
 };
 
 @interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate>
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger,XLPageScrollsDirection) {
 //是否加载了pageVC
 @property (nonatomic, assign) BOOL haveLoadedPageVC;
 //滚动方向
-@property (nonatomic, assign) XLPageScrollsDirection scrollDirection;
+@property (nonatomic, assign) XLScrollDirection scrollDirection;
 
 @end
 
@@ -69,11 +69,11 @@ typedef NS_ENUM(NSInteger,XLPageScrollsDirection) {
 #pragma mark UIPageViewControllerDelegate
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
     //如果向左滚动，当前位置-1
-    if (self.scrollDirection == XLPageScrollsDirectionLeft) {
+    if (self.scrollDirection == XLScrollDirectionLeft) {
         _selectedIndex = _selectedIndex <= 0 ? 0 : _selectedIndex - 1;
     }
     //如果向左滚动，当前位置+1
-    if (self.scrollDirection == XLPageScrollsDirectionRight) {
+    if (self.scrollDirection == XLScrollDirectionRight) {
         _selectedIndex = _selectedIndex >= [self numberOfPage] - 1 ? [self numberOfPage] - 1 : _selectedIndex + 1;
     }
     //回调代理方法
@@ -96,11 +96,11 @@ typedef NS_ENUM(NSInteger,XLPageScrollsDirection) {
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
     //判断滚动方向
     if (value == 0) {
-        self.scrollDirection = XLPageScrollsDirectionNone;
-    }else if (value > 0) {
-        self.scrollDirection = XLPageScrollsDirectionRight;
+        self.scrollDirection = XLScrollDirectionNone;
     }else if (value < 0) {
-        self.scrollDirection = XLPageScrollsDirectionLeft;
+        self.scrollDirection = XLScrollDirectionLeft;
+    }else if (value > 0) {
+        self.scrollDirection = XLScrollDirectionRight;
     }
 }
 
@@ -163,7 +163,7 @@ typedef NS_ENUM(NSInteger,XLPageScrollsDirection) {
     return nil;
 }
 
-//总共页数
+//总页数
 - (NSInteger)numberOfPage {
     if ([self.dataSource respondsToSelector:@selector(pageViewControllerNumberOfPage)]) {
         return [self.dataSource pageViewControllerNumberOfPage];
