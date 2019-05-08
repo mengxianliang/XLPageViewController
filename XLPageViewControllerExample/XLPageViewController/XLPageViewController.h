@@ -19,9 +19,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol XLPageViewControllerDataSrouce <NSObject>
 
+/**
+ 根据index返回对应的ViewController
+
+ @param pageViewController XLPageViewController实例
+ @param index 当前位置
+ @return 返回要展示的ViewController
+ */
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index;
 
-- (NSArray *)pageViewControllerTitles;
+/**
+ 根据index返回对应的标题
+
+ @param pageViewController XLPageViewController实例
+ @param index 当前位置
+ @return 返回要展示的标题
+ */
+- (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index;
+
+/**
+ 要展示分页数
+
+ @return 返回分页数
+ */
+- (NSInteger)pageViewControllerNumberOfPage;
 
 @end
 
