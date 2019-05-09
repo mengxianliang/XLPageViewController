@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-static CGFloat XLAnimationLineHeight = 3.0f;
-
-static CGFloat XLAnimationLineWidth = 30.0f;
-
-static CGFloat XLBottomLineHeight = 0.5f;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XLPageViewControllerUtil : NSObject

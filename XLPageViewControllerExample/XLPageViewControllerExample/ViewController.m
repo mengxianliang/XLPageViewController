@@ -10,6 +10,8 @@
 #import "ExampleViewController1.h"
 #import "ExampleViewController2.h"
 #import "ExampleViewController3.h"
+#import "ExampleViewController4.h"
+#import "ExampleViewController5.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -31,6 +33,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:self.tableView];
 }
 
@@ -48,11 +51,14 @@
     NSString* cellIdentifier = @"cell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = [self cellTitles][indexPath.row];
+    cell.detailTextLabel.text = [self cellSubtitles][indexPath.row];
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
@@ -74,13 +80,28 @@
             [self.navigationController pushViewController:vc animated:true];
         }
             break;
+        case 3: {
+            ExampleViewController4 *vc = [[ExampleViewController4 alloc] init];
+            vc.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+        case 4: {
+            ExampleViewController5 *vc = [[ExampleViewController5 alloc] init];
+            vc.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
         default:
             break;
     }
 }
 
 - (NSArray *)cellTitles {
-    return @[@"基本样式",@"标题显示在导航栏上",@"Segmented样式",@"整合频道管理"];
+    return @[@"基本样式",@"基本样式",@"Segmented样式",@"Segmented样式",@"基本样式"];
+}
+
+- (NSArray *)cellSubtitles {
+    return @[@"标题正常显示",@"标题显示在导航栏上",@"标题正常显示",@"标题显示在导航栏上",@"标题居中"];
 }
 
 @end

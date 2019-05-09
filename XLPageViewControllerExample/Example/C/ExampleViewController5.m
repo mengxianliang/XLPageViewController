@@ -1,22 +1,22 @@
 //
-//  ExampleViewController3.m
+//  ExampleViewController5.m
 //  XLPageViewControllerExample
 //
-//  Created by MengXianLiang on 2019/5/8.
+//  Created by MengXianLiang on 2019/5/9.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "ExampleViewController3.h"
+#import "ExampleViewController5.h"
 #import "ExampleTableViewController.h"
 #import "XLPageViewController.h"
 
-@interface ExampleViewController3 ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+@interface ExampleViewController5 ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
 @property (nonatomic, strong) XLPageViewController *pageViewController;
 
 @end
 
-@implementation ExampleViewController3
+@implementation ExampleViewController5
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,13 +25,12 @@
 }
 
 - (void)initPageViewController {
+    
     XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
-    //设置标题样式为分段
-    config.titleViewStyle = XLPageTitleViewStyleSegmented;
-    //分段选择器颜色
-    config.segmentedTintColor = [UIColor blackColor];
     //标题缩进
-    config.titleViewInsets = UIEdgeInsetsMake(5, 50, 5, 50);
+    config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    //标题居中
+    config.titleViewAlignment = XLPageTitleViewAlignmentCenter;
     
     self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
     self.pageViewController.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);

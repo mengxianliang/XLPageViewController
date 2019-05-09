@@ -11,8 +11,6 @@
 #import "XLPageBasicTitleView.h"
 #import "XLPageSegmentedTitleView.h"
 
-static CGFloat XLPageTitleViewDefaultHeight = 40.0f;
-
 typedef NS_ENUM(NSInteger,XLScrollDirection) {
     XLScrollDirectionNone = 0,
     XLScrollDirectionLeft = 1,
@@ -89,9 +87,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    self.titleView.frame = CGRectMake(0, 0, self.view.bounds.size.width, XLPageTitleViewDefaultHeight);
+    self.titleView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.config.titleViewHeight);
     
-    _pageVC.view.frame = CGRectMake(0, XLPageTitleViewDefaultHeight, self.view.bounds.size.width, self.view.bounds.size.height - XLPageTitleViewDefaultHeight);
+    _pageVC.view.frame = CGRectMake(0, self.config.titleViewHeight, self.view.bounds.size.width, self.view.bounds.size.height - self.config.titleViewHeight);
     
     if (self.config.showTitleInNavigationBar) {
         _pageVC.view.frame = self.view.bounds;
@@ -102,7 +100,6 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
 }
-
 
 #pragma mark -
 #pragma mark UIPageViewControllerDelegate

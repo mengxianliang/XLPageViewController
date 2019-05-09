@@ -26,6 +26,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.textLabel = [[UILabel alloc] init];
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.textLabel];
     }
     return self;
@@ -82,7 +83,7 @@
     self.config = config;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.sectionInset = UIEdgeInsetsMake(0, config.titleInsetX, 0, config.titleInsetX);
+    layout.sectionInset = config.titleViewInsets;
     layout.minimumInteritemSpacing = config.titleSpace;
     layout.minimumLineSpacing = config.titleSpace;
     
@@ -102,9 +103,9 @@
     [self addSubview:self.bottomLine];
     
     self.animationLine = [[UIView alloc] init];
-    self.animationLine.bounds = CGRectMake(0, 0, XLAnimationLineWidth, XLAnimationLineHeight);
+    self.animationLine.bounds = CGRectMake(0, 0, self.config.animationLineWidth, self.config.animationLineHeight);
     self.animationLine.backgroundColor = config.titleSelectedColor;
-    self.animationLine.layer.cornerRadius = XLAnimationLineHeight/2.0f;
+    self.animationLine.layer.cornerRadius =  self.config.animationLineHeight/2.0f;
     self.animationLine.layer.masksToBounds = true;
     self.animationLine.hidden = config.hideAnimationLine;
     [self.collectionView addSubview:self.animationLine];
@@ -113,8 +114,21 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.collectionView.frame = self.bounds;
-    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - XLBottomLineHeight, self.bounds.size.width, XLBottomLineHeight);
+    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - self.config.bottomLineHeight, self.bounds.size.width, self.config.bottomLineHeight);
     self.animationLine.center = [self animationLineCenterForIndex:_selectedIndex];
+    
+    //设置标题位置
+    [self configTitleViewAlignment];
+}
+
+//设置标题位置
+- (void)configTitleViewAlignment {
+    //居左不处理
+    if (self.config.titleViewAlignment == XLPageTitleViewAlignmentLeft) {return;}
+    //判断cell是否越界
+    UICollectionViewCell *cell = self.collectionView.visibleCells.lastObject;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    NSLog(@"indexPath.row = %zd",indexPath.row);
 }
 
 #pragma mark -
@@ -182,8 +196,6 @@
     CGFloat centerX = currentCell.center.x + fabs(animationProgress)*distance;
     CGFloat centerY = self.animationLine.center.y;
     self.animationLine.center = CGPointMake(centerX, centerY);
-    NSLog(@"centerX = %f",centerX);
-    NSLog(@"progress = %f",animationProgress);
 }
 
 - (void)reloadData {
@@ -195,7 +207,7 @@
 - (CGPoint)animationLineCenterForIndex:(NSInteger)index {
     XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     CGFloat centerX = cell.center.x;
-    CGFloat centerY = self.bounds.size.height - XLAnimationLineHeight/2.0f - XLBottomLineHeight;
+    CGFloat centerY = self.bounds.size.height - self.config.animationLineHeight/2.0f - self.config.bottomLineHeight;
     return CGPointMake(centerX, centerY);
 }
 

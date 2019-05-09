@@ -26,6 +26,7 @@
 
 @implementation XLPageSegmentedTitleView
 
+//初始化方法
 - (instancetype)initWithConfig:(XLPageViewControllerConfig *)config {
     if (self = [super init]) {
         [self initSegmentedWithConfig:config];
@@ -33,6 +34,7 @@
     return self;
 }
 
+//初始化方法
 - (void)initSegmentedWithConfig:(XLPageViewControllerConfig *)config {
     
     self.config = config;
@@ -48,18 +50,18 @@
     [self addSubview:self.bottomLine];
 }
 
+//自动布局
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGFloat segmentH = self.bounds.size.height*self.config.segmentedHeightRadio;
-    CGFloat segmentY = (self.bounds.size.height - segmentH)/2.0f;
-    CGFloat segmentX = self.config.titleInsetX;
-    CGFloat segmentW = self.bounds.size.width - 2*segmentX;
+    CGFloat segmentH = self.bounds.size.height - self.config.titleViewInsets.top - self.config.titleViewInsets.bottom;
+    CGFloat segmentW = self.bounds.size.width - self.config.titleViewInsets.left - self.config.titleViewInsets.right;
     
-    self.segmentedControl.frame = CGRectMake(segmentX, segmentY, segmentW, segmentH);
+    self.segmentedControl.frame = CGRectMake(self.config.titleViewInsets.left, self.config.titleViewInsets.top, segmentW, segmentH);
     
-    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - XLBottomLineHeight, self.bounds.size.width, XLBottomLineHeight);
+    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - self.config.bottomLineHeight, self.bounds.size.width, self.config.bottomLineHeight);
     
+    //加载数据源
     if (!self.haveLoadedDataSource) {
         [self loadDataSource];
     }
@@ -68,6 +70,16 @@
 //加载分段选择器数据源
 - (void)loadDataSource {
     self.haveLoadedDataSource = true;
+    for (NSInteger i = 0; i < [self.dataSource pageTitleViewNumberOfTitle]; i++) {
+        NSString *title = [self.dataSource pageTitleViewTitleForIndex:i];
+        [self.segmentedControl insertSegmentWithTitle:title atIndex:self.segmentedControl.numberOfSegments animated:false];
+    }
+    self.segmentedControl.selectedSegmentIndex = self.selectedIndex;
+}
+
+//刷新方法
+- (void)reloadData {
+    [self.segmentedControl removeAllSegments];
     for (NSInteger i = 0; i < [self.dataSource pageTitleViewNumberOfTitle]; i++) {
         NSString *title = [self.dataSource pageTitleViewTitleForIndex:i];
         [self.segmentedControl insertSegmentWithTitle:title atIndex:self.segmentedControl.numberOfSegments animated:false];
