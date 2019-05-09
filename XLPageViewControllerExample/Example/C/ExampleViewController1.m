@@ -23,11 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"XLPageViewController";
     [self initPageViewController];
     [self addSwitchButton];
 }
-
 
 - (void)initPageViewController {
     self.vcTitleArr = [self defaultTitles];
@@ -36,6 +34,7 @@
     self.pageViewController.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
+    [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
 }
 
@@ -62,10 +61,6 @@
 
 - (NSInteger)pageViewControllerNumberOfPage {
     return self.vcTitleArr.count;
-}
-
-- (UIViewController *)pageViewControllerParentViewController {
-    return self;
 }
 
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index {

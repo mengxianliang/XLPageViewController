@@ -7,7 +7,9 @@
 //
 
 #import "XLPageViewController.h"
-#import "XLPageTitleView.h"
+#import "XLPageViewControllerUtil.h"
+#import "XLPageBasicTitleView.h"
+#import "XLPageSegmentedTitleView.h"
 
 static CGFloat XLPageTitleViewDefaultHeight = 40.0f;
 
@@ -19,7 +21,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 @interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce,XLPageTitleViewDelegate>
 //标题
-@property (nonatomic, strong) XLPageTitleView *titleView;
+@property (nonatomic, strong) XLPageBasicTitleView *titleView;
 //分页控制器
 @property (nonatomic, strong) UIPageViewController *pageVC;
 //显示过的vc数组，用于试图控制器缓存
@@ -28,7 +30,8 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 @property (nonatomic, assign) BOOL haveLoadedPageVC;
 //滚动方向
 @property (nonatomic, assign) XLScrollDirection scrollDirection;
-
+//当前配置信息
+@property (nonatomic, strong) XLPageViewControllerConfig *config;
 @end
 
 @implementation XLPageViewController
@@ -44,8 +47,14 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 }
 
 - (void)initUIWithConfig:(XLPageViewControllerConfig *)config {
+    //保存配置
+    self.config = config;
+    
     //创建标题
-    self.titleView = [[XLPageTitleView alloc] initWithConfig:config];
+    self.titleView = [[XLPageBasicTitleView alloc] initWithConfig:config];
+    if (config.titleViewStyle == XLPageTitleViewStyleSegmented) {
+        self.titleView = [[XLPageSegmentedTitleView alloc] initWithConfig:config];
+    }
     self.titleView.dataSource = self;
     self.titleView.delegate = self;
     [self.view addSubview:self.titleView];
@@ -69,9 +78,12 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     self.shownVCArr = [[NSMutableArray alloc] init];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.dataSource.pageViewControllerParentViewController addChildViewController:self];
+//设置titleView位置
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.config.showTitleInNavigationBar) {
+        self.parentViewController.navigationItem.titleView = self.titleView;
+    }
 }
 
 - (void)viewDidLayoutSubviews {
@@ -81,11 +93,16 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     
     _pageVC.view.frame = CGRectMake(0, XLPageTitleViewDefaultHeight, self.view.bounds.size.width, self.view.bounds.size.height - XLPageTitleViewDefaultHeight);
     
+    if (self.config.showTitleInNavigationBar) {
+        _pageVC.view.frame = self.view.bounds;
+    }
+    
     //自动选中当前位置_selectedIndex
     if (!self.haveLoadedPageVC) {
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
 }
+
 
 #pragma mark -
 #pragma mark UIPageViewControllerDelegate

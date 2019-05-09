@@ -1,19 +1,13 @@
 //
-//  XLPageTitleView.m
+//  XLPageBasicTitleView.m
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/8.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "XLPageTitleView.h"
+#import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"
-
-static CGFloat AnimationLineHeight = 3.0f;
-
-static CGFloat AnimationLineWidth = 30.0f;
-
-static CGFloat BottomLineHeight = 0.5f;
 
 @interface XLPageTitleCell : UICollectionViewCell
 
@@ -56,7 +50,7 @@ static CGFloat BottomLineHeight = 0.5f;
 
 @end
 
-@interface XLPageTitleView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface XLPageBasicTitleView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 //集合视图
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -75,7 +69,7 @@ static CGFloat BottomLineHeight = 0.5f;
 
 @end
 
-@implementation XLPageTitleView
+@implementation XLPageBasicTitleView
 
 - (instancetype)initWithConfig:(XLPageViewControllerConfig *)config {
     if (self = [super init]) {
@@ -108,9 +102,9 @@ static CGFloat BottomLineHeight = 0.5f;
     [self addSubview:self.bottomLine];
     
     self.animationLine = [[UIView alloc] init];
-    self.animationLine.bounds = CGRectMake(0, 0, AnimationLineWidth, AnimationLineHeight);
+    self.animationLine.bounds = CGRectMake(0, 0, XLAnimationLineWidth, XLAnimationLineHeight);
     self.animationLine.backgroundColor = config.titleSelectedColor;
-    self.animationLine.layer.cornerRadius = AnimationLineHeight/2.0f;
+    self.animationLine.layer.cornerRadius = XLAnimationLineHeight/2.0f;
     self.animationLine.layer.masksToBounds = true;
     self.animationLine.hidden = config.hideAnimationLine;
     [self.collectionView addSubview:self.animationLine];
@@ -119,7 +113,7 @@ static CGFloat BottomLineHeight = 0.5f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.collectionView.frame = self.bounds;
-    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - BottomLineHeight, self.bounds.size.width, BottomLineHeight);
+    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - XLBottomLineHeight, self.bounds.size.width, XLBottomLineHeight);
     self.animationLine.center = [self animationLineCenterForIndex:_selectedIndex];
 }
 
@@ -201,7 +195,7 @@ static CGFloat BottomLineHeight = 0.5f;
 - (CGPoint)animationLineCenterForIndex:(NSInteger)index {
     XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     CGFloat centerX = cell.center.x;
-    CGFloat centerY = self.bounds.size.height - AnimationLineHeight/2.0f - BottomLineHeight;
+    CGFloat centerY = self.bounds.size.height - XLAnimationLineHeight/2.0f - XLBottomLineHeight;
     return CGPointMake(centerX, centerY);
 }
 

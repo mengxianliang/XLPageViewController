@@ -1,5 +1,5 @@
 //
-//  XLPageTitleView.h
+//  XLPageBasicTitleView.h
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/8.
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface XLPageTitleView : UIView
+@interface XLPageBasicTitleView : UIView
 
 
 /**

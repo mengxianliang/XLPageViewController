@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, XLPageTitleViewStyle) {
+    XLPageTitleViewStyleBasic = 0,
+    XLPageTitleViewStyleSegmented = 1
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XLPageViewControllerConfig : NSObject
@@ -36,6 +41,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 //底部分割线颜色
 @property (nonatomic, strong) UIColor *bottomLineColor;
+
+//是否在NavigationBar上显示标题
+@property (nonatomic, assign) BOOL showTitleInNavigationBar;
+
+//标题样式
+@property (nonatomic, assign) XLPageTitleViewStyle titleViewStyle;
+
+//分段选择器颜色
+@property (nonatomic, strong) UIColor *segmentedTintColor;
+
+//分段选择器和父视图的高度比例 默认1
+@property (nonatomic, assign) CGFloat segmentedHeightRadio;
 
 //默认配置
 + (XLPageViewControllerConfig *)defaultConfig;

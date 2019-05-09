@@ -16,6 +16,10 @@
 
 @implementation ExampleTableViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self buildTable];
@@ -26,6 +30,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
 }
 
 #pragma mark -
@@ -47,6 +56,12 @@
     }
     cell.textLabel.text = self.title;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ExampleTableViewController *vc = [[ExampleTableViewController alloc] init];
+    vc.title = @"跳转新界面";
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

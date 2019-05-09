@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "ExampleViewController1.h"
+#import "ExampleViewController2.h"
+#import "ExampleViewController3.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -60,7 +62,18 @@
             [self.navigationController pushViewController:vc animated:true];
         }
             break;
-            
+        case 1: {
+            ExampleViewController2 *vc = [[ExampleViewController2 alloc] init];
+            vc.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
+        case 2: {
+            ExampleViewController3 *vc = [[ExampleViewController3 alloc] init];
+            vc.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:vc animated:true];
+        }
+            break;
         default:
             break;
     }
