@@ -47,6 +47,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSInteger)pageViewControllerNumberOfPage;
 
+
+
+/**
+ 父视图控制器
+
+ @return UIViewController 父视图控制器
+ */
+- (UIViewController *)pageViewControllerParentViewController;
+
 @end
 
 @interface XLPageViewController : UIViewController

@@ -69,6 +69,11 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     self.shownVCArr = [[NSMutableArray alloc] init];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.dataSource.pageViewControllerParentViewController addChildViewController:self];
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
