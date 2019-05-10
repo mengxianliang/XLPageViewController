@@ -1,22 +1,22 @@
 //
-//  ExampleViewController5.m
+//  ExampleViewController7.m
 //  XLPageViewControllerExample
 //
-//  Created by MengXianLiang on 2019/5/9.
+//  Created by MengXianLiang on 2019/5/10.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "ExampleViewController5.h"
+#import "ExampleViewController7.h"
 #import "ExampleTableViewController.h"
 #import "XLPageViewController.h"
 
-@interface ExampleViewController5 ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+@interface ExampleViewController7 ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
 @property (nonatomic, strong) XLPageViewController *pageViewController;
 
 @end
 
-@implementation ExampleViewController5
+@implementation ExampleViewController7
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,8 +29,8 @@
     XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
     //标题缩进
     config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-    //标题左对齐
-    config.titleViewAlignment = XLPageTitleViewAlignmentLeft;
+    //标题右对齐
+    config.titleViewAlignment = XLPageTitleViewAlignmentRight;
     
     self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
     self.pageViewController.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);

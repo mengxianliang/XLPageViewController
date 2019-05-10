@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, XLPageTitleViewStyle) {
  */
 typedef NS_ENUM(NSInteger, XLPageTitleViewAlignment) {
     XLPageTitleViewAlignmentLeft = 0,//default
-    XLPageTitleViewAlignmentCenter = 2,
+    XLPageTitleViewAlignmentCenter = 1,
     XLPageTitleViewAlignmentRight = 2,
 };
 
@@ -38,11 +38,14 @@ NS_ASSUME_NONNULL_BEGIN
 //标题选中颜色 默认 blackColor
 @property (nonatomic, strong) UIColor *titleSelectedColor;
 
+//标题正常字体 默认 标准字体18
+@property (nonatomic, strong) UIFont *titleNormalFont;
+
+//标题选中字体 默认 标准粗体18
+@property (nonatomic, strong) UIFont *titleSelectedFont;
+
 //标题间距 默认 10
 @property (nonatomic, assign) CGFloat titleSpace;
-
-//标题字体 默认 标准字体18
-@property (nonatomic, strong) UIFont *titleFont;
 
 //标题栏高度 默认 40
 @property (nonatomic, assign) CGFloat titleViewHeight;

@@ -16,8 +16,9 @@
     //设置基本标题样式属性
     config.titleNormalColor = [UIColor grayColor];
     config.titleSelectedColor = [UIColor blackColor];
+    config.titleNormalFont = [UIFont systemFontOfSize:18];
+    config.titleSelectedFont = [UIFont boldSystemFontOfSize:18];
     config.titleSpace = 10;
-    config.titleFont = [UIFont systemFontOfSize:18];
     config.titleViewHeight = 40.0f;
     
     //标题内容缩进 通用

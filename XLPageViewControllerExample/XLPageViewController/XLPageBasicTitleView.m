@@ -9,6 +9,8 @@
 #import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"
 
+#pragma mark - cell类
+#pragma mark UICollectionViewCell
 @interface XLPageTitleCell : UICollectionViewCell
 
 @property (nonatomic, strong) UILabel *textLabel;
@@ -51,6 +53,56 @@
 
 @end
 
+
+#pragma mark - 布局类
+#pragma mark XLPageBasicTitleViewFolowLayout
+@interface XLPageBasicTitleViewFolowLayout : UICollectionViewFlowLayout
+
+@property (nonatomic, assign) XLPageTitleViewAlignment alignment;
+
+@property (nonatomic, assign) UIEdgeInsets originSectionInset;
+
+@end
+
+@implementation XLPageBasicTitleViewFolowLayout
+
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    CGRect targetRect = rect;
+    targetRect.size = self.collectionView.bounds.size;
+    //获取屏幕上所有布局文件
+    NSArray *attributes = [super layoutAttributesForElementsInRect:targetRect];
+    //获取所有item个数
+    CGFloat totalItemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0];
+    //如果屏幕未被item充满，执行以下布局，否则保持标准布局
+    if (attributes.count < totalItemCount) {return [super layoutAttributesForElementsInRect:rect];}
+    //计算缩进
+    UICollectionViewLayoutAttributes *firstAttribute = attributes.firstObject;
+    UICollectionViewLayoutAttributes *lastAttribute = attributes.lastObject;
+    CGFloat attributesFullWidth = CGRectGetMaxX(lastAttribute.frame) - CGRectGetMinX(firstAttribute.frame);
+    CGFloat emptyWidth = self.collectionView.bounds.size.width - attributesFullWidth;
+    
+    CGFloat insetLeft = 0;
+    if (self.alignment == XLPageTitleViewAlignmentLeft) {
+        insetLeft = self.originSectionInset.left;
+    }
+    if (self.alignment == XLPageTitleViewAlignmentCenter) {
+        insetLeft = emptyWidth/2.0f;
+    }
+    if (self.alignment == XLPageTitleViewAlignmentRight) {
+        insetLeft = emptyWidth - self.originSectionInset.right;
+    }
+    
+    //兼容防止出错
+    insetLeft = insetLeft <= self.originSectionInset.left ? self.originSectionInset.left : insetLeft;
+    
+    self.sectionInset = UIEdgeInsetsMake(self.sectionInset.top, insetLeft, self.sectionInset.bottom, self.sectionInset.right);
+    return [super layoutAttributesForElementsInRect:rect];
+}
+
+@end
+
+#pragma mark - 标题类
+#pragma mark XLPageBasicTitleView
 @interface XLPageBasicTitleView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 //集合视图
@@ -80,8 +132,12 @@
 }
 
 - (void)initTitleViewWithConfig:(XLPageViewControllerConfig *)config {
+    
     self.config = config;
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
+    XLPageBasicTitleViewFolowLayout *layout = [[XLPageBasicTitleViewFolowLayout alloc] init];
+    layout.alignment = self.config.titleViewAlignment;
+    layout.originSectionInset = self.config.titleViewInsets;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.sectionInset = config.titleViewInsets;
     layout.minimumInteritemSpacing = config.titleSpace;
@@ -95,8 +151,6 @@
     self.collectionView.showsHorizontalScrollIndicator = false;
     [self addSubview:self.collectionView];
     
-    self.stopAnimation = false;
-    
     self.bottomLine = [[UIView alloc] init];
     self.bottomLine.backgroundColor = config.bottomLineColor;
     self.bottomLine.hidden = config.hideBottomLine;
@@ -109,6 +163,8 @@
     self.animationLine.layer.masksToBounds = true;
     self.animationLine.hidden = config.hideAnimationLine;
     [self.collectionView addSubview:self.animationLine];
+    
+    self.stopAnimation = false;
 }
 
 - (void)layoutSubviews {
@@ -116,19 +172,6 @@
     self.collectionView.frame = self.bounds;
     self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - self.config.bottomLineHeight, self.bounds.size.width, self.config.bottomLineHeight);
     self.animationLine.center = [self animationLineCenterForIndex:_selectedIndex];
-    
-    //设置标题位置
-    [self configTitleViewAlignment];
-}
-
-//设置标题位置
-- (void)configTitleViewAlignment {
-    //居左不处理
-    if (self.config.titleViewAlignment == XLPageTitleViewAlignmentLeft) {return;}
-    //判断cell是否越界
-    UICollectionViewCell *cell = self.collectionView.visibleCells.lastObject;
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-    NSLog(@"indexPath.row = %zd",indexPath.row);
 }
 
 #pragma mark -
@@ -144,8 +187,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     XLPageTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"XLPageTitleCell" forIndexPath:indexPath];
     cell.textColor = indexPath.row == self.selectedIndex ? self.config.titleSelectedColor : self.config.titleNormalColor;
+    cell.textFont = indexPath.row == self.selectedIndex ? self.config.titleSelectedFont : self.config.titleNormalFont;
     cell.text = [self.dataSource pageTitleViewTitleForIndex:indexPath.row];
-    cell.textFont = self.config.titleFont;
     return cell;
 }
 
@@ -167,7 +210,10 @@
     //更新cellUI
     NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:_selectedIndex inSection:0];
     NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:_lastSelectedIndex inSection:0];
-    [self.collectionView reloadItemsAtIndexPaths:@[indexPath1,indexPath2]];
+    [UIView performWithoutAnimation:^{
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath1,indexPath2]];
+    }];
+    
     
     //自动居中
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];
@@ -214,7 +260,8 @@
 #pragma mark -
 #pragma mark 辅助方法
 - (CGFloat)widthForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleFont size:self.bounds.size];
+    UIFont *titleFont = indexPath.row == _selectedIndex ? self.config.titleSelectedFont : self.config.titleNormalFont;
+    return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:titleFont size:self.bounds.size];
 }
 
 @end

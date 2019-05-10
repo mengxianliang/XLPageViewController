@@ -32,6 +32,8 @@
     XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
     //标题缩进
     config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    
+    //创建分页控制器
     self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
     self.pageViewController.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
     self.pageViewController.delegate = self;

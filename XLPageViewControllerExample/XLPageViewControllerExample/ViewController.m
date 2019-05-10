@@ -12,6 +12,8 @@
 #import "ExampleViewController3.h"
 #import "ExampleViewController4.h"
 #import "ExampleViewController5.h"
+#import "ExampleViewController6.h"
+#import "ExampleViewController7.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -40,7 +42,7 @@
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -55,53 +57,40 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = [self cellTitles][indexPath.row];
-    cell.detailTextLabel.text = [self cellSubtitles][indexPath.row];
+    cell.detailTextLabel.text = NSStringFromClass([self vcClasses][indexPath.row]);
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
-        case 0: {
-            ExampleViewController1 *vc = [[ExampleViewController1 alloc] init];
-            vc.title = [self cellTitles][indexPath.row];
-            [self.navigationController pushViewController:vc animated:true];
-        }
-            break;
-        case 1: {
-            ExampleViewController2 *vc = [[ExampleViewController2 alloc] init];
-            vc.title = [self cellTitles][indexPath.row];
-            [self.navigationController pushViewController:vc animated:true];
-        }
-            break;
-        case 2: {
-            ExampleViewController3 *vc = [[ExampleViewController3 alloc] init];
-            vc.title = [self cellTitles][indexPath.row];
-            [self.navigationController pushViewController:vc animated:true];
-        }
-            break;
-        case 3: {
-            ExampleViewController4 *vc = [[ExampleViewController4 alloc] init];
-            vc.title = [self cellTitles][indexPath.row];
-            [self.navigationController pushViewController:vc animated:true];
-        }
-        case 4: {
-            ExampleViewController5 *vc = [[ExampleViewController5 alloc] init];
-            vc.title = [self cellTitles][indexPath.row];
-            [self.navigationController pushViewController:vc animated:true];
-        }
-            break;
-        default:
-            break;
-    }
+    Class vcClass = [self vcClasses][indexPath.row];
+    UIViewController *vc = [[vcClass alloc] init];
+    vc.title = [self cellTitles][indexPath.row];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (NSArray *)cellTitles {
-    return @[@"基本样式",@"基本样式",@"Segmented样式",@"Segmented样式",@"基本样式"];
+    return @[
+             @"基本样式-标题正常显示",
+             @"基本样式-标题显示在导航栏上",
+             @"Segmented样式-标题正常显示",
+             @"Segmented样式-标题显示在导航栏上",
+             @"短标题-标题局左",
+             @"短标题-标题局中",
+             @"短标题-标题局右",
+             ];
 }
 
-- (NSArray *)cellSubtitles {
-    return @[@"标题正常显示",@"标题显示在导航栏上",@"标题正常显示",@"标题显示在导航栏上",@"标题居中"];
+- (NSArray *)vcClasses {
+    return @[
+             ExampleViewController1.class,
+             ExampleViewController2.class,
+             ExampleViewController3.class,
+             ExampleViewController4.class,
+             ExampleViewController5.class,
+             ExampleViewController6.class,
+             ExampleViewController7.class,
+             ];
 }
 
 @end
