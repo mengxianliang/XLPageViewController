@@ -34,7 +34,7 @@
     }
     
     progress = progress >= 1 ? 1 : progress;
-    
+
     progress = progress <= 0 ? 0 : progress;
     
     const CGFloat * fromeComponents = CGColorGetComponents(fromColor.CGColor);

@@ -21,8 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    //配置
     XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
     config.showTitleInNavigationBar = true;
     config.titleViewStyle = XLPageTitleViewStyleSegmented;
@@ -31,7 +32,7 @@
     config.titleViewInsets = UIEdgeInsetsMake(5, 50, 5, 50);
     
     self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
-    self.pageViewController.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
+    self.pageViewController.view.frame = self.view.bounds;
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     [self addChildViewController:self.pageViewController];

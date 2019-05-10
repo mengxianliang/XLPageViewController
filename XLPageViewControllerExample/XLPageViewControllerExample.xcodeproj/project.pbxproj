@@ -11,6 +11,13 @@
 		5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */; };
 		5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE822853F630028F37E /* BasicFunctionListVC.m */; };
 		5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */; };
+		5E789CF6228554330028F37E /* icon_txxw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CEF228554330028F37E /* icon_txxw@2x.png */; };
+		5E789CF7228554330028F37E /* icon_xlwb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CF0228554330028F37E /* icon_xlwb@2x.png */; };
+		5E789CF8228554330028F37E /* icon_txsp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CF1228554330028F37E /* icon_txsp@2x.png */; };
+		5E789CF9228554330028F37E /* icon_jrtt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CF2228554330028F37E /* icon_jrtt@2x.png */; };
+		5E789CFA228554330028F37E /* icon_ppxw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CF3228554330028F37E /* icon_ppxw@2x.png */; };
+		5E789CFB228554330028F37E /* icon_tb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CF4228554330028F37E /* icon_tb@2x.png */; };
+		5E789CFC228554330028F37E /* icon_mt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E789CF5228554330028F37E /* icon_mt@2x.png */; };
 		5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BA228026FA0006D0C2 /* AppDelegate.m */; };
 		5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BD228026FA0006D0C2 /* ViewController.m */; };
 		5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702BF228026FA0006D0C2 /* Main.storyboard */; };
@@ -34,6 +41,13 @@
 		5E789CE822853F630028F37E /* BasicFunctionListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicFunctionListVC.m; sourceTree = "<group>"; };
 		5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherAppExampleListVC.h; sourceTree = "<group>"; };
 		5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherAppExampleListVC.m; sourceTree = "<group>"; };
+		5E789CEF228554330028F37E /* icon_txxw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_txxw@2x.png"; sourceTree = "<group>"; };
+		5E789CF0228554330028F37E /* icon_xlwb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_xlwb@2x.png"; sourceTree = "<group>"; };
+		5E789CF1228554330028F37E /* icon_txsp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_txsp@2x.png"; sourceTree = "<group>"; };
+		5E789CF2228554330028F37E /* icon_jrtt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_jrtt@2x.png"; sourceTree = "<group>"; };
+		5E789CF3228554330028F37E /* icon_ppxw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_ppxw@2x.png"; sourceTree = "<group>"; };
+		5E789CF4228554330028F37E /* icon_tb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_tb@2x.png"; sourceTree = "<group>"; };
+		5E789CF5228554330028F37E /* icon_mt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mt@2x.png"; sourceTree = "<group>"; };
 		5EA702B6228026FA0006D0C2 /* XLPageViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLPageViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA702B9228026FA0006D0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EA702BA228026FA0006D0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +83,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E789CED228554240028F37E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5E789CEE228554330028F37E /* Icons */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5E789CEE228554330028F37E /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				5E789CEF228554330028F37E /* icon_txxw@2x.png */,
+				5E789CF0228554330028F37E /* icon_xlwb@2x.png */,
+				5E789CF1228554330028F37E /* icon_txsp@2x.png */,
+				5E789CF2228554330028F37E /* icon_jrtt@2x.png */,
+				5E789CF3228554330028F37E /* icon_ppxw@2x.png */,
+				5E789CF4228554330028F37E /* icon_tb@2x.png */,
+				5E789CF5228554330028F37E /* icon_mt@2x.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		5EA702AD228026FA0006D0C2 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +159,7 @@
 		5EA702D6228030CB0006D0C2 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				5E789CED228554240028F37E /* Resource */,
 				5EA702D9228030E10006D0C2 /* C */,
 				5EA702D8228030DD0006D0C2 /* V */,
 				5EA702D7228030D70006D0C2 /* M */,
@@ -219,8 +256,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA702C6228026FC0006D0C2 /* LaunchScreen.storyboard in Resources */,
+				5E789CFB228554330028F37E /* icon_tb@2x.png in Resources */,
 				5EA702C3228026FC0006D0C2 /* Assets.xcassets in Resources */,
+				5E789CF9228554330028F37E /* icon_jrtt@2x.png in Resources */,
 				5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */,
+				5E789CFC228554330028F37E /* icon_mt@2x.png in Resources */,
+				5E789CF6228554330028F37E /* icon_txxw@2x.png in Resources */,
+				5E789CF7228554330028F37E /* icon_xlwb@2x.png in Resources */,
+				5E789CF8228554330028F37E /* icon_txsp@2x.png in Resources */,
+				5E789CFA228554330028F37E /* icon_ppxw@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

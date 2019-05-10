@@ -20,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"基础功能展示";
     [self buildTable];
 }
 
@@ -35,7 +34,7 @@
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return 50;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -46,11 +45,10 @@
     NSString* cellIdentifier = @"cell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = [self cellTitles][indexPath.row];
-    cell.detailTextLabel.text = @"BasicFounctionExampleVC";
     return cell;
 }
 
@@ -64,14 +62,14 @@
 
 - (NSArray *)cellTitles {
     return @[
-             @"基本样式-标题正常显示",
-             @"基本样式-标题显示在导航栏上",
-             @"Segmented样式-标题正常显示",
-             @"Segmented样式-标题显示在导航栏上",
-             @"标题局左",
-             @"标题局中",
-             @"标题局右",
-             @"自定义标题宽度",
+             @"1.基本样式-标题正常显示",
+             @"2.基本样式-标题显示在导航栏上",
+             @"3.Segmented样式-标题正常显示",
+             @"4.Segmented样式-标题显示在导航栏上",
+             @"5.标题局左",
+             @"6.标题局中",
+             @"7.标题局右",
+             @"8.自定义标题宽度",
              ];
 }
 
@@ -140,7 +138,7 @@
 
 - (NSArray *)vcTitlesOfIndexPath:(NSIndexPath *)indexPath {
     NSArray *titleArr = @[@"今天",@"是个",@"好日子",@"心想的",@"事儿",@"都能成",@"明天",@"是个",@"好日子",@"打开了家门",@"咱迎春风",@"~~~"];
-    if (indexPath.row > 3) {
+    if (indexPath.row > 1) {
         titleArr = @[@"今天",@"是个",@"好日子"];
     }
     return titleArr;

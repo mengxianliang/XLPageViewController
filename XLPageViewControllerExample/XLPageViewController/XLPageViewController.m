@@ -48,6 +48,10 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     //保存配置
     self.config = config;
     
+    //防止Navigation引起的缩进
+    UIView *topView = [[UIView alloc] init];
+    [self.view addSubview:topView];
+    
     //创建标题
     self.titleView = [[XLPageBasicTitleView alloc] initWithConfig:config];
     if (config.titleViewStyle == XLPageTitleViewStyleSegmented) {
