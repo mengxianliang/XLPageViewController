@@ -158,8 +158,11 @@
     
     self.animationLine = [[UIView alloc] init];
     self.animationLine.bounds = CGRectMake(0, 0, self.config.animationLineWidth, self.config.animationLineHeight);
-    self.animationLine.backgroundColor = config.titleSelectedColor;
+    self.animationLine.backgroundColor = config.animationLineColor;
     self.animationLine.layer.cornerRadius =  self.config.animationLineHeight/2.0f;
+    if (self.config.animationLineCap == XLAnimationLineCapSquare) {
+        self.animationLine.layer.cornerRadius = 0;
+    }
     self.animationLine.layer.masksToBounds = true;
     self.animationLine.hidden = config.hideAnimationLine;
     [self.collectionView addSubview:self.animationLine];
@@ -263,8 +266,11 @@
     if (self.config.titleWidth > 0) {
         return self.config.titleWidth;
     }
-    UIFont *titleFont = indexPath.row == _selectedIndex ? self.config.titleSelectedFont : self.config.titleNormalFont;
-    return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:titleFont size:self.bounds.size];
+    CGFloat selectedWidth = [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleSelectedFont size:self.bounds.size];
+    
+    CGFloat normalWidth = [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleNormalFont size:self.bounds.size];
+    
+    return selectedWidth > normalWidth ? selectedWidth : normalWidth;
 }
 
 @end

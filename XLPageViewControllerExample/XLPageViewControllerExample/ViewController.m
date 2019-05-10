@@ -65,7 +65,7 @@
 #pragma mark -
 #pragma mark PageViewControllerDelegate
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index {
-    NSLog(@"切换到了：%zd",[self vcTitles][index]);
+    NSLog(@"切换到了：%@",[self vcTitles][index]);
 }
 
 #pragma mark -

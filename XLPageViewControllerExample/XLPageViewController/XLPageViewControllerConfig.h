@@ -28,6 +28,14 @@ typedef NS_ENUM(NSInteger, XLPageTitleViewAlignment) {
     XLPageTitleViewAlignmentRight = 2,
 };
 
+/**
+ 动画条末端形状
+ */
+typedef NS_ENUM(NSInteger, XLAnimationLineCap) {
+    XLAnimationLineCapRound = 0,
+    XLAnimationLineCapSquare = 1,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XLPageViewControllerConfig : NSObject
@@ -67,6 +75,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //动画条宽度 默认 30.0f
 @property (nonatomic, assign) CGFloat animationLineWidth;
+
+//动画条颜色 默认 黑色
+@property (nonatomic, strong) UIColor *animationLineColor;
+
+//动画条末端形状 默认 XLAnimationLineCapRound
+@property (nonatomic, assign) XLAnimationLineCap animationLineCap;
 
 //隐藏底部分割线 默认 NO
 @property (nonatomic, assign) BOOL hideBottomLine;

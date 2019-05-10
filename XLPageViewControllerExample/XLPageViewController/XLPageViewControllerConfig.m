@@ -28,6 +28,7 @@
     config.hideAnimationLine = false;
     config.animationLineWidth = 30.0f;
     config.animationLineHeight = 3.0f;
+    config.animationLineColor = [UIColor blackColor];
     
     //底部分割线
     config.hideBottomLine = false;
