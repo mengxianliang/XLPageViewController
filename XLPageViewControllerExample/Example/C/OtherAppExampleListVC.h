@@ -1,8 +1,8 @@
 //
-//  ExampleViewController5.h
+//  OtherAppExampleListVC.h
 //  XLPageViewControllerExample
 //
-//  Created by MengXianLiang on 2019/5/9.
+//  Created by MengXianLiang on 2019/5/10.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExampleViewController5 : UIViewController
+@interface OtherAppExampleListVC : UIViewController
 
 @end
 

@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5E789CD422842B8A0028F37E /* XLPageSegmentedTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CD322842B8A0028F37E /* XLPageSegmentedTitleView.m */; };
-		5E789CD7228443070028F37E /* ExampleViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CD6228443070028F37E /* ExampleViewController4.m */; };
-		5E789CDA228450730028F37E /* ExampleViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CD9228450730028F37E /* ExampleViewController5.m */; };
-		5E789CDD2285191E0028F37E /* ExampleViewController6.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CDC2285191E0028F37E /* ExampleViewController6.m */; };
-		5E789CE022851AA60028F37E /* ExampleViewController7.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CDF22851AA60028F37E /* ExampleViewController7.m */; };
+		5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */; };
+		5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE822853F630028F37E /* BasicFunctionListVC.m */; };
+		5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */; };
 		5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BA228026FA0006D0C2 /* AppDelegate.m */; };
 		5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BD228026FA0006D0C2 /* ViewController.m */; };
 		5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702BF228026FA0006D0C2 /* Main.storyboard */; };
@@ -24,22 +23,17 @@
 		5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E122827D580006D0C2 /* XLPageBasicTitleView.m */; };
 		5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E7228286BB0006D0C2 /* XLPageViewControllerConfig.m */; };
 		5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702EA22829E050006D0C2 /* XLPageViewControllerUtil.m */; };
-		5ECD444D2282CE660053356E /* ExampleViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD444C2282CE660053356E /* ExampleViewController1.m */; };
-		5ECD44502282CE760053356E /* ExampleViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD444F2282CE750053356E /* ExampleViewController2.m */; };
-		5ECD44532282CE980053356E /* ExampleViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD44522282CE980053356E /* ExampleViewController3.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5E789CD222842B8A0028F37E /* XLPageSegmentedTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageSegmentedTitleView.h; sourceTree = "<group>"; };
 		5E789CD322842B8A0028F37E /* XLPageSegmentedTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageSegmentedTitleView.m; sourceTree = "<group>"; };
-		5E789CD5228443070028F37E /* ExampleViewController4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController4.h; sourceTree = "<group>"; };
-		5E789CD6228443070028F37E /* ExampleViewController4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController4.m; sourceTree = "<group>"; };
-		5E789CD8228450730028F37E /* ExampleViewController5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController5.h; sourceTree = "<group>"; };
-		5E789CD9228450730028F37E /* ExampleViewController5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController5.m; sourceTree = "<group>"; };
-		5E789CDB2285191E0028F37E /* ExampleViewController6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController6.h; sourceTree = "<group>"; };
-		5E789CDC2285191E0028F37E /* ExampleViewController6.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController6.m; sourceTree = "<group>"; };
-		5E789CDE22851AA60028F37E /* ExampleViewController7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController7.h; sourceTree = "<group>"; };
-		5E789CDF22851AA60028F37E /* ExampleViewController7.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController7.m; sourceTree = "<group>"; };
+		5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicFounctionExampleVC.h; sourceTree = "<group>"; };
+		5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicFounctionExampleVC.m; sourceTree = "<group>"; };
+		5E789CE722853F630028F37E /* BasicFunctionListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicFunctionListVC.h; sourceTree = "<group>"; };
+		5E789CE822853F630028F37E /* BasicFunctionListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicFunctionListVC.m; sourceTree = "<group>"; };
+		5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherAppExampleListVC.h; sourceTree = "<group>"; };
+		5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherAppExampleListVC.m; sourceTree = "<group>"; };
 		5EA702B6228026FA0006D0C2 /* XLPageViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLPageViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA702B9228026FA0006D0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EA702BA228026FA0006D0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,12 +56,6 @@
 		5EA702E7228286BB0006D0C2 /* XLPageViewControllerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageViewControllerConfig.m; sourceTree = "<group>"; };
 		5EA702E922829E050006D0C2 /* XLPageViewControllerUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageViewControllerUtil.h; sourceTree = "<group>"; };
 		5EA702EA22829E050006D0C2 /* XLPageViewControllerUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageViewControllerUtil.m; sourceTree = "<group>"; };
-		5ECD444B2282CE660053356E /* ExampleViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController1.h; sourceTree = "<group>"; };
-		5ECD444C2282CE660053356E /* ExampleViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController1.m; sourceTree = "<group>"; };
-		5ECD444E2282CE750053356E /* ExampleViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController2.h; sourceTree = "<group>"; };
-		5ECD444F2282CE750053356E /* ExampleViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController2.m; sourceTree = "<group>"; };
-		5ECD44512282CE980053356E /* ExampleViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController3.h; sourceTree = "<group>"; };
-		5ECD44522282CE980053356E /* ExampleViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,20 +149,12 @@
 		5EA702D9228030E10006D0C2 /* C */ = {
 			isa = PBXGroup;
 			children = (
-				5ECD444B2282CE660053356E /* ExampleViewController1.h */,
-				5ECD444C2282CE660053356E /* ExampleViewController1.m */,
-				5ECD444E2282CE750053356E /* ExampleViewController2.h */,
-				5ECD444F2282CE750053356E /* ExampleViewController2.m */,
-				5ECD44512282CE980053356E /* ExampleViewController3.h */,
-				5ECD44522282CE980053356E /* ExampleViewController3.m */,
-				5E789CD5228443070028F37E /* ExampleViewController4.h */,
-				5E789CD6228443070028F37E /* ExampleViewController4.m */,
-				5E789CD8228450730028F37E /* ExampleViewController5.h */,
-				5E789CD9228450730028F37E /* ExampleViewController5.m */,
-				5E789CDB2285191E0028F37E /* ExampleViewController6.h */,
-				5E789CDC2285191E0028F37E /* ExampleViewController6.m */,
-				5E789CDE22851AA60028F37E /* ExampleViewController7.h */,
-				5E789CDF22851AA60028F37E /* ExampleViewController7.m */,
+				5E789CE722853F630028F37E /* BasicFunctionListVC.h */,
+				5E789CE822853F630028F37E /* BasicFunctionListVC.m */,
+				5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */,
+				5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */,
+				5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */,
+				5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */,
 				5EA702DA228030FA0006D0C2 /* ExampleTableViewController.h */,
 				5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */,
 			);
@@ -252,21 +232,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
-				5ECD44532282CE980053356E /* ExampleViewController3.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
 				5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */,
-				5E789CDD2285191E0028F37E /* ExampleViewController6.m in Sources */,
 				5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */,
-				5ECD44502282CE760053356E /* ExampleViewController2.m in Sources */,
 				5EA702C9228026FC0006D0C2 /* main.m in Sources */,
 				5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */,
 				5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */,
-				5E789CE022851AA60028F37E /* ExampleViewController7.m in Sources */,
 				5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */,
-				5E789CD7228443070028F37E /* ExampleViewController4.m in Sources */,
-				5E789CDA228450730028F37E /* ExampleViewController5.m in Sources */,
+				5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */,
+				5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */,
 				5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */,
-				5ECD444D2282CE660053356E /* ExampleViewController1.m in Sources */,
+				5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */,
 				5E789CD422842B8A0028F37E /* XLPageSegmentedTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

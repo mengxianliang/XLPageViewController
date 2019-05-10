@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 //标题间距 默认 10
 @property (nonatomic, assign) CGFloat titleSpace;
 
+//标题宽度 默认和文字长度保持一致
+@property (nonatomic, assign) CGFloat titleWidth;
+
 //标题栏高度 默认 40
 @property (nonatomic, assign) CGFloat titleViewHeight;
 

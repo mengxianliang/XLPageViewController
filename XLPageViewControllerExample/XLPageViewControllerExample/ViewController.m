@@ -7,90 +7,69 @@
 //
 
 #import "ViewController.h"
-#import "ExampleViewController1.h"
-#import "ExampleViewController2.h"
-#import "ExampleViewController3.h"
-#import "ExampleViewController4.h"
-#import "ExampleViewController5.h"
-#import "ExampleViewController6.h"
-#import "ExampleViewController7.h"
+#import "BasicFunctionListVC.h"
+#import "OtherAppExampleListVC.h"
+#import "XLPageViewController.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) XLPageViewController *pageViewController;
 
 @end
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"XLPageViewController";
-    [self buildTable];
-}
-
-- (void)buildTable {
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    [self.view addSubview:self.tableView];
+    
+    XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
+    config.showTitleInNavigationBar = true;
+    config.titleViewStyle = XLPageTitleViewStyleSegmented;
+    config.hideBottomLine = true;
+    //设置缩进
+    config.titleViewInsets = UIEdgeInsetsMake(5, 50, 5, 50);
+    
+    self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
+    self.pageViewController.view.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
+    self.pageViewController.delegate = self;
+    self.pageViewController.dataSource = self;
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
 }
 
 #pragma mark -
-#pragma mark TableViewDelegate&DataSource
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+#pragma mark PageViewControllerDataSource
+//分页数
+- (NSInteger)pageViewControllerNumberOfPage {
+    return [self vcTitles].count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self cellTitles].count;
+//分页标题
+- (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index {
+    return [self vcTitles][index];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellIdentifier = @"cell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//分页视图控制器
+- (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
+    if (index == 0) {
+        BasicFunctionListVC *vc = [[BasicFunctionListVC alloc] init];
+        return vc;
+    }else {
+        OtherAppExampleListVC *vc = [[OtherAppExampleListVC alloc] init];
+        return vc;
     }
-    cell.textLabel.text = [self cellTitles][indexPath.row];
-    cell.detailTextLabel.text = NSStringFromClass([self vcClasses][indexPath.row]);
-    return cell;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Class vcClass = [self vcClasses][indexPath.row];
-    UIViewController *vc = [[vcClass alloc] init];
-    vc.title = [self cellTitles][indexPath.row];
-    [self.navigationController pushViewController:vc animated:true];
+#pragma mark -
+#pragma mark PageViewControllerDelegate
+- (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index {
+    NSLog(@"切换到了：%zd",[self vcTitles][index]);
 }
 
-- (NSArray *)cellTitles {
-    return @[
-             @"基本样式-标题正常显示",
-             @"基本样式-标题显示在导航栏上",
-             @"Segmented样式-标题正常显示",
-             @"Segmented样式-标题显示在导航栏上",
-             @"短标题-标题局左",
-             @"短标题-标题局中",
-             @"短标题-标题局右",
-             ];
+#pragma mark -
+#pragma mark 标题
+- (NSArray *)vcTitles {
+    return @[@"基础功能展示",@"其他App例子"];
 }
-
-- (NSArray *)vcClasses {
-    return @[
-             ExampleViewController1.class,
-             ExampleViewController2.class,
-             ExampleViewController3.class,
-             ExampleViewController4.class,
-             ExampleViewController5.class,
-             ExampleViewController6.class,
-             ExampleViewController7.class,
-             ];
-}
-
 @end

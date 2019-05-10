@@ -260,6 +260,9 @@
 #pragma mark -
 #pragma mark 辅助方法
 - (CGFloat)widthForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.config.titleWidth > 0) {
+        return self.config.titleWidth;
+    }
     UIFont *titleFont = indexPath.row == _selectedIndex ? self.config.titleSelectedFont : self.config.titleNormalFont;
     return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:titleFont size:self.bounds.size];
 }
