@@ -75,4 +75,67 @@
     return nil;
 }
 
++ (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLShadowLineAnimationType)type progress:(CGFloat)progress {
+    
+    //没有动画，跳过
+    if (type == XLShadowLineAnimationTypeNone) {
+        return;
+    }
+    
+    //平移动画
+    if (type == XLShadowLineAnimationTypePan) {
+        CGFloat distance = CGRectGetMidX(toItemRect) - CGRectGetMidX(fromItemRect);
+        CGFloat centerX = CGRectGetMidX(fromItemRect) + fabs(progress)*distance;
+        shadow.center = CGPointMake(centerX, shadow.center.y);
+    }
+    
+    //缩放动画
+    if (type == XLShadowLineAnimationTypeZoom) {
+        CGFloat distance = fabs(CGRectGetMidX(toItemRect) - CGRectGetMidX(fromItemRect));
+        CGFloat fromX = CGRectGetMidX(fromItemRect) - shadowWidth/2.0f;
+        CGFloat toX = CGRectGetMidX(toItemRect) - shadowWidth/2.0f;
+        if (progress > 0) {//向右移动
+            //前半段0~0.5，x不变 w变大
+            if (progress <= 0.5) {
+                //让过程变成0~1
+                CGFloat newProgress = 2*fabs(progress);
+                CGFloat newWidth = shadowWidth + newProgress*distance;
+                CGRect shadowFrame = shadow.frame;
+                shadowFrame.size.width = newWidth;
+                shadowFrame.origin.x = fromX;
+                shadow.frame = shadowFrame;
+            }else if (progress >= 0.5) { //后半段0.5~1，x变大 w变小
+                //让过程变成1~0
+                CGFloat newProgress = 2*(1-fabs(progress));
+                CGFloat newWidth = shadowWidth + newProgress*distance;
+                CGFloat newX = toX - newProgress*distance;
+                CGRect shadowFrame = shadow.frame;
+                shadowFrame.size.width = newWidth;
+                shadowFrame.origin.x = newX;
+                shadow.frame = shadowFrame;
+            }
+        }else {//向左移动
+            //前半段0~-0.5，x变小 w变大
+            if (progress >= -0.5) {
+                //让过程变成0~1
+                CGFloat newProgress = 2*fabs(progress);
+                CGFloat newWidth = shadowWidth + newProgress*distance;
+                CGFloat newX = fromX - newProgress*distance;
+                CGRect shadowFrame = shadow.frame;
+                shadowFrame.size.width = newWidth;
+                shadowFrame.origin.x = newX;
+                shadow.frame = shadowFrame;
+            }else if (progress <= -0.5) { //后半段-0.5~-1，x变大 w变小
+                //让过程变成1~0
+                CGFloat newProgress = 2*(1-fabs(progress));
+                CGFloat newWidth = shadowWidth + newProgress*distance;
+                CGRect shadowFrame = shadow.frame;
+                shadowFrame.size.width = newWidth;
+                shadowFrame.origin.x = toX;
+                shadow.frame = shadowFrame;
+            }
+        }
+    }
+}
+
 @end

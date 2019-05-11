@@ -160,7 +160,7 @@
     self.shadowLine.bounds = CGRectMake(0, 0, self.config.shadowLineWidth, self.config.shadowLineHeight);
     self.shadowLine.backgroundColor = config.shadowLineColor;
     self.shadowLine.layer.cornerRadius =  self.config.shadowLineHeight/2.0f;
-    if (self.config.shadowLineCap == XLshadowLineCapSquare) {
+    if (self.config.shadowLineCap == XLShadowLineCapSquare) {
         self.shadowLine.layer.cornerRadius = 0;
     }
     self.shadowLine.layer.masksToBounds = true;
@@ -232,21 +232,21 @@
     if (self.stopAnimation) {return;}
     if (animationProgress == 0) {return;}
     
+    //获取下一个index
     NSInteger targetIndex = animationProgress < 0 ? _selectedIndex - 1 : _selectedIndex + 1;
     if (targetIndex < 0 || targetIndex >= [self.dataSource pageTitleViewNumberOfTitle]) {return;}
     
-    //设置颜色切换动画
+    //获取cell
     XLPageTitleCell *currentCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
     XLPageTitleCell *targetCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:targetIndex inSection:0]];
     
+    //字体颜色过渡
     currentCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleSelectedColor to:self.config.titleNormalColor progress:fabs(animationProgress)];
     
     targetCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleNormalColor to:self.config.titleSelectedColor progress:fabs(animationProgress)];
     
-    CGFloat distance = targetCell.center.x - currentCell.center.x;
-    CGFloat centerX = currentCell.center.x + fabs(animationProgress)*distance;
-    CGFloat centerY = self.shadowLine.center.y;
-    self.shadowLine.center = CGPointMake(centerX, centerY);
+    //给阴影添加动画
+    [XLPageViewControllerUtil showAnimationToShadow:self.shadowLine shadowWidth:self.config.shadowLineWidth fromItemRect:currentCell.frame toItemRect:targetCell.frame type:self.config.shadowLineAnimationType progress:animationProgress];
 }
 
 - (void)reloadData {

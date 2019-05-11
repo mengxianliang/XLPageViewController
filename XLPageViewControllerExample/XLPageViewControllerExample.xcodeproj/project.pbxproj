@@ -69,13 +69,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E789CED228554240028F37E /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		5EA702AD228026FA0006D0C2 = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +123,6 @@
 		5EA702D6228030CB0006D0C2 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				5E789CED228554240028F37E /* Resource */,
 				5EA702D9228030E10006D0C2 /* C */,
 				5EA702D8228030DD0006D0C2 /* V */,
 				5EA702D7228030D70006D0C2 /* M */,

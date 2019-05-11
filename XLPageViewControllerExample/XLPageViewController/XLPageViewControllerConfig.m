@@ -29,6 +29,7 @@
     config.shadowLineWidth = 30.0f;
     config.shadowLineHeight = 3.0f;
     config.shadowLineColor = [UIColor blackColor];
+    config.shadowLineAnimationType = XLShadowLineAnimationTypePan;
     
     //底部分割线
     config.hideSeparatorLine = false;

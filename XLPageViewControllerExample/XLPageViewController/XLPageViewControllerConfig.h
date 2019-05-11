@@ -15,7 +15,7 @@
  Segmented 分段样式
  */
 typedef NS_ENUM(NSInteger, XLPageTitleViewStyle) {
-    XLPageTitleViewStyleBasic = 0,//default
+    XLPageTitleViewStyleBasic = 0,
     XLPageTitleViewStyleSegmented = 1
 };
 
@@ -23,18 +23,28 @@ typedef NS_ENUM(NSInteger, XLPageTitleViewStyle) {
  标题显示位置，居左，居中，局右
  */
 typedef NS_ENUM(NSInteger, XLPageTitleViewAlignment) {
-    XLPageTitleViewAlignmentLeft = 0,//default
+    XLPageTitleViewAlignmentLeft = 0,
     XLPageTitleViewAlignmentCenter = 1,
     XLPageTitleViewAlignmentRight = 2,
 };
 
 /**
- 阴影末端形状
+ 阴影末端形状，圆形、方形
  */
-typedef NS_ENUM(NSInteger, XLshadowLineCap) {
-    XLshadowLineCapRound = 0,
-    XLshadowLineCapSquare = 1,
+typedef NS_ENUM(NSInteger, XLShadowLineCap) {
+    XLShadowLineCapRound = 0,
+    XLShadowLineCapSquare = 1,
 };
+
+/**
+ 阴影动画类型，平移、缩放、无动画
+ */
+typedef NS_ENUM(NSInteger, XLShadowLineAnimationType) {
+    XLShadowLineAnimationTypePan = 0,
+    XLShadowLineAnimationTypeZoom = 1,
+    XLShadowLineAnimationTypeNone = 2,
+};
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -79,8 +89,11 @@ NS_ASSUME_NONNULL_BEGIN
 //阴影颜色 默认 黑色
 @property (nonatomic, strong) UIColor *shadowLineColor;
 
-//阴影末端形状 默认 XLshadowLineCapRound
-@property (nonatomic, assign) XLshadowLineCap shadowLineCap;
+//阴影末端形状 默认 XLShadowLineCapRound
+@property (nonatomic, assign) XLShadowLineCap shadowLineCap;
+
+//默认动画效果 默认 XLShadowLineAnimationTypePan
+@property (nonatomic, assign) XLShadowLineAnimationType shadowLineAnimationType;
 
 //隐藏底部分割线 默认 NO
 @property (nonatomic, assign) BOOL hideSeparatorLine;

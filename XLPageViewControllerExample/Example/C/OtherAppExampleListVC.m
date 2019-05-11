@@ -158,7 +158,7 @@
             //阴影宽度
             config.shadowLineWidth = 22;
             //阴影末端是方形
-            config.shadowLineCap = XLshadowLineCapSquare;
+            config.shadowLineCap = XLShadowLineCapSquare;
             //分割线颜色
             config.hideSeparatorLine = true;
             break;
@@ -181,7 +181,9 @@
             config.shadowLineColor = [self colorOfR:10 G:190 B:6];
             //阴影宽度
             config.shadowLineWidth = 22;
-            //分割线颜色
+            //设置阴影动画方式为缩放
+            config.shadowLineAnimationType = XLShadowLineAnimationTypeZoom;
+            //隐藏分割线
             config.hideSeparatorLine = true;
             break;
         case 4:
