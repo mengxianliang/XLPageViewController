@@ -64,4 +64,8 @@
     [self.navigationController pushViewController:vc animated:true];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 @end

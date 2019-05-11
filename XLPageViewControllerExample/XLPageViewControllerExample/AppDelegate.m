@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "XLNavigationController.h"
 #import "ViewController.h"
 
 @interface AppDelegate ()
@@ -18,8 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ViewController *vc = [[ViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBar.translucent = NO;
+    XLNavigationController *nav = [[XLNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
     return YES;
 }

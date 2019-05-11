@@ -11,6 +11,7 @@
 		5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */; };
 		5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE822853F630028F37E /* BasicFunctionListVC.m */; };
 		5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */; };
+		5E789D012286C2580028F37E /* XLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D002286C2580028F37E /* XLNavigationController.m */; };
 		5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BA228026FA0006D0C2 /* AppDelegate.m */; };
 		5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BD228026FA0006D0C2 /* ViewController.m */; };
 		5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702BF228026FA0006D0C2 /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		5E789CE822853F630028F37E /* BasicFunctionListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicFunctionListVC.m; sourceTree = "<group>"; };
 		5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherAppExampleListVC.h; sourceTree = "<group>"; };
 		5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherAppExampleListVC.m; sourceTree = "<group>"; };
+		5E789CFF2286C2580028F37E /* XLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLNavigationController.h; sourceTree = "<group>"; };
+		5E789D002286C2580028F37E /* XLNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLNavigationController.m; sourceTree = "<group>"; };
 		5EA702B6228026FA0006D0C2 /* XLPageViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLPageViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA702B9228026FA0006D0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EA702BA228026FA0006D0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -90,6 +93,8 @@
 		5EA702B8228026FA0006D0C2 /* XLPageViewControllerExample */ = {
 			isa = PBXGroup;
 			children = (
+				5E789CFF2286C2580028F37E /* XLNavigationController.h */,
+				5E789D002286C2580028F37E /* XLNavigationController.m */,
 				5EA702B9228026FA0006D0C2 /* AppDelegate.h */,
 				5EA702BA228026FA0006D0C2 /* AppDelegate.m */,
 				5EA702BC228026FA0006D0C2 /* ViewController.h */,
@@ -242,6 +247,7 @@
 				5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */,
 				5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */,
 				5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */,
+				5E789D012286C2580028F37E /* XLNavigationController.m in Sources */,
 				5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */,
 				5E789CD422842B8A0028F37E /* XLPageSegmentedTitleView.m in Sources */,
 			);

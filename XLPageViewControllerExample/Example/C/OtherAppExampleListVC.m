@@ -8,6 +8,8 @@
 
 #import "OtherAppExampleListVC.h"
 #import "BasicFounctionExampleVC.h"
+#import "XLNavigationController.h"
+
 
 @interface OtherAppExampleListVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -67,9 +69,6 @@
     [self.navigationController pushViewController:exampleVC animated:true];
     [self configNavigationBarOfIndex:indexPath.row];
 }
-
-
-
 
 - (NSArray *)cellTitles {
     return @[
@@ -186,11 +185,30 @@
             //隐藏分割线
             config.hideSeparatorLine = true;
             break;
-        case 4:
+        case 4://优酷
+            //标题间距
+            config.titleSpace = 15;
+            //在NavigationBar上显示
+            config.showTitleInNavigationBar = true;
             //标题缩进
             config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-            //标题左对齐
-            config.titleViewAlignment = XLPageTitleViewAlignmentLeft;
+            //标题选中颜色
+            config.titleSelectedColor = [self colorOfR:39 G:145 B:254];
+            //标题选中字体
+            config.titleSelectedFont = [UIFont boldSystemFontOfSize:19];
+            //标题正常颜色
+            config.titleNormalColor = [self colorOfR:210 G:210 B:210];
+            //标题正常字体
+            config.titleNormalFont = [UIFont systemFontOfSize:19];
+            //阴影颜色
+            config.shadowLineColor = [self colorOfR:39 G:145 B:254];
+            //阴影宽度
+            config.shadowLineWidth = 4;
+            config.shadowLineHeight = 4;
+            //设置阴影动画方式为缩放
+            config.shadowLineAnimationType = XLShadowLineAnimationTypeZoom;
+            //隐藏分割线
+            config.hideSeparatorLine = true;
             break;
         case 5:
             //标题缩进
@@ -223,32 +241,8 @@
 
 #pragma mark -
 #pragma mark 辅助方法
-
 - (UIColor *)colorOfR:(NSInteger)R G:(NSInteger)G B:(NSInteger)B {
     return [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1];
-}
-
-- (UIImage *)imageWithColor:(UIColor *)color {
-    static NSCache *imageCache;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        imageCache = [[NSCache alloc] init];
-    });
-    UIImage *image = [imageCache objectForKey:color];
-    if (image) {
-        return image;
-    }
-    
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    [imageCache setObject:image forKey:color];
-    return image;
 }
 
 - (void)configNavigationBarOfIndex:(NSInteger)index {
@@ -256,11 +250,13 @@
     UIColor *titleColor = [UIColor blackColor];
     UIColor *backGroundColor = [UIColor whiteColor];
     UIImage *shadowImage = nil;
+    UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
     switch (index) {
         case 0://今日头条
             tintColor = [UIColor whiteColor];
             titleColor = [UIColor whiteColor];
             backGroundColor = [self colorOfR:211 G:60 B:61];
+            statusBarStyle = UIStatusBarStyleLightContent;
             break;
         case 1://腾讯新闻
             backGroundColor = [UIColor whiteColor];
@@ -273,22 +269,27 @@
             tintColor = [UIColor whiteColor];
             titleColor = [UIColor whiteColor];
             backGroundColor = [self colorOfR:48 G:48 B:50];
+            statusBarStyle = UIStatusBarStyleLightContent;
             break;
         case 4://优酷
-            backGroundColor = [self colorOfR:211 G:60 B:61];
+            tintColor = [UIColor whiteColor];
+            titleColor = [UIColor whiteColor];
+            backGroundColor = [self colorOfR:33 G:33 B:33];
+            statusBarStyle = UIStatusBarStyleLightContent;
             break;
         case 5://腾讯
             backGroundColor = [self colorOfR:211 G:60 B:61];
             break;
-            
         default:
             break;
     }
-    [self.navigationController.navigationBar setBackgroundImage:[self imageWithColor:backGroundColor] forBarMetrics:UIBarMetricsDefault];
-    NSDictionary *attributes = @{NSForegroundColorAttributeName:titleColor};
-    self.navigationController.navigationBar.tintColor = tintColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
-    self.navigationController.navigationBar.shadowImage = shadowImage;
+    
+    XLNavigationController *nav = (XLNavigationController *)self.navigationController;
+    nav.titleColor = titleColor;
+    nav.barBackgourndColor = backGroundColor;
+    nav.barTintColor = tintColor;
+    nav.statusBarStyle = statusBarStyle;
+    nav.navigationBar.shadowImage = shadowImage;
 }
 
 @end

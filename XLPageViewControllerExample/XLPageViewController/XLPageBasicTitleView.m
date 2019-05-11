@@ -258,7 +258,8 @@
 - (CGPoint)shadowLineCenterForIndex:(NSInteger)index {
     XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     CGFloat centerX = cell.center.x;
-    CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - self.config.separatorLineHeight;
+    CGFloat separatorLineHeight = self.config.hideSeparatorLine ? 0 : self.config.separatorLineHeight;
+    CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - separatorLineHeight;
     return CGPointMake(centerX, centerY);
 }
 
