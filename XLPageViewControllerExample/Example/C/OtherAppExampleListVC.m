@@ -10,7 +10,6 @@
 #import "BasicFounctionExampleVC.h"
 #import "XLNavigationController.h"
 
-
 @interface OtherAppExampleListVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
