@@ -84,7 +84,7 @@
             //在导航栏中显示标题
             config.showTitleInNavigationBar = true;
             //隐藏底部分割线
-            config.hideBottomLine = true;
+            config.hideSeparatorLine = true;
             break;
         case 2:
             //设置标题样式为分段
@@ -104,7 +104,7 @@
             //在navigationBar上显示标题
             config.showTitleInNavigationBar = true;
             //隐藏底部分割线
-            config.hideBottomLine = true;
+            config.hideSeparatorLine = true;
             break;
         case 4:
             //标题缩进

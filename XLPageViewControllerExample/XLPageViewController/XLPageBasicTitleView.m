@@ -111,11 +111,11 @@
 //配置信息
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
 
-//动画线条
-@property (nonatomic, strong) UIView *animationLine;
+//阴影线条
+@property (nonatomic, strong) UIView *shadowLine;
 
 //底部分割线
-@property (nonatomic, strong) UIView *bottomLine;
+@property (nonatomic, strong) UIView *separatorLine;
 
 //上一次选中的位置
 @property (nonatomic, assign) NSInteger lastSelectedIndex;
@@ -151,21 +151,21 @@
     self.collectionView.showsHorizontalScrollIndicator = false;
     [self addSubview:self.collectionView];
     
-    self.bottomLine = [[UIView alloc] init];
-    self.bottomLine.backgroundColor = config.bottomLineColor;
-    self.bottomLine.hidden = config.hideBottomLine;
-    [self addSubview:self.bottomLine];
+    self.separatorLine = [[UIView alloc] init];
+    self.separatorLine.backgroundColor = config.separatorLineColor;
+    self.separatorLine.hidden = config.hideSeparatorLine;
+    [self addSubview:self.separatorLine];
     
-    self.animationLine = [[UIView alloc] init];
-    self.animationLine.bounds = CGRectMake(0, 0, self.config.animationLineWidth, self.config.animationLineHeight);
-    self.animationLine.backgroundColor = config.animationLineColor;
-    self.animationLine.layer.cornerRadius =  self.config.animationLineHeight/2.0f;
-    if (self.config.animationLineCap == XLAnimationLineCapSquare) {
-        self.animationLine.layer.cornerRadius = 0;
+    self.shadowLine = [[UIView alloc] init];
+    self.shadowLine.bounds = CGRectMake(0, 0, self.config.shadowLineWidth, self.config.shadowLineHeight);
+    self.shadowLine.backgroundColor = config.shadowLineColor;
+    self.shadowLine.layer.cornerRadius =  self.config.shadowLineHeight/2.0f;
+    if (self.config.shadowLineCap == XLshadowLineCapSquare) {
+        self.shadowLine.layer.cornerRadius = 0;
     }
-    self.animationLine.layer.masksToBounds = true;
-    self.animationLine.hidden = config.hideAnimationLine;
-    [self.collectionView addSubview:self.animationLine];
+    self.shadowLine.layer.masksToBounds = true;
+    self.shadowLine.hidden = config.hideShadowLine;
+    [self.collectionView addSubview:self.shadowLine];
     
     self.stopAnimation = false;
 }
@@ -173,8 +173,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.collectionView.frame = self.bounds;
-    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - self.config.bottomLineHeight, self.bounds.size.width, self.config.bottomLineHeight);
-    self.animationLine.center = [self animationLineCenterForIndex:_selectedIndex];
+    self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
+    self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
 }
 
 #pragma mark -
@@ -221,8 +221,8 @@
     //自动居中
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];
     
-    //设置动画条位置
-    self.animationLine.center = [self animationLineCenterForIndex:_selectedIndex];
+    //设置阴影位置
+    self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
     
     //保存上次选中位置
     _lastSelectedIndex = _selectedIndex;
@@ -231,20 +231,22 @@
 - (void)setAnimationProgress:(CGFloat)animationProgress {
     if (self.stopAnimation) {return;}
     if (animationProgress == 0) {return;}
-    //设置颜色切换动画
-    XLPageTitleCell *currentCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
-    currentCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleSelectedColor to:self.config.titleNormalColor progress:fabs(animationProgress)];
     
     NSInteger targetIndex = animationProgress < 0 ? _selectedIndex - 1 : _selectedIndex + 1;
     if (targetIndex < 0 || targetIndex >= [self.dataSource pageTitleViewNumberOfTitle]) {return;}
     
+    //设置颜色切换动画
+    XLPageTitleCell *currentCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
     XLPageTitleCell *targetCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:targetIndex inSection:0]];
+    
+    currentCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleSelectedColor to:self.config.titleNormalColor progress:fabs(animationProgress)];
+    
     targetCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleNormalColor to:self.config.titleSelectedColor progress:fabs(animationProgress)];
     
     CGFloat distance = targetCell.center.x - currentCell.center.x;
     CGFloat centerX = currentCell.center.x + fabs(animationProgress)*distance;
-    CGFloat centerY = self.animationLine.center.y;
-    self.animationLine.center = CGPointMake(centerX, centerY);
+    CGFloat centerY = self.shadowLine.center.y;
+    self.shadowLine.center = CGPointMake(centerX, centerY);
 }
 
 - (void)reloadData {
@@ -252,11 +254,11 @@
 }
 
 #pragma mark -
-#pragma mark 动画条位置
-- (CGPoint)animationLineCenterForIndex:(NSInteger)index {
+#pragma mark 阴影位置
+- (CGPoint)shadowLineCenterForIndex:(NSInteger)index {
     XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     CGFloat centerX = cell.center.x;
-    CGFloat centerY = self.bounds.size.height - self.config.animationLineHeight/2.0f - self.config.bottomLineHeight;
+    CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - self.config.separatorLineHeight;
     return CGPointMake(centerX, centerY);
 }
 

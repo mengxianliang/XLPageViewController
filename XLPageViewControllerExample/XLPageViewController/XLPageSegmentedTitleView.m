@@ -17,7 +17,7 @@
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
 
 //底部分割线
-@property (nonatomic, strong) UIView *bottomLine;
+@property (nonatomic, strong) UIView *separatorLine;
 
 //判断是否已经加载了数据
 @property (nonatomic, assign) BOOL haveLoadedDataSource;
@@ -44,10 +44,10 @@
     self.segmentedControl.tintColor = config.segmentedTintColor;
     [self addSubview:self.segmentedControl];
     
-    self.bottomLine = [[UIView alloc] init];
-    self.bottomLine.backgroundColor = config.bottomLineColor;
-    self.bottomLine.hidden = config.hideBottomLine;
-    [self addSubview:self.bottomLine];
+    self.separatorLine = [[UIView alloc] init];
+    self.separatorLine.backgroundColor = config.separatorLineColor;
+    self.separatorLine.hidden = config.hideSeparatorLine;
+    [self addSubview:self.separatorLine];
 }
 
 //自动布局
@@ -59,7 +59,7 @@
     
     self.segmentedControl.frame = CGRectMake(self.config.titleViewInsets.left, self.config.titleViewInsets.top, segmentW, segmentH);
     
-    self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - self.config.bottomLineHeight, self.bounds.size.width, self.config.bottomLineHeight);
+    self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
     
     //加载数据源
     if (!self.haveLoadedDataSource) {

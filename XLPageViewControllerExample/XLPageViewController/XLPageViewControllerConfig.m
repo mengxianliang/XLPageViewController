@@ -24,16 +24,16 @@
     //标题内容缩进 通用
     config.titleViewInsets = UIEdgeInsetsZero;
     
-    //动画条
-    config.hideAnimationLine = false;
-    config.animationLineWidth = 30.0f;
-    config.animationLineHeight = 3.0f;
-    config.animationLineColor = [UIColor blackColor];
+    //阴影
+    config.hideShadowLine = false;
+    config.shadowLineWidth = 30.0f;
+    config.shadowLineHeight = 3.0f;
+    config.shadowLineColor = [UIColor blackColor];
     
     //底部分割线
-    config.hideBottomLine = false;
-    config.bottomLineColor = [UIColor lightGrayColor];
-    config.bottomLineHeight = 0.5f;
+    config.hideSeparatorLine = false;
+    config.separatorLineColor = [UIColor lightGrayColor];
+    config.separatorLineHeight = 0.5f;
     
     //分段式标题颜色
     config.segmentedTintColor = [UIColor blackColor];

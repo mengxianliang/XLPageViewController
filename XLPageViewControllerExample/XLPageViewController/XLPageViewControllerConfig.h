@@ -29,11 +29,11 @@ typedef NS_ENUM(NSInteger, XLPageTitleViewAlignment) {
 };
 
 /**
- 动画条末端形状
+ 阴影末端形状
  */
-typedef NS_ENUM(NSInteger, XLAnimationLineCap) {
-    XLAnimationLineCapRound = 0,
-    XLAnimationLineCapSquare = 1,
+typedef NS_ENUM(NSInteger, XLshadowLineCap) {
+    XLshadowLineCapRound = 0,
+    XLshadowLineCapSquare = 1,
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -67,29 +67,29 @@ NS_ASSUME_NONNULL_BEGIN
 //标题显示位置 默认 XLPageTitleViewAlignmentLeft（只在标题总长度小于屏幕宽度时有效）
 @property (nonatomic, assign) XLPageTitleViewAlignment titleViewAlignment;
 
-//隐藏底部动画条 默认 NO
-@property (nonatomic, assign) BOOL hideAnimationLine;
+//隐藏底部阴影 默认 NO
+@property (nonatomic, assign) BOOL hideShadowLine;
 
-//动画条高度 默认 3.0f
-@property (nonatomic, assign) CGFloat animationLineHeight;
+//阴影高度 默认 3.0f
+@property (nonatomic, assign) CGFloat shadowLineHeight;
 
-//动画条宽度 默认 30.0f
-@property (nonatomic, assign) CGFloat animationLineWidth;
+//阴影宽度 默认 30.0f
+@property (nonatomic, assign) CGFloat shadowLineWidth;
 
-//动画条颜色 默认 黑色
-@property (nonatomic, strong) UIColor *animationLineColor;
+//阴影颜色 默认 黑色
+@property (nonatomic, strong) UIColor *shadowLineColor;
 
-//动画条末端形状 默认 XLAnimationLineCapRound
-@property (nonatomic, assign) XLAnimationLineCap animationLineCap;
+//阴影末端形状 默认 XLshadowLineCapRound
+@property (nonatomic, assign) XLshadowLineCap shadowLineCap;
 
 //隐藏底部分割线 默认 NO
-@property (nonatomic, assign) BOOL hideBottomLine;
+@property (nonatomic, assign) BOOL hideSeparatorLine;
 
 //底部分割线高度 默认 0.5
-@property (nonatomic, assign) CGFloat bottomLineHeight;
+@property (nonatomic, assign) CGFloat separatorLineHeight;
 
 //底部分割线颜色 默认 lightGrayColor
-@property (nonatomic, strong) UIColor *bottomLineColor;
+@property (nonatomic, strong) UIColor *separatorLineColor;
 
 //是否在NavigationBar上显示标题 默认NO
 @property (nonatomic, assign) BOOL showTitleInNavigationBar;
