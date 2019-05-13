@@ -20,12 +20,21 @@ typedef NS_ENUM(NSInteger, XLPageTitleViewStyle) {
 };
 
 /**
- 标题显示位置，居左，居中，局右
+ 标题对齐，居左，居中，局右
  */
 typedef NS_ENUM(NSInteger, XLPageTitleViewAlignment) {
     XLPageTitleViewAlignmentLeft = 0,
     XLPageTitleViewAlignmentCenter = 1,
     XLPageTitleViewAlignmentRight = 2,
+};
+
+/**
+ 文字垂直对齐，居中，居上，局下
+ */
+typedef NS_ENUM(NSInteger, XLPageTextVerticalAlignment) {
+    XLPageTextVerticalAlignmentCenter = 0,
+    XLPageTextVerticalAlignmentTop = 1,
+    XLPageTextVerticalAlignmentBottom = 2,
 };
 
 /**
@@ -67,6 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //标题宽度 默认和文字长度保持一致
 @property (nonatomic, assign) CGFloat titleWidth;
+
+//文字垂直对齐 默认居中
+@property (nonatomic, assign) XLPageTextVerticalAlignment textVerticalAlignment;
 
 //标题栏高度 默认 40
 @property (nonatomic, assign) CGFloat titleViewHeight;

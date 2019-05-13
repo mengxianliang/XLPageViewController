@@ -9,11 +9,51 @@
 #import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"
 
+
+
+#pragma mark -
+#pragma mark 自定义Label
+@interface XLPageLabel : UILabel
+
+@property (nonatomic, assign) XLPageTextVerticalAlignment textVerticalAlignment;
+
+@end;
+
+@implementation XLPageLabel
+
+- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
+    CGRect textRect = [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
+    switch (self.textVerticalAlignment) {
+        case XLPageTextVerticalAlignmentCenter:
+            textRect.origin.y = (bounds.size.height - textRect.size.height)/2.0;
+            break;
+        case XLPageTextVerticalAlignmentTop: {
+            CGFloat topY = self.font.pointSize > [UIFont labelFontSize] ? 0 : 2;
+            textRect.origin.y = topY;
+        }
+            break;
+        case XLPageTextVerticalAlignmentBottom:
+            textRect.origin.y = bounds.size.height - textRect.size.height;
+            break;
+        default:
+            break;
+    }
+    return textRect;
+}
+
+- (void)drawTextInRect:(CGRect)requestedRect {
+    CGRect actualRect = [self textRectForBounds:requestedRect limitedToNumberOfLines:self.numberOfLines];
+    [super drawTextInRect:actualRect];
+}
+
+@end
+
+
 #pragma mark - cell类
 #pragma mark UICollectionViewCell
 @interface XLPageTitleCell : UICollectionViewCell
 
-@property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) XLPageLabel *textLabel;
 
 @property (nonatomic, strong) UIColor *textColor;
 
@@ -21,13 +61,15 @@
 
 @property (nonatomic, strong) UIFont *textFont;
 
+@property (nonatomic, assign) XLPageTextVerticalAlignment textVerticalAlignment;
+
 @end
 
 @implementation XLPageTitleCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.textLabel = [[UILabel alloc] init];
+        self.textLabel = [[XLPageLabel alloc] init];
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.textLabel];
     }
@@ -51,6 +93,10 @@
     self.textLabel.font = textFont;
 }
 
+- (void)setTextVerticalAlignment:(XLPageTextVerticalAlignment)textVerticalAlignment {
+    self.textLabel.textVerticalAlignment = textVerticalAlignment;
+}
+
 @end
 
 
@@ -66,6 +112,7 @@
 
 @implementation XLPageBasicTitleViewFolowLayout
 
+//设置标题居中、局左、居右方法
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     CGRect targetRect = rect;
     targetRect.size = self.collectionView.bounds.size;
@@ -75,12 +122,13 @@
     CGFloat totalItemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0];
     //如果屏幕未被item充满，执行以下布局，否则保持标准布局
     if (attributes.count < totalItemCount) {return [super layoutAttributesForElementsInRect:rect];}
-    //计算缩进
+    //获取第一个cell左边和最后一个cell右边之间的距离
     UICollectionViewLayoutAttributes *firstAttribute = attributes.firstObject;
     UICollectionViewLayoutAttributes *lastAttribute = attributes.lastObject;
     CGFloat attributesFullWidth = CGRectGetMaxX(lastAttribute.frame) - CGRectGetMinX(firstAttribute.frame);
+    //计算留白宽度
     CGFloat emptyWidth = self.collectionView.bounds.size.width - attributesFullWidth;
-    
+    //设置左缩进
     CGFloat insetLeft = 0;
     if (self.alignment == XLPageTitleViewAlignmentLeft) {
         insetLeft = self.originSectionInset.left;
@@ -92,10 +140,11 @@
         insetLeft = emptyWidth - self.originSectionInset.right;
     }
     
-    //兼容防止出错
+    //兼容防止出错，最小缩进设置为原始缩进
     insetLeft = insetLeft <= self.originSectionInset.left ? self.originSectionInset.left : insetLeft;
-    
+    //更新CollectionView缩进
     self.sectionInset = UIEdgeInsetsMake(self.sectionInset.top, insetLeft, self.sectionInset.bottom, self.sectionInset.right);
+    //返回
     return [super layoutAttributesForElementsInRect:rect];
 }
 
@@ -192,6 +241,8 @@
     cell.textColor = indexPath.row == self.selectedIndex ? self.config.titleSelectedColor : self.config.titleNormalColor;
     cell.textFont = indexPath.row == self.selectedIndex ? self.config.titleSelectedFont : self.config.titleNormalFont;
     cell.text = [self.dataSource pageTitleViewTitleForIndex:indexPath.row];
+    cell.textVerticalAlignment = self.config.textVerticalAlignment;
+//    cell.layer.borderWidth = 1.0f;
     return cell;
 }
 
@@ -269,11 +320,11 @@
     if (self.config.titleWidth > 0) {
         return self.config.titleWidth;
     }
-    CGFloat selectedWidth = [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleSelectedFont size:self.bounds.size];
     
-    CGFloat normalWidth = [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleNormalFont size:self.bounds.size];
+    //以较大字体为准
+    UIFont *font = self.config.titleSelectedFont.pointSize > self.config.titleNormalFont.pointSize ? self.config.titleSelectedFont : self.config.titleNormalFont;
     
-    return selectedWidth > normalWidth ? selectedWidth : normalWidth;
+    return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:font size:self.bounds.size];
 }
 
 @end

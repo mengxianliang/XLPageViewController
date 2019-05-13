@@ -20,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 //颜色过渡
 + (UIColor *)colorTransformFrom:(UIColor*)fromColor to:(UIColor *)toColor progress:(CGFloat)progress;
 
+//通过view获取所在的视图控制器
 + (UIViewController *)viewControllerOfView:(UIView *)view;
 
+//执行阴影动画
 + (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLShadowLineAnimationType)type progress:(CGFloat)progress;
 
 @end

@@ -209,23 +209,27 @@
             //隐藏分割线
             config.hideSeparatorLine = true;
             break;
-        case 5:
+        case 5://腾讯视频
+            //标题间距
+            config.titleSpace = 15;
+            //在NavigationBar上显示
+            config.showTitleInNavigationBar = true;
             //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-            //标题居中显示
-            config.titleViewAlignment = XLPageTitleViewAlignmentCenter;
-            break;
-        case 6:
-            //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-            //标题右对齐
-            config.titleViewAlignment = XLPageTitleViewAlignmentRight;
-            break;
-        case 7:
-            //设置标题宽度为屏幕宽度1/3
-            config.titleWidth = self.view.bounds.size.width/3.0f;
-            //设置标题间隔为0
-            config.titleSpace = 0;
+            config.titleViewInsets = UIEdgeInsetsMake(5, 10, 0, 10);
+            //标题选中颜色
+            config.titleSelectedColor = [self colorOfR:254 G:77 B:2];
+            //标题选中字体
+            config.titleSelectedFont = [UIFont boldSystemFontOfSize:24];
+            //标题正常颜色
+            config.titleNormalColor = [self colorOfR:132 G:132 B:148];
+            //标题正常字体
+            config.titleNormalFont = [UIFont boldSystemFontOfSize:17];
+            //隐藏阴影
+            config.hideShadowLine = true;
+            //隐藏分割线
+            config.hideSeparatorLine = true;
+            //文字居上
+            config.textVerticalAlignment = XLPageTextVerticalAlignmentTop;
             break;
         default:
             break;
@@ -276,8 +280,8 @@
             backGroundColor = [self colorOfR:33 G:33 B:33];
             statusBarStyle = UIStatusBarStyleLightContent;
             break;
-        case 5://腾讯
-            backGroundColor = [self colorOfR:211 G:60 B:61];
+        case 5://腾讯视频
+            backGroundColor = [UIColor whiteColor];
             break;
         default:
             break;
