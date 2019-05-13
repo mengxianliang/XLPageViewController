@@ -75,22 +75,22 @@
     return nil;
 }
 
-+ (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLShadowLineAnimationType)type progress:(CGFloat)progress {
++ (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLPageShadowLineAnimationType)type progress:(CGFloat)progress {
     
     //没有动画，跳过
-    if (type == XLShadowLineAnimationTypeNone) {
+    if (type == XLPageShadowLineAnimationTypeNone) {
         return;
     }
     
     //平移动画
-    if (type == XLShadowLineAnimationTypePan) {
+    if (type == XLPageShadowLineAnimationTypePan) {
         CGFloat distance = CGRectGetMidX(toItemRect) - CGRectGetMidX(fromItemRect);
         CGFloat centerX = CGRectGetMidX(fromItemRect) + fabs(progress)*distance;
         shadow.center = CGPointMake(centerX, shadow.center.y);
     }
     
     //缩放动画
-    if (type == XLShadowLineAnimationTypeZoom) {
+    if (type == XLPageShadowLineAnimationTypeZoom) {
         CGFloat distance = fabs(CGRectGetMidX(toItemRect) - CGRectGetMidX(fromItemRect));
         CGFloat fromX = CGRectGetMidX(fromItemRect) - shadowWidth/2.0f;
         CGFloat toX = CGRectGetMidX(toItemRect) - shadowWidth/2.0f;
@@ -139,3 +139,4 @@
 }
 
 @end
+

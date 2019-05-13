@@ -8,97 +8,7 @@
 
 #import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"
-
-
-
-#pragma mark -
-#pragma mark 自定义Label
-@interface XLPageLabel : UILabel
-
-@property (nonatomic, assign) XLPageTextVerticalAlignment textVerticalAlignment;
-
-@end;
-
-@implementation XLPageLabel
-
-- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
-    CGRect textRect = [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
-    switch (self.textVerticalAlignment) {
-        case XLPageTextVerticalAlignmentCenter:
-            textRect.origin.y = (bounds.size.height - textRect.size.height)/2.0;
-            break;
-        case XLPageTextVerticalAlignmentTop: {
-            CGFloat topY = self.font.pointSize > [UIFont labelFontSize] ? 0 : 2;
-            textRect.origin.y = topY;
-        }
-            break;
-        case XLPageTextVerticalAlignmentBottom:
-            textRect.origin.y = bounds.size.height - textRect.size.height;
-            break;
-        default:
-            break;
-    }
-    return textRect;
-}
-
-- (void)drawTextInRect:(CGRect)requestedRect {
-    CGRect actualRect = [self textRectForBounds:requestedRect limitedToNumberOfLines:self.numberOfLines];
-    [super drawTextInRect:actualRect];
-}
-
-@end
-
-
-#pragma mark - cell类
-#pragma mark UICollectionViewCell
-@interface XLPageTitleCell : UICollectionViewCell
-
-@property (nonatomic, strong) XLPageLabel *textLabel;
-
-@property (nonatomic, strong) UIColor *textColor;
-
-@property (nonatomic, copy) NSString *text;
-
-@property (nonatomic, strong) UIFont *textFont;
-
-@property (nonatomic, assign) XLPageTextVerticalAlignment textVerticalAlignment;
-
-@end
-
-@implementation XLPageTitleCell
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.textLabel = [[XLPageLabel alloc] init];
-        self.textLabel.textAlignment = NSTextAlignmentCenter;
-        [self.contentView addSubview:self.textLabel];
-    }
-    return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.textLabel.frame = self.bounds;
-}
-
-- (void)setText:(NSString *)text {
-    self.textLabel.text = text;
-}
-
-- (void)setTextColor:(UIColor *)textColor {
-    self.textLabel.textColor = textColor;
-}
-
-- (void)setTextFont:(UIFont *)textFont {
-    self.textLabel.font = textFont;
-}
-
-- (void)setTextVerticalAlignment:(XLPageTextVerticalAlignment)textVerticalAlignment {
-    self.textLabel.textVerticalAlignment = textVerticalAlignment;
-}
-
-@end
-
+#import "XLPageTitleViewCell.h"
 
 #pragma mark - 布局类
 #pragma mark XLPageBasicTitleViewFolowLayout
@@ -186,34 +96,34 @@
     
     XLPageBasicTitleViewFolowLayout *layout = [[XLPageBasicTitleViewFolowLayout alloc] init];
     layout.alignment = self.config.titleViewAlignment;
-    layout.originSectionInset = self.config.titleViewInsets;
+    layout.originSectionInset = self.config.titleViewInset;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.sectionInset = config.titleViewInsets;
+    layout.sectionInset = config.titleViewInset;
     layout.minimumInteritemSpacing = config.titleSpace;
     layout.minimumLineSpacing = config.titleSpace;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    [self.collectionView registerClass:[XLPageTitleCell class] forCellWithReuseIdentifier:@"XLPageTitleCell"];
+    self.collectionView.backgroundColor = config.titleViewBackgroundColor;
+    [self.collectionView registerClass:[XLPageTitleViewCell class] forCellWithReuseIdentifier:@"XLPageTitleViewCell"];
     self.collectionView.showsHorizontalScrollIndicator = false;
     [self addSubview:self.collectionView];
     
     self.separatorLine = [[UIView alloc] init];
     self.separatorLine.backgroundColor = config.separatorLineColor;
-    self.separatorLine.hidden = config.hideSeparatorLine;
+    self.separatorLine.hidden = config.separatorLineHidden;
     [self addSubview:self.separatorLine];
     
     self.shadowLine = [[UIView alloc] init];
     self.shadowLine.bounds = CGRectMake(0, 0, self.config.shadowLineWidth, self.config.shadowLineHeight);
     self.shadowLine.backgroundColor = config.shadowLineColor;
     self.shadowLine.layer.cornerRadius =  self.config.shadowLineHeight/2.0f;
-    if (self.config.shadowLineCap == XLShadowLineCapSquare) {
+    if (self.config.shadowLineCap == XLPageShadowLineCapSquare) {
         self.shadowLine.layer.cornerRadius = 0;
     }
     self.shadowLine.layer.masksToBounds = true;
-    self.shadowLine.hidden = config.hideShadowLine;
+    self.shadowLine.hidden = config.shadowLineHidden;
     [self.collectionView addSubview:self.shadowLine];
     
     self.stopAnimation = false;
@@ -233,16 +143,17 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake([self widthForItemAtIndexPath:indexPath], collectionView.bounds.size.height);
+    return CGSizeMake([self widthForItemAtIndexPath:indexPath], collectionView.bounds.size.height - self.config.titleViewInset.top - self.config.titleViewInset.bottom);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    XLPageTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"XLPageTitleCell" forIndexPath:indexPath];
-    cell.textColor = indexPath.row == self.selectedIndex ? self.config.titleSelectedColor : self.config.titleNormalColor;
-    cell.textFont = indexPath.row == self.selectedIndex ? self.config.titleSelectedFont : self.config.titleNormalFont;
-    cell.text = [self.dataSource pageTitleViewTitleForIndex:indexPath.row];
-    cell.textVerticalAlignment = self.config.textVerticalAlignment;
-//    cell.layer.borderWidth = 1.0f;
+    XLPageTitleViewCell *cell = [self.dataSource pageTitleViewCellForItemAtIndex:indexPath.row];
+    if (!cell) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"XLPageTitleViewCell" forIndexPath:indexPath];
+    }
+    cell.config = self.config;
+    cell.textLabel.text = [self.dataSource pageTitleViewTitleForIndex:indexPath.row];
+    [cell configCellOfSelected:(indexPath.row == self.selectedIndex)];
     return cell;
 }
 
@@ -288,18 +199,22 @@
     if (targetIndex < 0 || targetIndex >= [self.dataSource pageTitleViewNumberOfTitle]) {return;}
     
     //获取cell
-    XLPageTitleCell *currentCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
-    XLPageTitleCell *targetCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:targetIndex inSection:0]];
+    XLPageTitleViewCell *currentCell = (XLPageTitleViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
+    XLPageTitleViewCell *targetCell = (XLPageTitleViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:targetIndex inSection:0]];
     
-    //字体颜色过渡
-    currentCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleSelectedColor to:self.config.titleNormalColor progress:fabs(animationProgress)];
-    
-    targetCell.textColor = [XLPageViewControllerUtil colorTransformFrom:self.config.titleNormalColor to:self.config.titleSelectedColor progress:fabs(animationProgress)];
+    //标题颜色过渡
+    if (self.config.titleColorTransition) {
+        
+        [currentCell showAnimationOfProgress:fabs(animationProgress) type:XLPageTitleCellAnimationTypeSelected];
+        
+        [targetCell showAnimationOfProgress:fabs(animationProgress) type:XLPageTitleCellAnimationTypeWillSelected];
+    }
     
     //给阴影添加动画
     [XLPageViewControllerUtil showAnimationToShadow:self.shadowLine shadowWidth:self.config.shadowLineWidth fromItemRect:currentCell.frame toItemRect:targetCell.frame type:self.config.shadowLineAnimationType progress:animationProgress];
 }
 
+//刷新方法
 - (void)reloadData {
     [self.collectionView reloadData];
 }
@@ -307,9 +222,9 @@
 #pragma mark -
 #pragma mark 阴影位置
 - (CGPoint)shadowLineCenterForIndex:(NSInteger)index {
-    XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    XLPageTitleViewCell *cell = (XLPageTitleViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     CGFloat centerX = cell.center.x;
-    CGFloat separatorLineHeight = self.config.hideSeparatorLine ? 0 : self.config.separatorLineHeight;
+    CGFloat separatorLineHeight = self.config.separatorLineHidden ? 0 : self.config.separatorLineHeight;
     CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - separatorLineHeight;
     return CGPointMake(centerX, centerY);
 }
@@ -324,7 +239,38 @@
     //以较大字体为准
     UIFont *font = self.config.titleSelectedFont.pointSize > self.config.titleNormalFont.pointSize ? self.config.titleSelectedFont : self.config.titleNormalFont;
     
+    
     return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:font size:self.bounds.size];
+}
+
+#pragma mark -
+#pragma mark 自定cell方法
+- (void)registerClass:(Class)cellClass forTitleViewCellWithReuseIdentifier:(NSString *)identifier {
+    if (!identifier.length) {
+        [NSException raise:@"This identifier must not be nil and must not be an empty string." format:@""];
+    }
+    if ([identifier isEqualToString:NSStringFromClass(XLPageTitleViewCell.class)]) {
+        [NSException raise:@"please change an identifier" format:@""];
+    }
+    if (![cellClass isSubclassOfClass:[XLPageTitleViewCell class]]) {
+        [NSException raise:@"The cell class must be a subclass of XLPageTitleViewCell." format:@""];
+    }
+    [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
+}
+
+- (__kindof XLPageTitleViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
+    if (!identifier.length) {
+        [NSException raise:@"This identifier must not be nil and must not be an empty string." format:@""];
+    }
+    if ([identifier isEqualToString:NSStringFromClass(XLPageTitleViewCell.class)]) {
+        [NSException raise:@"please change an identifier" format:@""];
+    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    if (!indexPath) {
+        [NSException raise:@"please change an identifier" format:@""];
+    }
+    XLPageTitleViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    return cell;
 }
 
 @end

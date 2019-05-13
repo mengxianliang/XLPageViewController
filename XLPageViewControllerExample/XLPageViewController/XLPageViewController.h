@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XLPageViewControllerConfig.h"
+#import "XLPageTitleViewCell.h"
 
 @class XLPageViewController;
 
@@ -47,6 +48,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSInteger)pageViewControllerNumberOfPage;
 
+@optional
+
+/**
+ 自定义cell方法
+ */
+- (__kindof XLPageTitleViewCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index;
+
 @end
 
 @interface XLPageViewController : UIViewController
@@ -66,6 +74,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSInteger selectedIndex;
 
+
+/**
+ 滚动开关 默认 开
+ */
+@property (nonatomic, assign) BOOL scrollEnabled;
+
 /**
  初始化方法
 
@@ -78,6 +92,17 @@ NS_ASSUME_NONNULL_BEGIN
  刷新方法，当标题改变时，执行此方法
  */
 - (void)reloadData;
+
+/**
+ 自定义标题栏cell时用到
+ */
+- (void)registerClass:(Class)cellClass forTitleViewCellWithReuseIdentifier:(NSString *)identifier;
+
+/**
+ 自定义标题栏cell时用到
+ 返回复用的cell
+ */
+- (__kindof XLPageTitleViewCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
 
 @end
 

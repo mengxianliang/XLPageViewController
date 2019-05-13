@@ -27,9 +27,9 @@
     XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
     config.showTitleInNavigationBar = true;
     config.titleViewStyle = XLPageTitleViewStyleSegmented;
-    config.hideSeparatorLine = true;
+    config.separatorLineHidden = true;
     //设置缩进
-    config.titleViewInsets = UIEdgeInsetsMake(5, 50, 5, 50);
+    config.titleViewInset = UIEdgeInsetsMake(5, 50, 5, 50);
     
     self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
     self.pageViewController.view.frame = self.view.bounds;

@@ -12,6 +12,9 @@
 		5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE822853F630028F37E /* BasicFunctionListVC.m */; };
 		5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */; };
 		5E789D012286C2580028F37E /* XLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D002286C2580028F37E /* XLNavigationController.m */; };
+		5E789D0422895BD90028F37E /* XLPageTitleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D0322895BD90028F37E /* XLPageTitleViewCell.m */; };
+		5E789D07228966D10028F37E /* CustomTitleViewCellExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D06228966D10028F37E /* CustomTitleViewCellExampleVC.m */; };
+		5E789D0A228967D80028F37E /* CustomPageTitleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D09228967D80028F37E /* CustomPageTitleViewCell.m */; };
 		5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BA228026FA0006D0C2 /* AppDelegate.m */; };
 		5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BD228026FA0006D0C2 /* ViewController.m */; };
 		5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702BF228026FA0006D0C2 /* Main.storyboard */; };
@@ -37,6 +40,12 @@
 		5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherAppExampleListVC.m; sourceTree = "<group>"; };
 		5E789CFF2286C2580028F37E /* XLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLNavigationController.h; sourceTree = "<group>"; };
 		5E789D002286C2580028F37E /* XLNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLNavigationController.m; sourceTree = "<group>"; };
+		5E789D0222895BD90028F37E /* XLPageTitleViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageTitleViewCell.h; sourceTree = "<group>"; };
+		5E789D0322895BD90028F37E /* XLPageTitleViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageTitleViewCell.m; sourceTree = "<group>"; };
+		5E789D05228966D10028F37E /* CustomTitleViewCellExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTitleViewCellExampleVC.h; sourceTree = "<group>"; };
+		5E789D06228966D10028F37E /* CustomTitleViewCellExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTitleViewCellExampleVC.m; sourceTree = "<group>"; };
+		5E789D08228967D80028F37E /* CustomPageTitleViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPageTitleViewCell.h; sourceTree = "<group>"; };
+		5E789D09228967D80028F37E /* CustomPageTitleViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPageTitleViewCell.m; sourceTree = "<group>"; };
 		5EA702B6228026FA0006D0C2 /* XLPageViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLPageViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA702B9228026FA0006D0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EA702BA228026FA0006D0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -117,6 +126,8 @@
 				5EA702E122827D580006D0C2 /* XLPageBasicTitleView.m */,
 				5E789CD222842B8A0028F37E /* XLPageSegmentedTitleView.h */,
 				5E789CD322842B8A0028F37E /* XLPageSegmentedTitleView.m */,
+				5E789D0222895BD90028F37E /* XLPageTitleViewCell.h */,
+				5E789D0322895BD90028F37E /* XLPageTitleViewCell.m */,
 				5EA702E6228286BB0006D0C2 /* XLPageViewControllerConfig.h */,
 				5EA702E7228286BB0006D0C2 /* XLPageViewControllerConfig.m */,
 				5EA702E922829E050006D0C2 /* XLPageViewControllerUtil.h */,
@@ -147,6 +158,8 @@
 		5EA702D8228030DD0006D0C2 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				5E789D08228967D80028F37E /* CustomPageTitleViewCell.h */,
+				5E789D09228967D80028F37E /* CustomPageTitleViewCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -156,10 +169,12 @@
 			children = (
 				5E789CE722853F630028F37E /* BasicFunctionListVC.h */,
 				5E789CE822853F630028F37E /* BasicFunctionListVC.m */,
-				5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */,
-				5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */,
 				5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */,
 				5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */,
+				5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */,
+				5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */,
+				5E789D05228966D10028F37E /* CustomTitleViewCellExampleVC.h */,
+				5E789D06228966D10028F37E /* CustomTitleViewCellExampleVC.m */,
 				5EA702DA228030FA0006D0C2 /* ExampleTableViewController.h */,
 				5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */,
 			);
@@ -236,11 +251,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E789D0422895BD90028F37E /* XLPageTitleViewCell.m in Sources */,
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
 				5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */,
+				5E789D0A228967D80028F37E /* CustomPageTitleViewCell.m in Sources */,
 				5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */,
 				5EA702C9228026FC0006D0C2 /* main.m in Sources */,
+				5E789D07228966D10028F37E /* CustomTitleViewCellExampleVC.m in Sources */,
 				5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */,
 				5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */,
 				5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */,

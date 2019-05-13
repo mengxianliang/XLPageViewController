@@ -46,7 +46,7 @@
     
     self.separatorLine = [[UIView alloc] init];
     self.separatorLine.backgroundColor = config.separatorLineColor;
-    self.separatorLine.hidden = config.hideSeparatorLine;
+    self.separatorLine.hidden = config.separatorLineHidden;
     [self addSubview:self.separatorLine];
 }
 
@@ -54,10 +54,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGFloat segmentH = self.bounds.size.height - self.config.titleViewInsets.top - self.config.titleViewInsets.bottom;
-    CGFloat segmentW = self.bounds.size.width - self.config.titleViewInsets.left - self.config.titleViewInsets.right;
+    CGFloat segmentH = self.bounds.size.height - self.config.titleViewInset.top - self.config.titleViewInset.bottom;
+    CGFloat segmentW = self.bounds.size.width - self.config.titleViewInset.left - self.config.titleViewInset.right;
     
-    self.segmentedControl.frame = CGRectMake(self.config.titleViewInsets.left, self.config.titleViewInsets.top, segmentW, segmentH);
+    self.segmentedControl.frame = CGRectMake(self.config.titleViewInset.left, self.config.titleViewInset.top, segmentW, segmentH);
     
     self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
     

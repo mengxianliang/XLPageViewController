@@ -97,8 +97,6 @@
         case 0://今日头条
             //标题间距
             config.titleSpace = 15;
-            //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
             //标题选中颜色
             config.titleSelectedColor = [self colorOfR:211 G:60 B:61];
             //标题选中字体
@@ -108,7 +106,7 @@
             //标题正常字体
             config.titleNormalFont = [UIFont systemFontOfSize:17];
             //隐藏动画线条
-            config.hideShadowLine = true;
+            config.shadowLineHidden = true;
             //分割线颜色
             config.separatorLineColor = [self colorOfR:231 G:231 B:231];
             break;
@@ -117,8 +115,6 @@
             config.titleSpace = 15;
             //标题高度
             config.titleViewHeight = 45;
-            //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
             //标题选中颜色
             config.titleSelectedColor = [self colorOfR:34 G:34 B:34];
             //标题选中字体
@@ -141,8 +137,6 @@
             config.titleViewHeight = 44;
             //在NavigationBar上显示
             config.showTitleInNavigationBar = true;
-            //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
             //标题选中颜色
             config.titleSelectedColor = [self colorOfR:1 G:165 B:235];
             //标题选中字体
@@ -156,17 +150,15 @@
             //阴影宽度
             config.shadowLineWidth = 22;
             //阴影末端是方形
-            config.shadowLineCap = XLShadowLineCapSquare;
+            config.shadowLineCap = XLPageShadowLineCapSquare;
             //分割线颜色
-            config.hideSeparatorLine = true;
+            config.separatorLineHidden = true;
             break;
         case 3://爱奇艺
             //标题间距
             config.titleSpace = 15;
             //在NavigationBar上显示
             config.showTitleInNavigationBar = true;
-            //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
             //标题选中颜色
             config.titleSelectedColor = [self colorOfR:10 G:190 B:6];
             //标题选中字体
@@ -180,17 +172,15 @@
             //阴影宽度
             config.shadowLineWidth = 22;
             //设置阴影动画方式为缩放
-            config.shadowLineAnimationType = XLShadowLineAnimationTypeZoom;
+            config.shadowLineAnimationType = XLPageShadowLineAnimationTypeZoom;
             //隐藏分割线
-            config.hideSeparatorLine = true;
+            config.separatorLineHidden = true;
             break;
         case 4://优酷
             //标题间距
             config.titleSpace = 15;
             //在NavigationBar上显示
             config.showTitleInNavigationBar = true;
-            //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(0, 10, 0, 10);
             //标题选中颜色
             config.titleSelectedColor = [self colorOfR:39 G:145 B:254];
             //标题选中字体
@@ -205,9 +195,9 @@
             config.shadowLineWidth = 4;
             config.shadowLineHeight = 4;
             //设置阴影动画方式为缩放
-            config.shadowLineAnimationType = XLShadowLineAnimationTypeZoom;
+            config.shadowLineAnimationType = XLPageShadowLineAnimationTypeZoom;
             //隐藏分割线
-            config.hideSeparatorLine = true;
+            config.separatorLineHidden = true;
             break;
         case 5://腾讯视频
             //标题间距
@@ -215,7 +205,7 @@
             //在NavigationBar上显示
             config.showTitleInNavigationBar = true;
             //标题缩进
-            config.titleViewInsets = UIEdgeInsetsMake(5, 10, 0, 10);
+            config.titleViewInset = UIEdgeInsetsMake(5, 10, 0, 10);
             //标题选中颜色
             config.titleSelectedColor = [self colorOfR:254 G:77 B:2];
             //标题选中字体
@@ -225,11 +215,13 @@
             //标题正常字体
             config.titleNormalFont = [UIFont boldSystemFontOfSize:17];
             //隐藏阴影
-            config.hideShadowLine = true;
+            config.shadowLineHidden = true;
             //隐藏分割线
-            config.hideSeparatorLine = true;
+            config.separatorLineHidden = true;
             //文字居上
             config.textVerticalAlignment = XLPageTextVerticalAlignmentTop;
+            //关闭标题颜色过渡
+            config.titleColorTransition = false;
             break;
         default:
             break;

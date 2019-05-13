@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XLPageViewControllerConfig.h"
+#import "XLPageTitleViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,6 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
  @return 返回分页数
  */
 - (NSInteger)pageTitleViewNumberOfTitle;
+
+/**
+ 自定义cell方法
+ */
+- (__kindof XLPageTitleViewCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index;
 
 @end
 
@@ -85,6 +90,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)reloadData;
 
+/**
+ 自定义标题栏时用到
+ */
+- (void)registerClass:(Class)cellClass forTitleViewCellWithReuseIdentifier:(NSString *)identifier;
+
+/**
+ cell 复用方法
+ */
+- (__kindof XLPageTitleViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
 @end
 
 NS_ASSUME_NONNULL_END

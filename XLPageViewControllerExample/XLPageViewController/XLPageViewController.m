@@ -161,6 +161,13 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     return [self titleForIndex:index];
 }
 
+- (XLPageTitleViewCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index {
+    if ([self.dataSource respondsToSelector:@selector(pageViewController:titleViewCellForItemAtIndex:)]) {
+        return [self.dataSource pageViewController:self titleViewCellForItemAtIndex:index];
+    }
+    return nil;
+}
+
 - (void)pageTitleViewDidSelectedAtIndex:(NSInteger)index {
     self.titleView.stopAnimation = true;
     [self switchToViewControllerAdIndex:index animated:true];
@@ -172,6 +179,14 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 //设置选中位置
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     [self switchToViewControllerAdIndex:selectedIndex animated:false];
+}
+
+- (void)setScrollEnabled:(BOOL)scrollEnabled {
+    for (UIScrollView *scrollView in self.pageVC.view.subviews) {
+        if ([scrollView isKindOfClass:[UIScrollView class]]) {
+            scrollView.scrollEnabled = scrollEnabled;
+        }
+    }
 }
 
 #pragma mark -
@@ -193,6 +208,17 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 - (void)reloadData {
     [self.titleView reloadData];
 }
+
+#pragma mark -
+#pragma mark 自定义方法
+- (void)registerClass:(Class)cellClass forTitleViewCellWithReuseIdentifier:(NSString *)identifier {
+    [self.titleView registerClass:cellClass forTitleViewCellWithReuseIdentifier:identifier];
+}
+
+- (XLPageTitleViewCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
+    return [self.titleView dequeueReusableCellWithIdentifier:identifier forIndex:index];
+}
+
 
 #pragma mark -
 #pragma mark 辅助方法

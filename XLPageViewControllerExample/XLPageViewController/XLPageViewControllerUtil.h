@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIViewController *)viewControllerOfView:(UIView *)view;
 
 //执行阴影动画
-+ (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLShadowLineAnimationType)type progress:(CGFloat)progress;
++ (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLPageShadowLineAnimationType)type progress:(CGFloat)progress;
 
 @end
 

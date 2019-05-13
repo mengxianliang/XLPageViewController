@@ -33,7 +33,6 @@
     [self.view addSubview:self.pageViewController.view];
 }
 
-
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
@@ -51,7 +50,7 @@
 }
 
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index {
-    NSLog(@"切换到了：%@",[self titles][index]);
+    NSLog(@"切换到了：%@",self.titles[index]);
 }
 
 @end
