@@ -14,7 +14,7 @@
 		5E789D012286C2580028F37E /* XLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D002286C2580028F37E /* XLNavigationController.m */; };
 		5E789D0422895BD90028F37E /* XLPageTitleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D0322895BD90028F37E /* XLPageTitleViewCell.m */; };
 		5E789D07228966D10028F37E /* CustomTitleViewCellExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D06228966D10028F37E /* CustomTitleViewCellExampleVC.m */; };
-		5E789D0A228967D80028F37E /* CustomPageTitleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D09228967D80028F37E /* CustomPageTitleViewCell.m */; };
+		5E789D0A228967D80028F37E /* CustomPageTitleViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D09228967D80028F37E /* CustomPageTitleViewCell1.m */; };
 		5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BA228026FA0006D0C2 /* AppDelegate.m */; };
 		5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BD228026FA0006D0C2 /* ViewController.m */; };
 		5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702BF228026FA0006D0C2 /* Main.storyboard */; };
@@ -44,8 +44,8 @@
 		5E789D0322895BD90028F37E /* XLPageTitleViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageTitleViewCell.m; sourceTree = "<group>"; };
 		5E789D05228966D10028F37E /* CustomTitleViewCellExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTitleViewCellExampleVC.h; sourceTree = "<group>"; };
 		5E789D06228966D10028F37E /* CustomTitleViewCellExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTitleViewCellExampleVC.m; sourceTree = "<group>"; };
-		5E789D08228967D80028F37E /* CustomPageTitleViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPageTitleViewCell.h; sourceTree = "<group>"; };
-		5E789D09228967D80028F37E /* CustomPageTitleViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPageTitleViewCell.m; sourceTree = "<group>"; };
+		5E789D08228967D80028F37E /* CustomPageTitleViewCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPageTitleViewCell1.h; sourceTree = "<group>"; };
+		5E789D09228967D80028F37E /* CustomPageTitleViewCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPageTitleViewCell1.m; sourceTree = "<group>"; };
 		5EA702B6228026FA0006D0C2 /* XLPageViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLPageViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA702B9228026FA0006D0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EA702BA228026FA0006D0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 		5EA702D8228030DD0006D0C2 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				5E789D08228967D80028F37E /* CustomPageTitleViewCell.h */,
-				5E789D09228967D80028F37E /* CustomPageTitleViewCell.m */,
+				5E789D08228967D80028F37E /* CustomPageTitleViewCell1.h */,
+				5E789D09228967D80028F37E /* CustomPageTitleViewCell1.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
 				5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */,
-				5E789D0A228967D80028F37E /* CustomPageTitleViewCell.m in Sources */,
+				5E789D0A228967D80028F37E /* CustomPageTitleViewCell1.m in Sources */,
 				5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */,
 				5EA702C9228026FC0006D0C2 /* main.m in Sources */,
 				5E789D07228966D10028F37E /* CustomTitleViewCellExampleVC.m in Sources */,

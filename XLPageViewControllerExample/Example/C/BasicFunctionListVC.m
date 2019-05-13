@@ -60,7 +60,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //自定义标题cell
-    if (indexPath.row == 16) {
+    if ([[self cellTitles][indexPath.row] containsString:@"自定义Cell"]) {
         CustomTitleViewCellExampleVC *exampleVC = [[CustomTitleViewCellExampleVC alloc] init];
         exampleVC.title = [self cellTitles][indexPath.row];
         [self.navigationController pushViewController:exampleVC animated:true];
@@ -82,7 +82,7 @@
              @"4.Segmented样式-标题显示在导航栏上",
              @"5.标题栏-局左",
              @"6.标题栏-局中",
-             @"7.标题栏局右",
+             @"7.标题栏-局右",
              @"8.标题-自定义宽度",
              @"9.标题-自定义高度",
              @"10.标题-文字局上",
@@ -92,8 +92,10 @@
              @"14.阴影动画-无",
              @"15.阴影末端形状-圆角",
              @"16.阴影末端形状-方形",
-             @"17.自定义cell",
-             @"18.频道订阅"
+             @"17.阴影-居上",
+             @"18.阴影-居中",
+             @"19.自定义Cell",
+             @"20.频道订阅"
              ];
 }
 
@@ -184,6 +186,15 @@
             config.shadowLineCap = XLPageShadowLineCapSquare;
             config.shadowLineHeight = 5;
             break;
+        case 16:
+            //阴影上对齐
+            config.shadowLineAlignment = XLPageShadowLineAlignmentTop;
+            break;
+        case 17:
+            //阴影居中
+            config.shadowLineAlignment = XLPageShadowLineAlignmentCenter;
+            break;
+
         default:
             break;
     }

@@ -9,7 +9,7 @@
 #import "CustomTitleViewCellExampleVC.h"
 #import "ExampleTableViewController.h"
 #import "XLPageViewController.h"
-#import "CustomPageTitleViewCell.h"
+#import "CustomPageTitleViewCell1.h"
 
 @interface CustomTitleViewCellExampleVC ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
@@ -35,7 +35,7 @@
     self.pageViewController.view.frame = self.view.bounds;
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
-    [self.pageViewController registerClass:CustomPageTitleViewCell.class forTitleViewCellWithReuseIdentifier:@"CustomPageTitleViewCell"];
+    [self.pageViewController registerClass:CustomPageTitleViewCell1.class forTitleViewCellWithReuseIdentifier:@"CustomPageTitleViewCell1"];
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
 }
@@ -57,7 +57,7 @@
 }
 
 - (XLPageTitleViewCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index {
-    CustomPageTitleViewCell *cell = [pageViewController dequeueReusableTitleViewCellWithIdentifier:@"CustomPageTitleViewCell" forIndex:index];
+    CustomPageTitleViewCell1 *cell = [pageViewController dequeueReusableTitleViewCellWithIdentifier:@"CustomPageTitleViewCell1" forIndex:index];
     cell.title = [self titles][index];
     cell.subtitle = [self subTitles][index];
     return cell;

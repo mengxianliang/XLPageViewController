@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CustomPageTitleViewCell : XLPageTitleViewCell
+@interface CustomPageTitleViewCell1 : XLPageTitleViewCell
 
 @property (nonatomic, copy) NSString *title;
 

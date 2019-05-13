@@ -134,6 +134,7 @@
     self.collectionView.frame = self.bounds;
     self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
     self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
+    [self.collectionView sendSubviewToBack:self.shadowLine];
 }
 
 #pragma mark -
@@ -226,6 +227,12 @@
     CGFloat centerX = cell.center.x;
     CGFloat separatorLineHeight = self.config.separatorLineHidden ? 0 : self.config.separatorLineHeight;
     CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - separatorLineHeight;
+    if (self.config.shadowLineAlignment == XLPageShadowLineAlignmentTop) {
+        centerY = self.config.shadowLineHeight/2.0f;
+    }
+    if (self.config.shadowLineAlignment == XLPageShadowLineAlignmentCenter) {
+        centerY = cell.center.y;
+    }
     return CGPointMake(centerX, centerY);
 }
 
@@ -236,11 +243,11 @@
         return self.config.titleWidth;
     }
     
-    //以较大字体为准
-    UIFont *font = self.config.titleSelectedFont.pointSize > self.config.titleNormalFont.pointSize ? self.config.titleSelectedFont : self.config.titleNormalFont;
+   CGFloat normalTitleWidth = [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleNormalFont size:self.bounds.size];
     
+    CGFloat selectedTitleWidth = [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:self.config.titleSelectedFont size:self.bounds.size];
     
-    return [XLPageViewControllerUtil widthForText:[self.dataSource pageTitleViewTitleForIndex:indexPath.row] font:font size:self.bounds.size];
+    return selectedTitleWidth > normalTitleWidth ? selectedTitleWidth : normalTitleWidth;
 }
 
 #pragma mark -

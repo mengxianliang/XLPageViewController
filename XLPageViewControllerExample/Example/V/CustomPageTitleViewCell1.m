@@ -6,9 +6,9 @@
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "CustomPageTitleViewCell.h"
+#import "CustomPageTitleViewCell1.h"
 
-@interface CustomPageTitleViewCell ()
+@interface CustomPageTitleViewCell1 ()
 
 //标题label
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CustomPageTitleViewCell
+@implementation CustomPageTitleViewCell1
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
