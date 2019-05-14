@@ -9,6 +9,7 @@
 #import "BasicFunctionListVC.h"
 #import "BasicFounctionExampleVC.h"
 #import "CustomTitleCellExampleVC1.h"
+#import "ChannelManageExampleVC.h"
 
 @interface BasicFunctionListVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -59,6 +60,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     //自定义标题cell
     if ([[self cellTitles][indexPath.row] containsString:@"自定义Cell"]) {
         CustomTitleCellExampleVC1 *exampleVC = [[CustomTitleCellExampleVC1 alloc] init];
@@ -66,6 +68,15 @@
         [self.navigationController pushViewController:exampleVC animated:true];
         return;
     }
+    
+    //频道管理
+    if ([[self cellTitles][indexPath.row] containsString:@"频道管理"]) {
+        ChannelManageExampleVC *exampleVC = [[ChannelManageExampleVC alloc] init];
+        exampleVC.title = [self cellTitles][indexPath.row];
+        [self.navigationController pushViewController:exampleVC animated:true];
+        return;
+    }
+    
     //其他
     BasicFounctionExampleVC *exampleVC = [[BasicFounctionExampleVC alloc] init];
     exampleVC.title = [self cellTitles][indexPath.row];

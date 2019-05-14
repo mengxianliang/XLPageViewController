@@ -76,9 +76,6 @@
 //底部分割线
 @property (nonatomic, strong) UIView *separatorLine;
 
-//上一次选中的位置
-@property (nonatomic, assign) NSInteger lastSelectedIndex;
-
 @end
 
 @implementation XLPageBasicTitleView
@@ -131,10 +128,18 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.collectionView.frame = self.bounds;
+    CGFloat collectionW = self.bounds.size.width;
+    if (self.rightButton) {
+        CGFloat btnW = self.bounds.size.height;
+        collectionW = self.bounds.size.width - btnW;
+        self.rightButton.frame = CGRectMake(self.bounds.size.width - btnW, 0, btnW, btnW);
+    }
+    self.collectionView.frame = CGRectMake(0, 0, collectionW, self.bounds.size.height);
+    
     self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
     self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
     [self.collectionView sendSubviewToBack:self.shadowLine];
+    [self bringSubviewToFront:self.separatorLine];
 }
 
 #pragma mark -
@@ -168,6 +173,11 @@
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     _selectedIndex = selectedIndex;
     [self updateLayout];
+}
+
+- (void)setRightButton:(UIButton *)rightButton {
+    _rightButton = rightButton;
+    [self addSubview:rightButton];
 }
 
 - (void)updateLayout {

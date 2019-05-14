@@ -4,10 +4,9 @@
 //
 //  Created by MengXianLiang on 2019/5/10.
 //  Copyright © 2019 jwzt. All rights reserved.
-//
+//  基础功能展示
 
 #import <UIKit/UIKit.h>
-
 #import "XLPageViewControllerConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN

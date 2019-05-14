@@ -81,6 +81,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL scrollEnabled;
 
 /**
+ 右侧按钮
+ */
+@property (nonatomic, strong) UIButton *rightButton;
+
+/**
  初始化方法
 
  @param config 配置信息

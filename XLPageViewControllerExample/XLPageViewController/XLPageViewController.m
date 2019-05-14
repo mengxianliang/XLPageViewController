@@ -181,12 +181,18 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     [self switchToViewControllerAdIndex:selectedIndex animated:false];
 }
 
+//开关滑动
 - (void)setScrollEnabled:(BOOL)scrollEnabled {
     for (UIScrollView *scrollView in self.pageVC.view.subviews) {
         if ([scrollView isKindOfClass:[UIScrollView class]]) {
             scrollView.scrollEnabled = scrollEnabled;
         }
     }
+}
+
+//设置右侧按钮
+- (void)setRightButton:(UIButton *)rightButton {
+    _titleView.rightButton = rightButton;
 }
 
 #pragma mark -
@@ -197,8 +203,15 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     self.haveLoadedPageVC = true;
     //更新当前位置
     _selectedIndex = index;
+    
+    //设置滚动方向
+    UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
+    if (_titleView.lastSelectedIndex > _selectedIndex) {
+        direction = UIPageViewControllerNavigationDirectionReverse;
+    }
+    
     //设置当前展示VC
-    [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:UIPageViewControllerNavigationDirectionForward animated:animated completion:nil];
+    [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:animated completion:nil];
     //标题居中
     self.titleView.selectedIndex = _selectedIndex;
 }
@@ -207,6 +220,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 #pragma mark 刷新方法
 - (void)reloadData {
     [self.titleView reloadData];
+    [self switchToViewControllerAdIndex:_selectedIndex animated:false];
 }
 
 #pragma mark -

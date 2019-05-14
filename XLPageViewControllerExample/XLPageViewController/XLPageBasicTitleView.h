@@ -67,6 +67,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger selectedIndex;
 
 /**
+ 上一次选中的位置
+ */
+@property (nonatomic, assign, readonly) NSInteger lastSelectedIndex;
+
+/**
  动画的进度
  */
 @property (nonatomic, assign) CGFloat animationProgress;
@@ -76,6 +81,12 @@ NS_ASSUME_NONNULL_BEGIN
  停止动画，在手动设置位置时，不显示动画效果
  */
 @property (nonatomic, assign) BOOL stopAnimation;
+
+
+/**
+ 右侧按钮
+ */
+@property (nonatomic, strong) UIButton *rightButton;
 
 /**
  初始化方法
