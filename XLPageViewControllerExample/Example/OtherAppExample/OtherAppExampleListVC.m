@@ -7,7 +7,7 @@
 //
 
 #import "OtherAppExampleListVC.h"
-#import "BasicFounctionExampleVC.h"
+#import "CommonPageViewController.h"
 #import "XLNavigationController.h"
 #import "CustomTitleCellExampleVC2.h"
 #import "CustomTitleCellExampleVC3.h"
@@ -76,7 +76,7 @@
         return;
     }
     
-    BasicFounctionExampleVC *exampleVC = [[BasicFounctionExampleVC alloc] init];
+    CommonPageViewController *exampleVC = [[CommonPageViewController alloc] init];
     exampleVC.title = [self cellTitles][indexPath.row];
     exampleVC.config = [self configOfIndexPath:indexPath];
     exampleVC.titles = [self vcTitlesOfIndexPath:indexPath];

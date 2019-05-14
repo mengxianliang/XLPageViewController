@@ -1,23 +1,21 @@
 //
-//  SpecialUseExampleVC.m
+//  BasicFunctionListVC.m
 //  XLPageViewControllerExample
 //
-//  Created by MengXianLiang on 2019/5/14.
+//  Created by MengXianLiang on 2019/5/10.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "SpecialUseExampleVC.h"
-#import "BasicFounctionExampleVC.h"
-#import "CustomTitleCellExampleVC1.h"
-#import "ChannelManageExampleVC.h"
+#import "BasicFunctionListVC.h"
+#import "CommonPageViewController.h"
 
-@interface SpecialUseExampleVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface BasicFunctionListVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation SpecialUseExampleVC
+@implementation BasicFunctionListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,25 +58,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //自定义标题cell
-    if ([[self cellTitles][indexPath.row] containsString:@"自定义Cell"]) {
-        CustomTitleCellExampleVC1 *exampleVC = [[CustomTitleCellExampleVC1 alloc] init];
-        exampleVC.title = [self cellTitles][indexPath.row];
-        [self.navigationController pushViewController:exampleVC animated:true];
-        return;
-    }
-    
-    //频道管理
-    if ([[self cellTitles][indexPath.row] containsString:@"频道管理"]) {
-        ChannelManageExampleVC *exampleVC = [[ChannelManageExampleVC alloc] init];
-        exampleVC.title = [self cellTitles][indexPath.row];
-        [self.navigationController pushViewController:exampleVC animated:true];
-        return;
-    }
-    
-    //其他
-    BasicFounctionExampleVC *exampleVC = [[BasicFounctionExampleVC alloc] init];
+    CommonPageViewController *exampleVC = [[CommonPageViewController alloc] init];
     exampleVC.title = [self cellTitles][indexPath.row];
     exampleVC.config = [self configOfIndexPath:indexPath];
     exampleVC.titles = [self vcTitlesOfIndexPath:indexPath];
@@ -87,10 +67,24 @@
 
 - (NSArray *)cellTitles {
     return @[
-             @"自定义Cell",
-             @"频道定制",
-             @"多级嵌套",
-             @"处理和子view冲突问题",
+             @"基本样式-标题正常显示（默认）",
+             @"基本样式-标题显示在导航栏上",
+             @"Segmented样式-标题正常显示",
+             @"Segmented样式-标题显示在导航栏上",
+             @"标题栏-局左",
+             @"标题栏-局中",
+             @"标题栏-局右",
+             @"标题-自定义宽度",
+             @"标题-自定义高度",
+             @"标题-文字局上",
+             @"标题-文字居下",
+             @"标题-关闭标题颜色过渡",
+             @"阴影动画-缩放",
+             @"阴影动画-无",
+             @"阴影末端形状-圆角",
+             @"阴影末端形状-直角",
+             @"阴影-居上",
+             @"阴影-居中",
              ];
 }
 
@@ -189,7 +183,7 @@
             //阴影居中
             config.shadowLineAlignment = XLPageShadowLineAlignmentCenter;
             break;
-            
+
         default:
             break;
     }

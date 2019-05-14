@@ -1,5 +1,5 @@
 //
-//  ExampleTableViewController.h
+//  CommonTableViewController.h
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/6.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExampleTableViewController : UIViewController
+@interface CommonTableViewController : UIViewController
 
 @end
 

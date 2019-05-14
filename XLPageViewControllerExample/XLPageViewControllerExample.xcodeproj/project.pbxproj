@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E789CD422842B8A0028F37E /* XLPageSegmentedTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CD322842B8A0028F37E /* XLPageSegmentedTitleView.m */; };
-		5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */; };
+		5E789CE622853ECF0028F37E /* CommonPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE522853ECF0028F37E /* CommonPageViewController.m */; };
 		5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CE822853F630028F37E /* BasicFunctionListVC.m */; };
 		5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */; };
 		5E789D012286C2580028F37E /* XLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D002286C2580028F37E /* XLNavigationController.m */; };
@@ -28,8 +28,7 @@
 		5EA702C6228026FC0006D0C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702C4228026FC0006D0C2 /* LaunchScreen.storyboard */; };
 		5EA702C9228026FC0006D0C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702C8228026FC0006D0C2 /* main.m */; };
 		5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702D4228028880006D0C2 /* XLPageViewController.m */; };
-		5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */; };
-		5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702DE2280310A0006D0C2 /* ExampleModel.m */; };
+		5EA702DC228030FA0006D0C2 /* CommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702DB228030FA0006D0C2 /* CommonTableViewController.m */; };
 		5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E122827D580006D0C2 /* XLPageBasicTitleView.m */; };
 		5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E7228286BB0006D0C2 /* XLPageViewControllerConfig.m */; };
 		5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702EA22829E050006D0C2 /* XLPageViewControllerUtil.m */; };
@@ -38,8 +37,8 @@
 /* Begin PBXFileReference section */
 		5E789CD222842B8A0028F37E /* XLPageSegmentedTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageSegmentedTitleView.h; sourceTree = "<group>"; };
 		5E789CD322842B8A0028F37E /* XLPageSegmentedTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageSegmentedTitleView.m; sourceTree = "<group>"; };
-		5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicFounctionExampleVC.h; sourceTree = "<group>"; };
-		5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicFounctionExampleVC.m; sourceTree = "<group>"; };
+		5E789CE422853ECF0028F37E /* CommonPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonPageViewController.h; sourceTree = "<group>"; };
+		5E789CE522853ECF0028F37E /* CommonPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonPageViewController.m; sourceTree = "<group>"; };
 		5E789CE722853F630028F37E /* BasicFunctionListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicFunctionListVC.h; sourceTree = "<group>"; };
 		5E789CE822853F630028F37E /* BasicFunctionListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicFunctionListVC.m; sourceTree = "<group>"; };
 		5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherAppExampleListVC.h; sourceTree = "<group>"; };
@@ -76,10 +75,8 @@
 		5EA702C8228026FC0006D0C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EA702D3228028880006D0C2 /* XLPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageViewController.h; sourceTree = "<group>"; };
 		5EA702D4228028880006D0C2 /* XLPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageViewController.m; sourceTree = "<group>"; };
-		5EA702DA228030FA0006D0C2 /* ExampleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleTableViewController.h; sourceTree = "<group>"; };
-		5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTableViewController.m; sourceTree = "<group>"; };
-		5EA702DD2280310A0006D0C2 /* ExampleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleModel.h; sourceTree = "<group>"; };
-		5EA702DE2280310A0006D0C2 /* ExampleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleModel.m; sourceTree = "<group>"; };
+		5EA702DA228030FA0006D0C2 /* CommonTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTableViewController.h; sourceTree = "<group>"; };
+		5EA702DB228030FA0006D0C2 /* CommonTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewController.m; sourceTree = "<group>"; };
 		5EA702E022827D580006D0C2 /* XLPageBasicTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageBasicTitleView.h; sourceTree = "<group>"; };
 		5EA702E122827D580006D0C2 /* XLPageBasicTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageBasicTitleView.m; sourceTree = "<group>"; };
 		5EA702E6228286BB0006D0C2 /* XLPageViewControllerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLPageViewControllerConfig.h; sourceTree = "<group>"; };
@@ -157,58 +154,64 @@
 		5EA702D6228030CB0006D0C2 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				5EA702D9228030E10006D0C2 /* C */,
-				5EA702D8228030DD0006D0C2 /* V */,
-				5EA702D7228030D70006D0C2 /* M */,
+				5EBE6EDA228AF3CB00B1F8F9 /* SpecialUserExample */,
+				5EBE6ED9228AF3BF00B1F8F9 /* BasicFunctionExample */,
+				5EBE6ED8228AF3B100B1F8F9 /* OtherAppExample */,
+				5EA702D9228030E10006D0C2 /* Common */,
 			);
 			path = Example;
 			sourceTree = "<group>";
 		};
-		5EA702D7228030D70006D0C2 /* M */ = {
+		5EA702D9228030E10006D0C2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5EA702DD2280310A0006D0C2 /* ExampleModel.h */,
-				5EA702DE2280310A0006D0C2 /* ExampleModel.m */,
+				5E789CE422853ECF0028F37E /* CommonPageViewController.h */,
+				5E789CE522853ECF0028F37E /* CommonPageViewController.m */,
+				5EA702DA228030FA0006D0C2 /* CommonTableViewController.h */,
+				5EA702DB228030FA0006D0C2 /* CommonTableViewController.m */,
 			);
-			path = M;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		5EA702D8228030DD0006D0C2 /* V */ = {
+		5EBE6ED8228AF3B100B1F8F9 /* OtherAppExample */ = {
 			isa = PBXGroup;
 			children = (
-				5E789D08228967D80028F37E /* CustomPageTitleCell1.h */,
-				5E789D09228967D80028F37E /* CustomPageTitleCell1.m */,
+				5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */,
+				5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */,
+				5E789D0E228A2D7F0028F37E /* CustomTitleCellExampleVC2.h */,
+				5E789D0F228A2D7F0028F37E /* CustomTitleCellExampleVC2.m */,
+				5E789D11228A5E2B0028F37E /* CustomTitleCellExampleVC3.h */,
+				5E789D12228A5E2B0028F37E /* CustomTitleCellExampleVC3.m */,
 				5E789D0B228A2CCA0028F37E /* CustomPageTitleCell2.h */,
 				5E789D0C228A2CCA0028F37E /* CustomPageTitleCell2.m */,
 				5E789D14228A5E5E0028F37E /* CustomPageTitleCell3.h */,
 				5E789D15228A5E5E0028F37E /* CustomPageTitleCell3.m */,
 			);
-			path = V;
+			path = OtherAppExample;
 			sourceTree = "<group>";
 		};
-		5EA702D9228030E10006D0C2 /* C */ = {
+		5EBE6ED9228AF3BF00B1F8F9 /* BasicFunctionExample */ = {
 			isa = PBXGroup;
 			children = (
 				5E789CE722853F630028F37E /* BasicFunctionListVC.h */,
 				5E789CE822853F630028F37E /* BasicFunctionListVC.m */,
-				5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */,
-				5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */,
+			);
+			path = BasicFunctionExample;
+			sourceTree = "<group>";
+		};
+		5EBE6EDA228AF3CB00B1F8F9 /* SpecialUserExample */ = {
+			isa = PBXGroup;
+			children = (
 				5E789D3C228AEBD90028F37E /* SpecialUseExampleVC.h */,
 				5E789D3D228AEBD90028F37E /* SpecialUseExampleVC.m */,
-				5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */,
-				5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */,
 				5E789D05228966D10028F37E /* CustomTitleCellExampleVC1.h */,
 				5E789D06228966D10028F37E /* CustomTitleCellExampleVC1.m */,
-				5E789D0E228A2D7F0028F37E /* CustomTitleCellExampleVC2.h */,
-				5E789D0F228A2D7F0028F37E /* CustomTitleCellExampleVC2.m */,
-				5E789D11228A5E2B0028F37E /* CustomTitleCellExampleVC3.h */,
-				5E789D12228A5E2B0028F37E /* CustomTitleCellExampleVC3.m */,
 				5E789D17228A6EEA0028F37E /* ChannelManageExampleVC.h */,
 				5E789D18228A6EEA0028F37E /* ChannelManageExampleVC.m */,
-				5EA702DA228030FA0006D0C2 /* ExampleTableViewController.h */,
-				5EA702DB228030FA0006D0C2 /* ExampleTableViewController.m */,
+				5E789D08228967D80028F37E /* CustomPageTitleCell1.h */,
+				5E789D09228967D80028F37E /* CustomPageTitleCell1.m */,
 			);
-			path = C;
+			path = SpecialUserExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,9 +289,8 @@
 				5E789D3E228AEBD90028F37E /* SpecialUseExampleVC.m in Sources */,
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
-				5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */,
 				5E789D0A228967D80028F37E /* CustomPageTitleCell1.m in Sources */,
-				5EA702DC228030FA0006D0C2 /* ExampleTableViewController.m in Sources */,
+				5EA702DC228030FA0006D0C2 /* CommonTableViewController.m in Sources */,
 				5E789D10228A2D7F0028F37E /* CustomTitleCellExampleVC2.m in Sources */,
 				5EA702C9228026FC0006D0C2 /* main.m in Sources */,
 				5E789D07228966D10028F37E /* CustomTitleCellExampleVC1.m in Sources */,
@@ -296,7 +298,7 @@
 				5E789D0D228A2CCA0028F37E /* CustomPageTitleCell2.m in Sources */,
 				5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */,
 				5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */,
-				5E789CE622853ECF0028F37E /* BasicFounctionExampleVC.m in Sources */,
+				5E789CE622853ECF0028F37E /* CommonPageViewController.m in Sources */,
 				5E789D16228A5E5E0028F37E /* CustomPageTitleCell3.m in Sources */,
 				5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */,
 				5E789D13228A5E2B0028F37E /* CustomTitleCellExampleVC3.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "ChannelManageExampleVC.h"
-#import "ExampleTableViewController.h"
+#import "CommonTableViewController.h"
 #import "XLPageViewController.h"
 
 @interface ChannelManageExampleVC ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
@@ -55,7 +55,7 @@
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
-    ExampleTableViewController *vc = [[ExampleTableViewController alloc] init];
+    CommonTableViewController *vc = [[CommonTableViewController alloc] init];
     vc.title = self.titles[index];
     return vc;
 }

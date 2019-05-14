@@ -1,20 +1,20 @@
 //
-//  ExampleTableViewController.m
+//  CommonTableViewController.m
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/6.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "ExampleTableViewController.h"
+#import "CommonTableViewController.h"
 
-@interface ExampleTableViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface CommonTableViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation ExampleTableViewController
+@implementation CommonTableViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -59,7 +59,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ExampleTableViewController *vc = [[ExampleTableViewController alloc] init];
+    CommonTableViewController *vc = [[CommonTableViewController alloc] init];
     vc.title = @"跳转新界面";
     [self.navigationController pushViewController:vc animated:true];
 }

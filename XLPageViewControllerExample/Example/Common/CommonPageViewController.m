@@ -1,22 +1,22 @@
 //
-//  BasicFounctionExampleVC.m
+//  CommonPageViewController.m
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/10.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "BasicFounctionExampleVC.h"
-#import "ExampleTableViewController.h"
+#import "CommonPageViewController.h"
+#import "CommonTableViewController.h"
 #import "XLPageViewController.h"
 
-@interface BasicFounctionExampleVC ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+@interface CommonPageViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
 @property (nonatomic, strong) XLPageViewController *pageViewController;
 
 @end
 
-@implementation BasicFounctionExampleVC
+@implementation CommonPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +36,7 @@
 #pragma mark -
 #pragma mark TableViewDelegate&DataSource
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
-    ExampleTableViewController *vc = [[ExampleTableViewController alloc] init];
+    CommonTableViewController *vc = [[CommonTableViewController alloc] init];
     vc.title = self.titles[index];
     return vc;
 }
