@@ -2,10 +2,11 @@
 
 ## 简介:
 
-* 采用UICollectionView+UIpageViewController方案，子控制器和标题不需要提前创建，内存占用较低。
+* 采用UICollectionView+UIpageViewController方案，子控制器和标题不需要提前创建，减少App启动时的资源消耗。
 * 支持刷新，内置缓存机制，已存在的的子控制器和标题不需要重新创建。
 * 丰富的默认样式配置，支持大部分主流App样式。
-* 支持用户自定义标题样式
+* 支持用户自定义标题样式。
+* 支持多层嵌套。
 
 ## 结构:
 
@@ -34,3 +35,16 @@
 |阴影-居上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/17.gif)|
 |阴影-居中|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/18.gif)|
 |自定义Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/19.gif)|
+
+## App举例：
+
+| App | 示例 | 
+| ---- | ---- | 
+|今日头条|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-1.gif)|
+|腾讯新闻|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-2.gif)|
+|澎湃新闻|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-3.gif)|
+|爱奇艺|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-4.gif)|
+|优酷|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-5.gif)|
+|腾讯视频|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-6.gif)|
+|网易新闻（自定义）|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-7.gif)|
+|人民日报（自定义）|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-8.gif)|
