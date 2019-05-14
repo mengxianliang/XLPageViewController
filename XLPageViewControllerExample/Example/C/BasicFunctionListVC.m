@@ -55,7 +55,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.textLabel.text = [self cellTitles][indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%zd、%@",indexPath.row + 1,[self cellTitles][indexPath.row]];
     return cell;
 }
 
@@ -87,26 +87,27 @@
 
 - (NSArray *)cellTitles {
     return @[
-             @"1.基本样式-标题正常显示（默认）",
-             @"2.基本样式-标题显示在导航栏上",
-             @"3.Segmented样式-标题正常显示",
-             @"4.Segmented样式-标题显示在导航栏上",
-             @"5.标题栏-局左",
-             @"6.标题栏-局中",
-             @"7.标题栏-局右",
-             @"8.标题-自定义宽度",
-             @"9.标题-自定义高度",
-             @"10.标题-文字局上",
-             @"11.标题-文字居下",
-             @"12.标题-关闭标题颜色过渡",
-             @"13.阴影动画-缩放",
-             @"14.阴影动画-无",
-             @"15.阴影末端形状-圆角",
-             @"16.阴影末端形状-直角",
-             @"17.阴影-居上",
-             @"18.阴影-居中",
-             @"19.自定义Cell",
-             @"20.频道管理",
+             @"基本样式-标题正常显示（默认）",
+             @"基本样式-标题显示在导航栏上",
+             @"Segmented样式-标题正常显示",
+             @"Segmented样式-标题显示在导航栏上",
+             @"标题栏-局左",
+             @"标题栏-局中",
+             @"标题栏-局右",
+             @"标题-自定义宽度",
+             @"标题-自定义高度",
+             @"标题-文字局上",
+             @"标题-文字居下",
+             @"标题-关闭标题颜色过渡",
+             @"阴影动画-缩放",
+             @"阴影动画-无",
+             @"阴影末端形状-圆角",
+             @"阴影末端形状-直角",
+             @"阴影-居上",
+             @"阴影-居中",
+             @"自定义Cell",
+             @"频道管理",
+             @"嵌套"
              ];
 }
 

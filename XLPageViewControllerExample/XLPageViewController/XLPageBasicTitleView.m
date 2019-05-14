@@ -18,12 +18,17 @@
 
 @property (nonatomic, assign) UIEdgeInsets originSectionInset;
 
+@property (nonatomic, assign) BOOL haveUpdateInset;
+
 @end
 
 @implementation XLPageBasicTitleViewFolowLayout
 
 //设置标题居中、局左、居右方法
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    if (self.haveUpdateInset) {
+        return [super layoutAttributesForElementsInRect:rect];
+    }
     CGRect targetRect = rect;
     targetRect.size = self.collectionView.bounds.size;
     //获取屏幕上所有布局文件
@@ -31,7 +36,10 @@
     //获取所有item个数
     CGFloat totalItemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0];
     //如果屏幕未被item充满，执行以下布局，否则保持标准布局
-    if (attributes.count < totalItemCount) {return [super layoutAttributesForElementsInRect:rect];}
+    if (attributes.count < totalItemCount) {
+        return [super layoutAttributesForElementsInRect:rect];
+    }
+    self.haveUpdateInset = true;
     //获取第一个cell左边和最后一个cell右边之间的距离
     UICollectionViewLayoutAttributes *firstAttribute = attributes.firstObject;
     UICollectionViewLayoutAttributes *lastAttribute = attributes.lastObject;
@@ -49,9 +57,12 @@
     if (self.alignment == XLPageTitleViewAlignmentRight) {
         insetLeft = emptyWidth - self.originSectionInset.right;
     }
-    
     //兼容防止出错，最小缩进设置为原始缩进
     insetLeft = insetLeft <= self.originSectionInset.left ? self.originSectionInset.left : insetLeft;
+    //如果和当前缩进一直，则不需要更新缩进
+    if (insetLeft == self.sectionInset.left) {
+        return [super layoutAttributesForElementsInRect:rect];
+    }
     //更新CollectionView缩进
     self.sectionInset = UIEdgeInsetsMake(self.sectionInset.top, insetLeft, self.sectionInset.bottom, self.sectionInset.right);
     //返回
@@ -63,6 +74,9 @@
 #pragma mark - 标题类
 #pragma mark XLPageBasicTitleView
 @interface XLPageBasicTitleView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+//布局
+@property (nonatomic, strong) XLPageBasicTitleViewFolowLayout *layout;
 
 //集合视图
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -91,15 +105,15 @@
     
     self.config = config;
     
-    XLPageBasicTitleViewFolowLayout *layout = [[XLPageBasicTitleViewFolowLayout alloc] init];
-    layout.alignment = self.config.titleViewAlignment;
-    layout.originSectionInset = self.config.titleViewInset;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.sectionInset = config.titleViewInset;
-    layout.minimumInteritemSpacing = config.titleSpace;
-    layout.minimumLineSpacing = config.titleSpace;
+    self.layout = [[XLPageBasicTitleViewFolowLayout alloc] init];
+    self.layout.alignment = self.config.titleViewAlignment;
+    self.layout.originSectionInset = self.config.titleViewInset;
+    self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.layout.sectionInset = config.titleViewInset;
+    self.layout.minimumInteritemSpacing = config.titleSpace;
+    self.layout.minimumLineSpacing = config.titleSpace;
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = config.titleViewBackgroundColor;
@@ -128,6 +142,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
     CGFloat collectionW = self.bounds.size.width;
     if (self.rightButton) {
         CGFloat btnW = self.bounds.size.height;
@@ -227,6 +242,7 @@
 
 //刷新方法
 - (void)reloadData {
+    self.layout.haveUpdateInset = false;
     [self.collectionView reloadData];
 }
 
