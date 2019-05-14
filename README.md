@@ -2,10 +2,11 @@
 
 ## 简介:
 
-* 采用UICollectionView+UIpageViewController方案，子控制器和标题不需要提前创建，内存占用较低。
+* 采用UICollectionView+UIpageViewController方案，子控制器和标题不需要提前创建，减少App启动时的资源消耗。
 * 支持刷新，内置缓存机制，已存在的的子控制器和标题不需要重新创建。
 * 丰富的默认样式配置，支持大部分主流App样式。
-* 支持用户自定义标题样式
+* 支持用户自定义标题样式。
+* 支持多层嵌套。
 
 ## 结构:
 
