@@ -102,7 +102,7 @@
              @"13.阴影动画-缩放",
              @"14.阴影动画-无",
              @"15.阴影末端形状-圆角",
-             @"16.阴影末端形状-方形",
+             @"16.阴影末端形状-直角",
              @"17.阴影-居上",
              @"18.阴影-居中",
              @"19.自定义Cell",
@@ -193,7 +193,7 @@
             config.shadowLineHeight = 5;
             break;
         case 15:
-            //设置阴影末端形状为方形
+            //设置阴影末端形状为直角
             config.shadowLineCap = XLPageShadowLineCapSquare;
             config.shadowLineHeight = 5;
             break;

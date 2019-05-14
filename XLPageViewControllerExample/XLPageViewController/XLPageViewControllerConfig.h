@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, XLPageTextVerticalAlignment) {
 };
 
 /**
- 阴影末端形状，圆形、方形
+ 阴影末端形状，圆角、直角
  */
 typedef NS_ENUM(NSInteger, XLPageShadowLineCap) {
     XLPageShadowLineCapRound = 0,

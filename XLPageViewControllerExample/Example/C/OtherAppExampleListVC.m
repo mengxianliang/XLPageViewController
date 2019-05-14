@@ -168,7 +168,7 @@
             config.shadowLineColor = [self colorOfR:1 G:165 B:235];
             //阴影宽度
             config.shadowLineWidth = 22;
-            //阴影末端是方形
+            //阴影末端是直角
             config.shadowLineCap = XLPageShadowLineCapSquare;
             //分割线颜色
             config.separatorLineHidden = true;

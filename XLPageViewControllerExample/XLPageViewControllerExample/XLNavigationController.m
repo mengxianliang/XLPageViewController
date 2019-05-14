@@ -35,7 +35,6 @@
     self.navigationBar.tintColor = barTintColor;
 }
 
-
 - (void)setBarBackgourndColor:(UIColor *)barBackgourndColor {
     [self.navigationBar setBackgroundImage:[self imageWithColor:barBackgourndColor] forBarMetrics:UIBarMetricsDefault];
 }
