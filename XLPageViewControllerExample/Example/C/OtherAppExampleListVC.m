@@ -9,6 +9,7 @@
 #import "OtherAppExampleListVC.h"
 #import "BasicFounctionExampleVC.h"
 #import "XLNavigationController.h"
+#import "CustomTitleCellExampleVC2.h"
 
 @interface OtherAppExampleListVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -61,6 +62,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[self cellTitles][indexPath.row] isEqualToString:@"网易新闻"]) {
+        CustomTitleCellExampleVC2 *vc = [[CustomTitleCellExampleVC2 alloc] init];
+        vc.title = @"网易新闻";
+        [self.navigationController pushViewController:vc animated:true];
+        return;
+    }
+    
     BasicFounctionExampleVC *exampleVC = [[BasicFounctionExampleVC alloc] init];
     exampleVC.title = [self cellTitles][indexPath.row];
     exampleVC.config = [self configOfIndexPath:indexPath];
@@ -77,6 +85,8 @@
              @"爱奇艺",
              @"优酷",
              @"腾讯视频",
+             @"网易新闻",
+             @"人民日报",
              ];
 }
 
@@ -87,7 +97,9 @@
              @"icon_ppxw",
              @"icon_iqyi",
              @"icon_yk",
-             @"icon_txsp"
+             @"icon_txsp",
+             @"icon_wyxw",
+             @"icon_rmrb"
              ];
 }
 

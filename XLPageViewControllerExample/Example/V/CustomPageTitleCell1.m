@@ -1,14 +1,14 @@
 //
-//  CustomPageTitleViewCell.m
+//  CustomPageTitleCell1.m
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/13.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "CustomPageTitleViewCell1.h"
+#import "CustomPageTitleCell1.h"
 
-@interface CustomPageTitleViewCell1 ()
+@interface CustomPageTitleCell1 ()
 
 //标题label
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CustomPageTitleViewCell1
+@implementation CustomPageTitleCell1
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -67,7 +67,6 @@
     self.titleLabel.textColor = textColor;
     
     self.subtitleLabel.textColor = textColor;
-    
 }
 
 //通过此父类方法配置cell动画

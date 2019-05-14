@@ -1,16 +1,16 @@
 //
-//  CustomTitleViewCellExampleVC.h
+//  CustomTitleCellExampleVC2.h
 //  XLPageViewControllerExample
 //
-//  Created by MengXianLiang on 2019/5/13.
+//  Created by MengXianLiang on 2019/5/14.
 //  Copyright © 2019 jwzt. All rights reserved.
-//
+//  网易新闻样式
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CustomTitleViewCellExampleVC : UIViewController
+@interface CustomTitleCellExampleVC2 : UIViewController
 
 @end
 

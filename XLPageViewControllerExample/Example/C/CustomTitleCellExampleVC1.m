@@ -1,23 +1,23 @@
 //
-//  CustomTitleViewCellExampleVC.m
+//  CustomTitleCellExampleVC1.m
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/13.
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "CustomTitleViewCellExampleVC.h"
+#import "CustomTitleCellExampleVC1.h"
 #import "ExampleTableViewController.h"
 #import "XLPageViewController.h"
-#import "CustomPageTitleViewCell1.h"
+#import "CustomPageTitleCell1.h"
 
-@interface CustomTitleViewCellExampleVC ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+@interface CustomTitleCellExampleVC1 ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
 @property (nonatomic, strong) XLPageViewController *pageViewController;
 
 @end
 
-@implementation CustomTitleViewCellExampleVC
+@implementation CustomTitleCellExampleVC1
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +35,7 @@
     self.pageViewController.view.frame = self.view.bounds;
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
-    [self.pageViewController registerClass:CustomPageTitleViewCell1.class forTitleViewCellWithReuseIdentifier:@"CustomPageTitleViewCell1"];
+    [self.pageViewController registerClass:CustomPageTitleCell1.class forTitleViewCellWithReuseIdentifier:@"CustomPageTitleViewCell1"];
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
 }
@@ -56,8 +56,8 @@
     return self.titles.count;
 }
 
-- (XLPageTitleViewCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index {
-    CustomPageTitleViewCell1 *cell = [pageViewController dequeueReusableTitleViewCellWithIdentifier:@"CustomPageTitleViewCell1" forIndex:index];
+- (XLPageTitleCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index {
+    CustomPageTitleCell1 *cell = [pageViewController dequeueReusableTitleViewCellWithIdentifier:@"CustomPageTitleViewCell1" forIndex:index];
     cell.title = [self titles][index];
     cell.subtitle = [self subTitles][index];
     return cell;

@@ -1,5 +1,5 @@
 //
-//  XLPageTitleViewCell.m
+//  XLPageTitleCell.m
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/13.
@@ -50,9 +50,9 @@
 
 #pragma mark -
 #pragma mark Cell类
-#import "XLPageTitleViewCell.h"
+#import "XLPageTitleCell.h"
 
-@implementation XLPageTitleViewCell
+@implementation XLPageTitleCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

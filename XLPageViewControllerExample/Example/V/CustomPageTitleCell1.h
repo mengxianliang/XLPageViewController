@@ -6,11 +6,11 @@
 //  Copyright © 2019 jwzt. All rights reserved.
 //
 
-#import "XLPageTitleViewCell.h"
+#import "XLPageTitleCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CustomPageTitleViewCell1 : XLPageTitleViewCell
+@interface CustomPageTitleCell1 : XLPageTitleCell
 
 @property (nonatomic, copy) NSString *title;
 

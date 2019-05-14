@@ -8,7 +8,7 @@
 
 #import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"
-#import "XLPageTitleViewCell.h"
+#import "XLPageTitleCell.h"
 
 #pragma mark - 布局类
 #pragma mark XLPageBasicTitleViewFolowLayout
@@ -106,7 +106,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = config.titleViewBackgroundColor;
-    [self.collectionView registerClass:[XLPageTitleViewCell class] forCellWithReuseIdentifier:@"XLPageTitleViewCell"];
+    [self.collectionView registerClass:[XLPageTitleCell class] forCellWithReuseIdentifier:@"XLPageTitleCell"];
     self.collectionView.showsHorizontalScrollIndicator = false;
     [self addSubview:self.collectionView];
     
@@ -148,9 +148,9 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    XLPageTitleViewCell *cell = [self.dataSource pageTitleViewCellForItemAtIndex:indexPath.row];
+    XLPageTitleCell *cell = [self.dataSource pageTitleViewCellForItemAtIndex:indexPath.row];
     if (!cell) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"XLPageTitleViewCell" forIndexPath:indexPath];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"XLPageTitleCell" forIndexPath:indexPath];
     }
     cell.config = self.config;
     cell.textLabel.text = [self.dataSource pageTitleViewTitleForIndex:indexPath.row];
@@ -200,8 +200,8 @@
     if (targetIndex < 0 || targetIndex >= [self.dataSource pageTitleViewNumberOfTitle]) {return;}
     
     //获取cell
-    XLPageTitleViewCell *currentCell = (XLPageTitleViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
-    XLPageTitleViewCell *targetCell = (XLPageTitleViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:targetIndex inSection:0]];
+    XLPageTitleCell *currentCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
+    XLPageTitleCell *targetCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:targetIndex inSection:0]];
     
     //标题颜色过渡
     if (self.config.titleColorTransition) {
@@ -223,7 +223,7 @@
 #pragma mark -
 #pragma mark 阴影位置
 - (CGPoint)shadowLineCenterForIndex:(NSInteger)index {
-    XLPageTitleViewCell *cell = (XLPageTitleViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     CGFloat centerX = cell.center.x;
     CGFloat separatorLineHeight = self.config.separatorLineHidden ? 0 : self.config.separatorLineHeight;
     CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - separatorLineHeight;
@@ -256,27 +256,27 @@
     if (!identifier.length) {
         [NSException raise:@"This identifier must not be nil and must not be an empty string." format:@""];
     }
-    if ([identifier isEqualToString:NSStringFromClass(XLPageTitleViewCell.class)]) {
+    if ([identifier isEqualToString:NSStringFromClass(XLPageTitleCell.class)]) {
         [NSException raise:@"please change an identifier" format:@""];
     }
-    if (![cellClass isSubclassOfClass:[XLPageTitleViewCell class]]) {
-        [NSException raise:@"The cell class must be a subclass of XLPageTitleViewCell." format:@""];
+    if (![cellClass isSubclassOfClass:[XLPageTitleCell class]]) {
+        [NSException raise:@"The cell class must be a subclass of XLPageTitleCell." format:@""];
     }
     [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
-- (__kindof XLPageTitleViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
+- (__kindof XLPageTitleCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
     if (!identifier.length) {
         [NSException raise:@"This identifier must not be nil and must not be an empty string." format:@""];
     }
-    if ([identifier isEqualToString:NSStringFromClass(XLPageTitleViewCell.class)]) {
+    if ([identifier isEqualToString:NSStringFromClass(XLPageTitleCell.class)]) {
         [NSException raise:@"please change an identifier" format:@""];
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     if (!indexPath) {
         [NSException raise:@"please change an identifier" format:@""];
     }
-    XLPageTitleViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    XLPageTitleCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     return cell;
 }
 

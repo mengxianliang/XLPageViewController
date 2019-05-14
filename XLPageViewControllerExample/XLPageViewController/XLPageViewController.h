@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XLPageViewControllerConfig.h"
-#import "XLPageTitleViewCell.h"
+#import "XLPageTitleCell.h"
 
 @class XLPageViewController;
 
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  自定义cell方法
  */
-- (__kindof XLPageTitleViewCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index;
+- (__kindof XLPageTitleCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index;
 
 @end
 
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  自定义标题栏cell时用到
  返回复用的cell
  */
-- (__kindof XLPageTitleViewCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
+- (__kindof XLPageTitleCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
 
 @end
 

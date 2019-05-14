@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XLPageTitleViewCell.h"
+#import "XLPageTitleCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  自定义cell方法
  */
-- (__kindof XLPageTitleViewCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index;
+- (__kindof XLPageTitleCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index;
 
 @end
 
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 复用方法
  */
-- (__kindof XLPageTitleViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
+- (__kindof XLPageTitleCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
 @end
 
 NS_ASSUME_NONNULL_END

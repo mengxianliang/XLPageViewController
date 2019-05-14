@@ -161,7 +161,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     return [self titleForIndex:index];
 }
 
-- (XLPageTitleViewCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index {
+- (XLPageTitleCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index {
     if ([self.dataSource respondsToSelector:@selector(pageViewController:titleViewCellForItemAtIndex:)]) {
         return [self.dataSource pageViewController:self titleViewCellForItemAtIndex:index];
     }
@@ -215,7 +215,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     [self.titleView registerClass:cellClass forTitleViewCellWithReuseIdentifier:identifier];
 }
 
-- (XLPageTitleViewCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
+- (XLPageTitleCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
     return [self.titleView dequeueReusableCellWithIdentifier:identifier forIndex:index];
 }
 

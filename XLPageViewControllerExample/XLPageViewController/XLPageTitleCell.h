@@ -1,5 +1,5 @@
 //
-//  XLPageTitleViewCell.h
+//  XLPageTitleCell.h
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/13.
@@ -17,7 +17,7 @@ typedef NS_ENUM (NSInteger ,XLPageTitleCellAnimationType) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XLPageTitleViewCell : UICollectionViewCell
+@interface XLPageTitleCell : UICollectionViewCell
 
 //配置信息 默认样式时用到
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
