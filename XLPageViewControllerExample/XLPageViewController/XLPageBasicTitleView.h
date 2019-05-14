@@ -110,6 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
  cell 复用方法
  */
 - (__kindof XLPageTitleCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -63,18 +63,6 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:1];
 }
 
-+ (UIViewController *)viewControllerOfView:(UIView *)view {
-    // 遍历响应者链。返回第一个找到视图控制器
-    UIResponder *responder = view;
-    while ((responder = [responder nextResponder])){
-        if ([responder isKindOfClass: [UIViewController class]]){
-            return (UIViewController *)responder;
-        }
-    }
-    // 如果没有找到则返回nil
-    return nil;
-}
-
 + (void)showAnimationToShadow:(UIView *)shadow shadowWidth:(CGFloat)shadowWidth fromItemRect:(CGRect)fromItemRect toItemRect:(CGRect)toItemRect type:(XLPageShadowLineAnimationType)type progress:(CGFloat)progress {
     
     //没有动画，跳过
