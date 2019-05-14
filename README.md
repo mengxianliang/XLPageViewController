@@ -51,6 +51,8 @@
 
 ## 特殊用法：
 
+| 场景 | 示例 | 
+| ---- | ---- | 
 |自定义Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-1.gif)|
 |频道定制|![image]()|
 |多级嵌套|![image]()|
