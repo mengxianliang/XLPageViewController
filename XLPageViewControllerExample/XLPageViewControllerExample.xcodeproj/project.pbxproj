@@ -182,10 +182,6 @@
 				5E789D0F228A2D7F0028F37E /* CustomTitleCellExampleVC2.m */,
 				5E789D11228A5E2B0028F37E /* CustomTitleCellExampleVC3.h */,
 				5E789D12228A5E2B0028F37E /* CustomTitleCellExampleVC3.m */,
-				5E789D0B228A2CCA0028F37E /* CustomPageTitleCell2.h */,
-				5E789D0C228A2CCA0028F37E /* CustomPageTitleCell2.m */,
-				5E789D14228A5E5E0028F37E /* CustomPageTitleCell3.h */,
-				5E789D15228A5E5E0028F37E /* CustomPageTitleCell3.m */,
 				5EBE6EDB228AF94500B1F8F9 /* View */,
 			);
 			path = OtherAppExample;
@@ -209,8 +205,6 @@
 				5E789D06228966D10028F37E /* CustomTitleCellExampleVC1.m */,
 				5E789D17228A6EEA0028F37E /* ChannelManageExampleVC.h */,
 				5E789D18228A6EEA0028F37E /* ChannelManageExampleVC.m */,
-				5E789D08228967D80028F37E /* CustomPageTitleCell1.h */,
-				5E789D09228967D80028F37E /* CustomPageTitleCell1.m */,
 				5EBE6EDC228AF95300B1F8F9 /* View */,
 			);
 			path = SpecialUserExample;
@@ -219,6 +213,10 @@
 		5EBE6EDB228AF94500B1F8F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5E789D0B228A2CCA0028F37E /* CustomPageTitleCell2.h */,
+				5E789D0C228A2CCA0028F37E /* CustomPageTitleCell2.m */,
+				5E789D14228A5E5E0028F37E /* CustomPageTitleCell3.h */,
+				5E789D15228A5E5E0028F37E /* CustomPageTitleCell3.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -226,6 +224,8 @@
 		5EBE6EDC228AF95300B1F8F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5E789D08228967D80028F37E /* CustomPageTitleCell1.h */,
+				5E789D09228967D80028F37E /* CustomPageTitleCell1.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
