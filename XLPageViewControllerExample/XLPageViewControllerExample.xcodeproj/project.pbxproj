@@ -186,6 +186,7 @@
 				5E789D0C228A2CCA0028F37E /* CustomPageTitleCell2.m */,
 				5E789D14228A5E5E0028F37E /* CustomPageTitleCell3.h */,
 				5E789D15228A5E5E0028F37E /* CustomPageTitleCell3.m */,
+				5EBE6EDB228AF94500B1F8F9 /* View */,
 			);
 			path = OtherAppExample;
 			sourceTree = "<group>";
@@ -210,8 +211,23 @@
 				5E789D18228A6EEA0028F37E /* ChannelManageExampleVC.m */,
 				5E789D08228967D80028F37E /* CustomPageTitleCell1.h */,
 				5E789D09228967D80028F37E /* CustomPageTitleCell1.m */,
+				5EBE6EDC228AF95300B1F8F9 /* View */,
 			);
 			path = SpecialUserExample;
+			sourceTree = "<group>";
+		};
+		5EBE6EDB228AF94500B1F8F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5EBE6EDC228AF95300B1F8F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
