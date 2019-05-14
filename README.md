@@ -22,8 +22,8 @@
 |爱奇艺|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-4.gif)|
 |优酷|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-5.gif)|
 |腾讯视频|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-6.gif)|
-|网易新闻（自定义）|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-7.gif)|
-|人民日报（自定义）|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-8.gif)|
+|网易新闻|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-7.gif)|
+|人民日报|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-8.gif)|
 
 ## 基础功能：
 
@@ -47,5 +47,14 @@
 |阴影末端形状-直角|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-16.gif)|
 |阴影-居上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-17.gif)|
 |阴影-居中|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-18.gif)|
-|自定义Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-19.gif)|
+
+
+## 特殊用法：
+
+| 场景 | 示例 | 
+| ---- | ---- | 
+|自定义Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-1.gif)|
+|频道定制|![image]()|
+|多级嵌套|![image]()|
+|子View冲突|![image]()|
 
