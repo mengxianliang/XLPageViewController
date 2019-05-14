@@ -20,6 +20,7 @@
 		5E789D13228A5E2B0028F37E /* CustomTitleCellExampleVC3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D12228A5E2B0028F37E /* CustomTitleCellExampleVC3.m */; };
 		5E789D16228A5E5E0028F37E /* CustomPageTitleCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D15228A5E5E0028F37E /* CustomPageTitleCell3.m */; };
 		5E789D19228A6EEA0028F37E /* ChannelManageExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D18228A6EEA0028F37E /* ChannelManageExampleVC.m */; };
+		5E789D3E228AEBD90028F37E /* SpecialUseExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E789D3D228AEBD90028F37E /* SpecialUseExampleVC.m */; };
 		5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BA228026FA0006D0C2 /* AppDelegate.m */; };
 		5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702BD228026FA0006D0C2 /* ViewController.m */; };
 		5EA702C1228026FA0006D0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EA702BF228026FA0006D0C2 /* Main.storyboard */; };
@@ -61,6 +62,8 @@
 		5E789D15228A5E5E0028F37E /* CustomPageTitleCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPageTitleCell3.m; sourceTree = "<group>"; };
 		5E789D17228A6EEA0028F37E /* ChannelManageExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelManageExampleVC.h; sourceTree = "<group>"; };
 		5E789D18228A6EEA0028F37E /* ChannelManageExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelManageExampleVC.m; sourceTree = "<group>"; };
+		5E789D3C228AEBD90028F37E /* SpecialUseExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpecialUseExampleVC.h; sourceTree = "<group>"; };
+		5E789D3D228AEBD90028F37E /* SpecialUseExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpecialUseExampleVC.m; sourceTree = "<group>"; };
 		5EA702B6228026FA0006D0C2 /* XLPageViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLPageViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA702B9228026FA0006D0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EA702BA228026FA0006D0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				5E789CE822853F630028F37E /* BasicFunctionListVC.m */,
 				5E789CEA228545B60028F37E /* OtherAppExampleListVC.h */,
 				5E789CEB228545B60028F37E /* OtherAppExampleListVC.m */,
+				5E789D3C228AEBD90028F37E /* SpecialUseExampleVC.h */,
+				5E789D3D228AEBD90028F37E /* SpecialUseExampleVC.m */,
 				5E789CE422853ECF0028F37E /* BasicFounctionExampleVC.h */,
 				5E789CE522853ECF0028F37E /* BasicFounctionExampleVC.m */,
 				5E789D05228966D10028F37E /* CustomTitleCellExampleVC1.h */,
@@ -278,6 +283,7 @@
 			files = (
 				5E789D19228A6EEA0028F37E /* ChannelManageExampleVC.m in Sources */,
 				5E789D0422895BD90028F37E /* XLPageTitleCell.m in Sources */,
+				5E789D3E228AEBD90028F37E /* SpecialUseExampleVC.m in Sources */,
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
 				5EA702DF2280310A0006D0C2 /* ExampleModel.m in Sources */,

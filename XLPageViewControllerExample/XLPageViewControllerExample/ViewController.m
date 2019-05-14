@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "BasicFunctionListVC.h"
 #import "OtherAppExampleListVC.h"
+#import "BasicFunctionListVC.h"
+#import "SpecialUseExampleVC.h"
 #import "XLPageViewController.h"
 
 @interface ViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
@@ -54,10 +55,14 @@
 //分页视图控制器
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
     if (index == 0) {
+        OtherAppExampleListVC *vc = [[OtherAppExampleListVC alloc] init];
+        return vc;
+        
+    }else if (index == 1) {
         BasicFunctionListVC *vc = [[BasicFunctionListVC alloc] init];
         return vc;
-    }else {
-        OtherAppExampleListVC *vc = [[OtherAppExampleListVC alloc] init];
+    }else  {
+        SpecialUseExampleVC *vc = [[SpecialUseExampleVC alloc] init];
         return vc;
     }
 }
@@ -71,6 +76,6 @@
 #pragma mark -
 #pragma mark 标题
 - (NSArray *)vcTitles {
-    return @[@"基础功能展示",@"其他App例子"];
+    return @[@"App例子",@"基础属性",@"特殊用法"];
 }
 @end

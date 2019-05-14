@@ -90,6 +90,7 @@
 //切换方法
 - (void)segmentValueChanged:(UISegmentedControl *)segmentedControl {
     [self.delegate pageTitleViewDidSelectedAtIndex:segmentedControl.selectedSegmentIndex];
+    self.lastSelectedIndex = segmentedControl.selectedSegmentIndex;
 }
 
 #pragma mark -
