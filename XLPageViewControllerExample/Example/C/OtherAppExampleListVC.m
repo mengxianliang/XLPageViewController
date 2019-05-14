@@ -10,6 +10,7 @@
 #import "BasicFounctionExampleVC.h"
 #import "XLNavigationController.h"
 #import "CustomTitleCellExampleVC2.h"
+#import "CustomTitleCellExampleVC3.h"
 
 @interface OtherAppExampleListVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -62,9 +63,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[self cellTitles][indexPath.row] isEqualToString:@"网易新闻"]) {
+    if ([[self cellTitles][indexPath.row] containsString:@"网易新闻"]) {
         CustomTitleCellExampleVC2 *vc = [[CustomTitleCellExampleVC2 alloc] init];
         vc.title = @"网易新闻";
+        [self.navigationController pushViewController:vc animated:true];
+        return;
+    }
+    if ([[self cellTitles][indexPath.row] containsString:@"人民日报"]) {
+        CustomTitleCellExampleVC3 *vc = [[CustomTitleCellExampleVC3 alloc] init];
+        vc.title = @"人民日报";
         [self.navigationController pushViewController:vc animated:true];
         return;
     }

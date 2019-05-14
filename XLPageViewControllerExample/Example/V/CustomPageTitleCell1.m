@@ -23,12 +23,12 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initCellUI];
+        [self initCustomCell];
     }
     return self;
 }
 
-- (void)initCellUI {
+- (void)initCustomCell {
     //隐藏父视图中的label
     self.textLabel.hidden = true;
     

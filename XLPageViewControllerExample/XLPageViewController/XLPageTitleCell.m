@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XLPageViewControllerConfig.h"
-#import "XLPageViewControllerUtil.h"
-
+#import "XLPageTitleCell.h"
 
 #pragma mark -
 #pragma mark 自定义cell类
@@ -50,7 +48,6 @@
 
 #pragma mark -
 #pragma mark Cell类
-#import "XLPageTitleCell.h"
 
 @implementation XLPageTitleCell
 

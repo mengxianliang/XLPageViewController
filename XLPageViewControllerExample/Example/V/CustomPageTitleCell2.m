@@ -10,7 +10,6 @@
 
 static CGFloat cycleW = 8.0f;
 static CGFloat borderW = 2.0f;
-static CGFloat cycleCenterY = 15;
 
 @interface CustomPageTitleCell2 ()
 
@@ -22,12 +21,12 @@ static CGFloat cycleCenterY = 15;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initCellUI];
+        [self initCustomCell];
     }
     return self;
 }
 
-- (void)initCellUI {
+- (void)initCustomCell {
     self.cycle = [[UIView alloc] init];
     self.cycle.layer.cornerRadius = cycleW/2.0f;
     self.cycle.layer.masksToBounds = true;
@@ -39,7 +38,7 @@ static CGFloat cycleCenterY = 15;
 //设置布局
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.cycle.frame = CGRectMake(self.bounds.size.width + 2, 10, 8, 8);
+    self.cycle.frame = CGRectMake(self.bounds.size.width + 2, 10, cycleW, cycleW);
 }
 
 //通过此父类方法配置cell是否被选中

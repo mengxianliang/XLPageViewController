@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XLPageViewControllerConfig.h"
+#import "XLPageViewControllerUtil.h"
 
 //动画类行，已选cell/将要成为已选的cell
 typedef NS_ENUM (NSInteger ,XLPageTitleCellAnimationType) {
