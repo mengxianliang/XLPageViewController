@@ -142,7 +142,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     CGFloat collectionW = self.bounds.size.width;
     if (self.rightButton) {
         CGFloat btnW = self.bounds.size.height;
@@ -152,7 +151,9 @@
     self.collectionView.frame = CGRectMake(0, 0, collectionW, self.bounds.size.height);
     
     self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
+    
     self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
+    [self fixShadowLineCenter];
     [self.collectionView sendSubviewToBack:self.shadowLine];
     [self bringSubviewToFront:self.separatorLine];
 }
@@ -211,9 +212,18 @@
     
     //设置阴影位置
     self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
-    
     //保存上次选中位置
     _lastSelectedIndex = _selectedIndex;
+}
+
+- (void)fixShadowLineCenter {
+    if (self.config.titleViewStyle == XLPageTitleViewStyleSegmented) {return;}
+    //避免cell不在屏幕上显示，延时0.01秒加载
+    if (self.shadowLine.center.x <= 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+            self.shadowLine.center = [self shadowLineCenterForIndex:self.selectedIndex];
+        });
+    }
 }
 
 - (void)setAnimationProgress:(CGFloat)animationProgress {

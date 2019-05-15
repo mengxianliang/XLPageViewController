@@ -57,6 +57,7 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CommonPageViewController *exampleVC = [[CommonPageViewController alloc] init];
     exampleVC.title = [self cellTitles][indexPath.row];

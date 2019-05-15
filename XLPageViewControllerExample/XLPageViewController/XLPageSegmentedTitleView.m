@@ -96,6 +96,7 @@
 #pragma mark -
 #pragma mark Setter
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
+    [super setSelectedIndex:selectedIndex];
     self.segmentedControl.selectedSegmentIndex = selectedIndex;
 }
 
