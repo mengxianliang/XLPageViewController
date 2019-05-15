@@ -7,7 +7,6 @@
 //
 
 #import "XLPageViewController.h"
-#import "XLPageViewControllerUtil.h"
 #import "XLPageBasicTitleView.h"
 #import "XLPageSegmentedTitleView.h"
 
@@ -236,8 +235,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 #pragma mark -
 #pragma mark 辅助方法
-//指定位置的视图控制器，有缓存，但没有复用
+//指定位置的视图控制器
 - (UIViewController *)viewControllerForIndex:(NSInteger)index {
+    
     //如果越界，则返回nil
     if (index < 0 || index >= [self numberOfPage]) {
         return nil;
@@ -246,8 +246,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     //获取当前vc和当前标题
     UIViewController *currentVC = self.pageVC.viewControllers.firstObject;
     NSString *currentTitle = currentVC.title;
+
     NSString *targetTitle = [self titleForIndex:index];
-    
+
     //如果和当前位置一样，则返回当前vc
     if ([currentTitle isEqualToString:targetTitle]) {
         return currentVC;
@@ -261,6 +262,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     }
     //如果之前没显示过，则通过dataSource创建
     UIViewController *vc = [self.dataSource pageViewController:self viewControllerForIndex:index];
+    vc.title = [self titleForIndex:index];
     [self.shownVCArr addObject:vc];
     [self addChildViewController:vc];
     return vc;

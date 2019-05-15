@@ -58,7 +58,6 @@
 #pragma mark TableViewDelegate&DataSource
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index {
     CommonTableViewController *vc = [[CommonTableViewController alloc] init];
-    vc.title = self.titles[index];
     return vc;
 }
 

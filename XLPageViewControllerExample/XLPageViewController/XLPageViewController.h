@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XLPageViewControllerConfig.h"
+#import "XLPageViewControllerUtil.h"
 #import "XLPageTitleCell.h"
 
 @class XLPageViewController;
@@ -108,7 +109,6 @@ NS_ASSUME_NONNULL_BEGIN
  返回复用的cell
  */
 - (__kindof XLPageTitleCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
-
 @end
 
 NS_ASSUME_NONNULL_END

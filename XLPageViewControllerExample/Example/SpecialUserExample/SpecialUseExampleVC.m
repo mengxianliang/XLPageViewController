@@ -10,6 +10,7 @@
 #import "CommonPageViewController.h"
 #import "CustomTitleCellExampleVC1.h"
 #import "ChannelManageExampleVC.h"
+#import "MultiLevelExampleVC.h"
 
 @interface SpecialUseExampleVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -74,6 +75,14 @@
             exampleVC.title = [self cellTitles][indexPath.row];
             [self.navigationController pushViewController:exampleVC animated:true];
         }
+            break;
+        case 2://多级嵌套
+        {
+            MultiLevelExampleVC *exampleVC = [[MultiLevelExampleVC alloc] init];
+            exampleVC.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:exampleVC animated:true];
+        }
+            break;
         default:
             break;
     }
