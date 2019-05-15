@@ -34,7 +34,7 @@
     config.showTitleInNavigationBar = true;
     config.separatorLineHidden = true;
     config.shadowLineAnimationType = XLPageShadowLineAnimationTypeZoom;
-    config.shadowLineWidth = 40;
+    config.shadowLineWidth = 35;
     
     self.pageViewController = [[XLPageViewController alloc] initWithConfig:config];
     self.pageViewController.view.frame = self.view.bounds;
