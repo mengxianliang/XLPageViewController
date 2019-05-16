@@ -59,3 +59,8 @@
 |子View滚动冲突|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-4.gif)|
 |手动切换|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-5.gif)|
 
+## 使用
+
+### 1、创建
+
+### 2、协议
