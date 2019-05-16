@@ -33,6 +33,9 @@
 		5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702E7228286BB0006D0C2 /* XLPageViewControllerConfig.m */; };
 		5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA702EA22829E050006D0C2 /* XLPageViewControllerUtil.m */; };
 		5EBE6F6F228C13AE00B1F8F9 /* MultiLevelExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE6F6E228C13AE00B1F8F9 /* MultiLevelExampleVC.m */; };
+		5EFC0B46228CEFB40024F6C9 /* ChildViewConflictExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0B45228CEFB40024F6C9 /* ChildViewConflictExampleVC.m */; };
+		5EFC0B50228CF6A90024F6C9 /* XLCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0B4D228CF6A90024F6C9 /* XLCycleCell.m */; };
+		5EFC0B51228CF6A90024F6C9 /* XLCycleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0B4E228CF6A90024F6C9 /* XLCycleCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +89,12 @@
 		5EA702EA22829E050006D0C2 /* XLPageViewControllerUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLPageViewControllerUtil.m; sourceTree = "<group>"; };
 		5EBE6F6D228C13AE00B1F8F9 /* MultiLevelExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiLevelExampleVC.h; sourceTree = "<group>"; };
 		5EBE6F6E228C13AE00B1F8F9 /* MultiLevelExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiLevelExampleVC.m; sourceTree = "<group>"; };
+		5EFC0B44228CEFB40024F6C9 /* ChildViewConflictExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewConflictExampleVC.h; sourceTree = "<group>"; };
+		5EFC0B45228CEFB40024F6C9 /* ChildViewConflictExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewConflictExampleVC.m; sourceTree = "<group>"; };
+		5EFC0B4C228CF6A90024F6C9 /* XLCycleCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLCycleCollectionView.h; sourceTree = "<group>"; };
+		5EFC0B4D228CF6A90024F6C9 /* XLCycleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLCycleCell.m; sourceTree = "<group>"; };
+		5EFC0B4E228CF6A90024F6C9 /* XLCycleCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLCycleCollectionView.m; sourceTree = "<group>"; };
+		5EFC0B4F228CF6A90024F6C9 /* XLCycleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLCycleCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +170,7 @@
 				5EBE6ED9228AF3BF00B1F8F9 /* BasicFunctionExample */,
 				5EBE6ED8228AF3B100B1F8F9 /* OtherAppExample */,
 				5EA702D9228030E10006D0C2 /* Common */,
+				5EFC0B4A228CF66C0024F6C9 /* Vendor */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -210,6 +220,8 @@
 				5E789D18228A6EEA0028F37E /* ChannelManageExampleVC.m */,
 				5EBE6F6D228C13AE00B1F8F9 /* MultiLevelExampleVC.h */,
 				5EBE6F6E228C13AE00B1F8F9 /* MultiLevelExampleVC.m */,
+				5EFC0B44228CEFB40024F6C9 /* ChildViewConflictExampleVC.h */,
+				5EFC0B45228CEFB40024F6C9 /* ChildViewConflictExampleVC.m */,
 				5EBE6EDC228AF95300B1F8F9 /* View */,
 			);
 			path = SpecialUseExample;
@@ -233,6 +245,25 @@
 				5E789D09228967D80028F37E /* CustomPageTitleCell1.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5EFC0B4A228CF66C0024F6C9 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				5EFC0B4B228CF6A90024F6C9 /* XLCycleCollectionView */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		5EFC0B4B228CF6A90024F6C9 /* XLCycleCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5EFC0B4C228CF6A90024F6C9 /* XLCycleCollectionView.h */,
+				5EFC0B4D228CF6A90024F6C9 /* XLCycleCell.m */,
+				5EFC0B4E228CF6A90024F6C9 /* XLCycleCollectionView.m */,
+				5EFC0B4F228CF6A90024F6C9 /* XLCycleCell.h */,
+			);
+			path = XLCycleCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,12 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EFC0B50228CF6A90024F6C9 /* XLCycleCell.m in Sources */,
 				5E789D19228A6EEA0028F37E /* ChannelManageExampleVC.m in Sources */,
 				5EBE6F6F228C13AE00B1F8F9 /* MultiLevelExampleVC.m in Sources */,
 				5E789D0422895BD90028F37E /* XLPageTitleCell.m in Sources */,
 				5E789D3E228AEBD90028F37E /* SpecialUseExampleVC.m in Sources */,
 				5EA702BE228026FA0006D0C2 /* ViewController.m in Sources */,
 				5EA702D5228028880006D0C2 /* XLPageViewController.m in Sources */,
+				5EFC0B51228CF6A90024F6C9 /* XLCycleCollectionView.m in Sources */,
 				5E789D0A228967D80028F37E /* CustomPageTitleCell1.m in Sources */,
 				5EA702DC228030FA0006D0C2 /* CommonTableViewController.m in Sources */,
 				5E789D10228A2D7F0028F37E /* CustomTitleCellExampleVC2.m in Sources */,
@@ -318,6 +351,7 @@
 				5E789D07228966D10028F37E /* CustomTitleCellExampleVC1.m in Sources */,
 				5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */,
 				5E789D0D228A2CCA0028F37E /* CustomPageTitleCell2.m in Sources */,
+				5EFC0B46228CEFB40024F6C9 /* ChildViewConflictExampleVC.m in Sources */,
 				5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */,
 				5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */,
 				5E789CE622853ECF0028F37E /* CommonPageViewController.m in Sources */,
