@@ -157,7 +157,7 @@
 		5EA702D6228030CB0006D0C2 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				5EBE6EDA228AF3CB00B1F8F9 /* SpecialUserExample */,
+				5EBE6EDA228AF3CB00B1F8F9 /* SpecialUseExample */,
 				5EBE6ED9228AF3BF00B1F8F9 /* BasicFunctionExample */,
 				5EBE6ED8228AF3B100B1F8F9 /* OtherAppExample */,
 				5EA702D9228030E10006D0C2 /* Common */,
@@ -199,7 +199,7 @@
 			path = BasicFunctionExample;
 			sourceTree = "<group>";
 		};
-		5EBE6EDA228AF3CB00B1F8F9 /* SpecialUserExample */ = {
+		5EBE6EDA228AF3CB00B1F8F9 /* SpecialUseExample */ = {
 			isa = PBXGroup;
 			children = (
 				5E789D3C228AEBD90028F37E /* SpecialUseExampleVC.h */,
@@ -212,7 +212,7 @@
 				5EBE6F6E228C13AE00B1F8F9 /* MultiLevelExampleVC.m */,
 				5EBE6EDC228AF95300B1F8F9 /* View */,
 			);
-			path = SpecialUserExample;
+			path = SpecialUseExample;
 			sourceTree = "<group>";
 		};
 		5EBE6EDB228AF94500B1F8F9 /* View */ = {
