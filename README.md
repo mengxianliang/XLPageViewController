@@ -1,6 +1,6 @@
 # XLPageViewController
 
-## 简介:
+## 特点:
 
 * 采用UICollectionView+UIpageViewController方案，子控制器和标题不需要提前创建，减少App启动时的资源消耗。
 * 支持刷新，内置缓存机制，刷新时已存在的的子控制器不会重新创建。
