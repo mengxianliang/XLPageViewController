@@ -9,12 +9,15 @@
 #import "ChannelManageExampleVC.h"
 #import "CommonTableViewController.h"
 #import "XLPageViewController.h"
+#import "XLChannelControl.h"
 
 @interface ChannelManageExampleVC ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
 
 @property (nonatomic, strong) XLPageViewController *pageViewController;
 
-@property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, strong) NSArray *enabledTitles;
+
+@property (nonatomic, strong) NSArray *disabledTitles;;
 
 @end
 
@@ -48,7 +51,10 @@
 }
 
 - (void)buildData {
-    self.titles = [self defaultTitles];
+    //初始化数据，配置默认已订阅和为订阅的标题数组
+    self.enabledTitles = [self enableTitles];
+    self.disabledTitles = [self disableTitles];
+    //刷新分页控制器
     [self.pageViewController reloadData];
 }
 
@@ -60,31 +66,42 @@
 }
 
 - (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index {
-    return self.titles[index];
+    return self.enabledTitles[index];
 }
 
 - (NSInteger)pageViewControllerNumberOfPage {
-    return self.titles.count;
+    return self.enabledTitles.count;
 }
 
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index {
-    NSLog(@"切换到了：%@",[self titles][index]);
+    NSLog(@"切换到了：%@",[self enabledTitles][index]);
 }
 
 #pragma mark -
 #pragma mark 标题数据
-- (NSArray *)defaultTitles {
-    return @[@"关注",@"推荐",@"热点",@"问答",@"科技",@"国风",@"直播",@"新时代",@"北京",@"国际",@"数码",@"小说",@"军事"];
+
+//使用中的标题
+- (NSArray *)enableTitles {
+    return @[@"要闻",@"河北",@"财经",@"娱乐",@"体育",@"社会",@"NBA",@"视频",@"汽车",@"图片",@"科技",@"军事",@"国际",@"数码",@"星座",@"电影",@"时尚",@"文化",@"游戏",@"教育",@"动漫",@"政务",@"纪录片",@"房产",@"佛学",@"股票",@"理财"];
+    
 }
 
-- (NSArray *)unUserTitles {
-    return @[];
+//未使用的标题
+- (NSArray *)disableTitles {
+    return @[@"有声",@"家居",@"电竞",@"美容",@"电视剧",@"搏击",@"健康",@"摄影",@"生活",@"旅游",@"韩流",@"探索",@"综艺",@"美食",@"育儿"];
 }
 
 #pragma mark -
 #pragma mark 频道管理方法
 - (void)channelManage {
-    NSLog(@"执行频道管理方法");
+    [[XLChannelControl shareControl] showChannelViewWithEnabledTitles:self.enabledTitles disabledTitles:self.disabledTitles finish:^(NSArray *enabledTitles, NSArray *disabledTitles) {
+        self.enabledTitles = enabledTitles;
+        self.disabledTitles = disabledTitles;
+        //第一步，先刷新数据
+        [self.pageViewController reloadData];
+        //第二步，更新选中位置，这里固定为0，可根据自己的业务逻辑，自行设定
+        self.pageViewController.selectedIndex = 0;
+    }];
 }
 
 @end

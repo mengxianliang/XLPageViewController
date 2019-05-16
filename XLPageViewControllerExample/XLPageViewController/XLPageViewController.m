@@ -261,7 +261,6 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 #pragma mark 刷新方法
 - (void)reloadData {
     [self.titleView reloadData];
-    [self switchToViewControllerAdIndex:_selectedIndex animated:false];
 }
 
 #pragma mark -

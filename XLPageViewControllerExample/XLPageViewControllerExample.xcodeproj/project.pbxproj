@@ -35,6 +35,10 @@
 		5EBE6F6F228C13AE00B1F8F9 /* MultiLevelExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE6F6E228C13AE00B1F8F9 /* MultiLevelExampleVC.m */; };
 		5EFC0B46228CEFB40024F6C9 /* ChildViewConflictExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0B45228CEFB40024F6C9 /* ChildViewConflictExampleVC.m */; };
 		5EFC0B5D228D34BE0024F6C9 /* SwitchByHandExampleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0B5C228D34BE0024F6C9 /* SwitchByHandExampleVC.m */; };
+		5EFC0BA5228D6BCB0024F6C9 /* XLChannelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0B9D228D6BCB0024F6C9 /* XLChannelControl.m */; };
+		5EFC0BA6228D6BCB0024F6C9 /* XLChannelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0BA1228D6BCB0024F6C9 /* XLChannelHeader.m */; };
+		5EFC0BA7228D6BCB0024F6C9 /* XLChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0BA2228D6BCB0024F6C9 /* XLChannelView.m */; };
+		5EFC0BA8228D6BCB0024F6C9 /* XLChannelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC0BA4228D6BCB0024F6C9 /* XLChannelItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +96,14 @@
 		5EFC0B45228CEFB40024F6C9 /* ChildViewConflictExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewConflictExampleVC.m; sourceTree = "<group>"; };
 		5EFC0B5B228D34BE0024F6C9 /* SwitchByHandExampleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchByHandExampleVC.h; sourceTree = "<group>"; };
 		5EFC0B5C228D34BE0024F6C9 /* SwitchByHandExampleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchByHandExampleVC.m; sourceTree = "<group>"; };
+		5EFC0B9D228D6BCB0024F6C9 /* XLChannelControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelControl.m; sourceTree = "<group>"; };
+		5EFC0B9E228D6BCB0024F6C9 /* XLChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelView.h; sourceTree = "<group>"; };
+		5EFC0B9F228D6BCB0024F6C9 /* XLChannelHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelHeader.h; sourceTree = "<group>"; };
+		5EFC0BA0228D6BCB0024F6C9 /* XLChannelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelItem.h; sourceTree = "<group>"; };
+		5EFC0BA1228D6BCB0024F6C9 /* XLChannelHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelHeader.m; sourceTree = "<group>"; };
+		5EFC0BA2228D6BCB0024F6C9 /* XLChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelView.m; sourceTree = "<group>"; };
+		5EFC0BA3228D6BCB0024F6C9 /* XLChannelControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLChannelControl.h; sourceTree = "<group>"; };
+		5EFC0BA4228D6BCB0024F6C9 /* XLChannelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLChannelItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,8 +261,24 @@
 		5EFC0B4A228CF66C0024F6C9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				5EFC0B9C228D6BCB0024F6C9 /* XLChannelControl */,
 			);
 			path = Vendor;
+			sourceTree = "<group>";
+		};
+		5EFC0B9C228D6BCB0024F6C9 /* XLChannelControl */ = {
+			isa = PBXGroup;
+			children = (
+				5EFC0B9D228D6BCB0024F6C9 /* XLChannelControl.m */,
+				5EFC0B9E228D6BCB0024F6C9 /* XLChannelView.h */,
+				5EFC0B9F228D6BCB0024F6C9 /* XLChannelHeader.h */,
+				5EFC0BA0228D6BCB0024F6C9 /* XLChannelItem.h */,
+				5EFC0BA1228D6BCB0024F6C9 /* XLChannelHeader.m */,
+				5EFC0BA2228D6BCB0024F6C9 /* XLChannelView.m */,
+				5EFC0BA3228D6BCB0024F6C9 /* XLChannelControl.h */,
+				5EFC0BA4228D6BCB0024F6C9 /* XLChannelItem.m */,
+			);
+			path = XLChannelControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,16 +365,20 @@
 				5E789D07228966D10028F37E /* CustomTitleCellExampleVC1.m in Sources */,
 				5EA702E8228286BB0006D0C2 /* XLPageViewControllerConfig.m in Sources */,
 				5E789D0D228A2CCA0028F37E /* CustomPageTitleCell2.m in Sources */,
+				5EFC0BA6228D6BCB0024F6C9 /* XLChannelHeader.m in Sources */,
 				5EFC0B46228CEFB40024F6C9 /* ChildViewConflictExampleVC.m in Sources */,
 				5EA702EB22829E050006D0C2 /* XLPageViewControllerUtil.m in Sources */,
 				5EA702E222827D580006D0C2 /* XLPageBasicTitleView.m in Sources */,
 				5E789CE622853ECF0028F37E /* CommonPageViewController.m in Sources */,
 				5E789D16228A5E5E0028F37E /* CustomPageTitleCell3.m in Sources */,
+				5EFC0BA5228D6BCB0024F6C9 /* XLChannelControl.m in Sources */,
 				5E789CEC228545B60028F37E /* OtherAppExampleListVC.m in Sources */,
 				5E789D13228A5E2B0028F37E /* CustomTitleCellExampleVC3.m in Sources */,
 				5EA702BB228026FA0006D0C2 /* AppDelegate.m in Sources */,
 				5E789D012286C2580028F37E /* XLNavigationController.m in Sources */,
 				5E789CE922853F630028F37E /* BasicFunctionListVC.m in Sources */,
+				5EFC0BA8228D6BCB0024F6C9 /* XLChannelItem.m in Sources */,
+				5EFC0BA7228D6BCB0024F6C9 /* XLChannelView.m in Sources */,
 				5E789CD422842B8A0028F37E /* XLPageSegmentedTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
