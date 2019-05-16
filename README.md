@@ -1,7 +1,5 @@
 # XLPageViewController
 
-一个开放、高度可定制化的分页视图控制器。
-
 ## 特点:
 
 * 采用UICollectionView+UIpageViewController方案，子控制器和标题不需要提前创建，减少App启动时的资源消耗。
