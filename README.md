@@ -27,7 +27,7 @@
 |网易新闻|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-7.gif)|
 |人民日报|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/1-8.gif)|
 
-## 基础功能：
+## 基本属性：
 
 | 功能 | 示例 | 
 | ---- | ---- | 
