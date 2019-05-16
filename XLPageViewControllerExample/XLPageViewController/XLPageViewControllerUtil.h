@@ -25,4 +25,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ 兼容子view滚动，添加"让我先滚"属性
+ */
+@interface UIView (LetMeScroll)
+
+/**
+ 让我先滚 默认 NO
+ */
+@property (nonatomic, assign) BOOL xl_letMeScrollFirst;
+
+@end
+
 NS_ASSUME_NONNULL_END

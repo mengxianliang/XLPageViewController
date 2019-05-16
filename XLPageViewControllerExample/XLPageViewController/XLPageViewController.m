@@ -10,6 +10,27 @@
 #import "XLPageBasicTitleView.h"
 #import "XLPageSegmentedTitleView.h"
 
+typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
+
+@interface XLPageContentView : UIView
+
+@property (nonatomic, strong) XLContentScollBlock scrollBlock;
+
+@end
+
+@implementation XLPageContentView
+
+//兼容和子view滚动冲突问题
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *view =  [super hitTest:point withEvent:event];
+    BOOL pageViewScrollEnabled = !view.xl_letMeScrollFirst;
+    self.scrollBlock(pageViewScrollEnabled);
+    return view;
+}
+
+@end
+
+
 typedef NS_ENUM(NSInteger,XLScrollDirection) {
     XLScrollDirectionNone = 0,
     XLScrollDirectionLeft = 1,
@@ -17,6 +38,10 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 };
 
 @interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce,XLPageTitleViewDelegate>
+
+
+//所有的子视图，都加载在contentView上
+@property (nonatomic, strong) XLPageContentView *contentView;
 //标题
 @property (nonatomic, strong) XLPageBasicTitleView *titleView;
 //分页控制器
@@ -47,9 +72,17 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     //保存配置
     self.config = config;
     
+    //创建contentview
+    self.contentView = [[XLPageContentView alloc] init];
+    [self.view addSubview:self.contentView];
+    __weak typeof(self)weakSelf = self;
+    self.contentView.scrollBlock = ^(BOOL scrollEnabled) {
+        weakSelf.scrollEnabled = scrollEnabled;
+    };
+    
     //防止Navigation引起的缩进
     UIView *topView = [[UIView alloc] init];
-    [self.view addSubview:topView];
+    [self.contentView addSubview:topView];
     
     //创建标题
     self.titleView = [[XLPageBasicTitleView alloc] initWithConfig:config];
@@ -58,13 +91,13 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     }
     self.titleView.dataSource = self;
     self.titleView.delegate = self;
-    [self.view addSubview:self.titleView];
+    [self.contentView addSubview:self.titleView];
     
     //创建PageVC
     self.pageVC = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageVC.delegate = self;
     self.pageVC.dataSource = self;
-    [self.view addSubview:self.pageVC.view];
+    [self.contentView addSubview:self.pageVC.view];
     [self addChildViewController:self.pageVC];
     //设置ScrollView代理
     for (UIScrollView *scrollView in self.pageVC.view.subviews) {
@@ -72,6 +105,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
             scrollView.delegate = self;
         }
     }
+    
+    //默认可以滚动
+    self.scrollEnabled = YES;
 }
 
 //初始化vc缓存数组
@@ -90,12 +126,17 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    self.titleView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.config.titleViewHeight);
+    //更新contentview位置
+    self.contentView.frame = self.view.bounds;
     
-    _pageVC.view.frame = CGRectMake(0, self.config.titleViewHeight, self.view.bounds.size.width, self.view.bounds.size.height - self.config.titleViewHeight);
+    //更新标题位置
+    self.titleView.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.config.titleViewHeight);
+    
+    //更新pageVC位置
+    self.pageVC.view.frame = CGRectMake(0, self.config.titleViewHeight, self.contentView.bounds.size.width, self.contentView.bounds.size.height - self.config.titleViewHeight);
     
     if (self.config.showTitleInNavigationBar) {
-        _pageVC.view.frame = self.view.bounds;
+        self.pageVC.view.frame = self.contentView.bounds;
     }
     
     //自动选中当前位置_selectedIndex
@@ -177,11 +218,13 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 #pragma mark Setter
 //设置选中位置
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
-    [self switchToViewControllerAdIndex:selectedIndex animated:false];
+    self.titleView.stopAnimation = true;
+    [self switchToViewControllerAdIndex:selectedIndex animated:true];
 }
 
-//开关滑动
+//滑动开关
 - (void)setScrollEnabled:(BOOL)scrollEnabled {
+    _scrollEnabled = scrollEnabled;
     for (UIScrollView *scrollView in self.pageVC.view.subviews) {
         if ([scrollView isKindOfClass:[UIScrollView class]]) {
             scrollView.scrollEnabled = scrollEnabled;
@@ -202,7 +245,6 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     self.haveLoadedPageVC = true;
     //更新当前位置
     _selectedIndex = index;
-    
     //设置滚动方向
     UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
     if (_titleView.lastSelectedIndex > _selectedIndex) {

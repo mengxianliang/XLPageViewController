@@ -128,3 +128,19 @@
 
 @end
 
+#import <objc/runtime.h>
+
+@implementation UIView (LetMeScroll)
+
+static NSString *LetMeScrollFirstKey = @"LetMeScrollFirstKey";
+
+- (void)setXl_letMeScrollFirst:(BOOL)xl_letMeScrollFirst {
+    objc_setAssociatedObject(self, &LetMeScrollFirstKey,
+                             @(xl_letMeScrollFirst), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)xl_letMeScrollFirst {
+    return [objc_getAssociatedObject(self, &LetMeScrollFirstKey) boolValue];;
+}
+
+@end

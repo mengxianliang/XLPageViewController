@@ -11,6 +11,8 @@
 #import "CustomTitleCellExampleVC1.h"
 #import "ChannelManageExampleVC.h"
 #import "MultiLevelExampleVC.h"
+#import "ChildViewConflictExampleVC.h"
+#import "SwitchByHandExampleVC.h"
 
 @interface SpecialUseExampleVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -83,6 +85,19 @@
             [self.navigationController pushViewController:exampleVC animated:true];
         }
             break;
+        case 3://子view冲突
+        {
+            ChildViewConflictExampleVC *exampleVC = [[ChildViewConflictExampleVC alloc] init];
+            exampleVC.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:exampleVC animated:true];
+        }
+            break;
+        case 4://手动切换
+        {
+            SwitchByHandExampleVC *exampleVC = [[SwitchByHandExampleVC alloc] init];
+            exampleVC.title = [self cellTitles][indexPath.row];
+            [self.navigationController pushViewController:exampleVC animated:true];
+        }
         default:
             break;
     }
@@ -90,10 +105,11 @@
 
 - (NSArray *)cellTitles {
     return @[
-             @"自定义Cell",
+             @"自定义cell",
              @"频道定制",
              @"多级嵌套",
-             @"处理和子view冲突问题",
+             @"子view滚动冲突",
+             @"手动切换"
              ];
 }
 
