@@ -78,7 +78,7 @@
 
 #### 1.3 初始化外观配置类。
 
-*注 config负责所有的外观配置，**defaultConfig**方法设定了默认参数，使用时可按需配置。
+*注 config负责所有的外观配置，**defaultConfig**方法设定了默认参数，使用时可按需配置。*
 
 ```objc
   XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
@@ -86,7 +86,7 @@
 
 #### 1.4 初始化分页控制器
 
-*注 需要把**pageViewController**添加为当前视图控制器的**子试图控制器**，才能实现**pageViewController**子试图控制器中的界面跳转。
+*注 需要把**pageViewController**添加为当前视图控制器的**子试图控制器**，才能实现**pageViewController**子试图控制器中的界面跳转。*
   
 ```objc
   XLPageViewController *pageViewController = [[XLPageViewController alloc] initWithConfig:config];
