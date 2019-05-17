@@ -172,7 +172,7 @@
 
 #### 4.1 和子view冲突问题
 
-当pageViewController的子视图中存可滚动的子view，例如UISlider、UIScrollView等，如果和pageViewController发生滚动冲突时，可设置子view的   xl_letMeScrollFirst属性为真，这样可以避免和子view的滚动冲突。
+当```pageViewController```的子视图中存可滚动的子view，例如UISlider、UIScrollView等，如果子view和```pageViewController```发生滚动冲突时，可设置子view的```xl_letMeScrollFirst```属性为true。
 
 ```objc
   slider.xl_letMeScrollFirst = true;
