@@ -78,7 +78,9 @@
 
 #### 1.3 创建外观配置类。
 
-*注：config负责所有的外观配置，```defaultConfig```方法设定了默认参数，使用时可按需配置。*
+*注：config负责所有的外观配置，```defaultConfig```方法设定了默认参数，使用时可按需配置。* 
+
+[Config属性列表](https://github.com/mengxianliang/XLPageViewController/blob/master/ConfigPropertyList.md)
 
 ```objc
   XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
