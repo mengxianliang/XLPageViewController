@@ -82,7 +82,7 @@
   XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
 ```
 
-*config*负责所有的外观配置，*defaultConfig*方法设定了默认参数，使用时可按需配置。
+* config*负责所有的外观配置，*defaultConfig*方法设定了默认参数，使用时可按需配置。
 
 #### 1.4 初始化分页控制器
 
@@ -94,21 +94,21 @@
   [self.view addSubview:pageViewController.view];
   [self addChildViewController:pageViewController];
 ```
-*需要把*pageViewController*添加为*当前视图控制器*的*子试图控制器*，才能实现子试图控制器中的界面跳转。
+* 需要把*pageViewController*添加为*当前视图控制器*的*子试图控制器*，才能实现子试图控制器中的界面跳转。
 
 XLPageViewController属性列表：
 
-选中位置属性，可通过setter方法切换位置
+* 选中位置属性，可通过setter方法切换位置
 ```objc
 @property (nonatomic, assign) NSInteger selectedIndex;
 ```
 
-滚动开关属性，可通过setter方法开/关分页控制器的滚动。
+* 滚动开关属性，可通过setter方法开/关分页控制器的滚动。
 ```objc
 @property (nonatomic, assign) BOOL scrollEnabled;
 ```
 
-右侧按钮，可通过setter方法添加标题栏右侧的自定义按钮，默认nil
+* 右侧按钮，可通过setter方法添加标题栏右侧的自定义按钮，默认nil
 ```objc
 @property (nonatomic, strong) UIButton *rightButton;
 ```
@@ -117,29 +117,29 @@ XLPageViewController属性列表：
 
 #### 2.1 XLPageViewControllerDelegate
 
-位置回调方法：回调切换位置
+* 位置回调方法：回调切换位置
 ```objc
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index;
 ```
 
 #### 2.2 XLPageViewControllerDataSrouce
 
-根据index创建对应的视图控制器，每个试图控制器只会被创建一次。
+* 根据index创建对应的视图控制器，每个试图控制器只会被创建一次。
 ```objc
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index;
 ```
 
-根据index返回对应的标题
+* 根据index返回对应的标题
 ```objc
 - (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index;
 ```
 
-返回分页数
+* 返回分页数
 ```objc
 - (NSInteger)pageViewControllerNumberOfPage;
 ```
 
-标题cell复用方法，自定义标题cell时用到
+* 标题cell复用方法，自定义标题cell时用到
 ```objc
 - (__kindof XLPageTitleCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index;
 ```
