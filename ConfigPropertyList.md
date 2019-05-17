@@ -7,11 +7,11 @@
 |titleSpace|标题间距 默认 10|
 |titleWidth|标题宽度 默认 文字长度|
 |titleColorTransition|标题颜色过渡开关 默认 开|
-|textVerticalAlignment|文字垂直对齐 默认居中|
+|textVerticalAlignment|文字垂直对齐 默认 XLPageTextVerticalAlignmentCenter|
 |titleViewHeight|标题栏高度 默认 40|
 |titleViewBackgroundColor|标题栏背景色 默认 透明|
 |titleViewInset|标题栏内容缩进 默认 UIEdgeInsetsMake(0, 10, 0, 10)|
-|titleViewAlignment|标题栏显示位置 默认 局左|
+|titleViewAlignment|标题栏显示位置 默认 XLPageTitleViewAlignmentLeft|
 |titleViewStyle|标题栏样式 默认 XLPageTitleViewStyleBasic|
 |showTitleInNavigationBar|是否在NavigationBar上显示标题栏 默认NO|
 |shadowLineHidden|隐藏底部阴影 默认 NO|
