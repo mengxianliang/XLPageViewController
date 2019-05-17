@@ -59,7 +59,7 @@
 |子View滚动冲突|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-4.gif)|
 |手动切换|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-5.gif)|
 
-## 使用
+## 使用:
 
 ### 1、创建
 
@@ -82,7 +82,7 @@
   XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
 ```
 
-***config**负责所有的外观配置，**defaultConfig**方法设定了默认参数，使用时可按需配置。
+*config*负责所有的外观配置，*defaultConfig*方法设定了默认参数，使用时可按需配置。
 
 #### 1.4 初始化分页控制器
 
@@ -95,6 +95,40 @@
   [self addChildViewController:pageViewController];
 ```
 
-*需要把**pageViewController**添加为当前视图控制器的**子试图控制器**，这样才能实现子试图控制器中的界面跳转。
+需要把*pageViewController*添加为*当前视图控制器*的*子试图控制器*，才能实现子试图控制器中的界面跳转。
 
 ### 2、协议
+
+#### 2.1 XLPageViewControllerDelegate
+
+回调切换位置
+```objc
+- (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index;
+```
+
+#### 2.2 XLPageViewControllerDataSrouce
+
+根据
+根据index
+根据index创建对应
+的
+的视图
+的视图控制器
+
+```objc
+- (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index;
+```
+
+```objc
+- (NSString *)pageViewController:(XLPageViewController *)pageViewController titleForIndex:(NSInteger)index;
+```
+
+```objc
+- (NSInteger)pageViewControllerNumberOfPage;
+```
+```objc
+```
+```objc
+```
+```objc
+```
