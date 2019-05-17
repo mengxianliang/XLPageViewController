@@ -76,7 +76,7 @@
 ```
 
 
-#### 1.3 初始化外观配置类。
+#### 1.3 创建外观配置类。
 
 *注：config负责所有的外观配置，```defaultConfig```方法设定了默认参数，使用时可按需配置。*
 
@@ -84,7 +84,7 @@
   XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
 ```
 
-#### 1.4 初始化分页控制器
+#### 1.4 创建分页控制器
 
 *注：需要把```pageViewController```添加为当前视图控制器的子试图控制器，才能实现```pageViewController```子试图控制器中的界面跳转。*
   
@@ -97,7 +97,7 @@
   [self addChildViewController:pageViewController];
 ```
 
-### 2、协议说明
+### 2、协议
 
 #### 2.1 XLPageViewControllerDelegate
 
@@ -172,7 +172,7 @@
 
 #### 4.1 和子view冲突问题
 
-当pageViewController的子视图控制器中存可滚动的子view(UISlider、UIScrollView...)和ageViewController发生冲突是，可设置子view的    xl_letMeScrollFirst属性为真，这样可以避免和子view的滚动冲突。
+当pageViewController的子视图中存可滚动的子view，例如UISlider、UIScrollView等，如果和pageViewController发生滚动冲突时，可设置子view的   xl_letMeScrollFirst属性为真，这样可以避免和子view的滚动冲突。
 
 ```objc
   slider.xl_letMeScrollFirst = true;
@@ -180,6 +180,6 @@
 
 ## 其他
 
-* 频道管理工具**[XLChannelControl](https://github.com/mengxianliang/XLChannelControl)**
+* 频道管理工具[XLChannelControl](https://github.com/mengxianliang/XLChannelControl)
 
-* 开发过的其他UI工具**[XLUIKit](https://github.com/mengxianliang/XLUIKit)**
+* 开发过的其他UI工具[XLUIKit](https://github.com/mengxianliang/XLUIKit)
