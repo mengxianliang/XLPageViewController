@@ -63,4 +63,38 @@
 
 ### 1、创建
 
+#### 1.1 导入头文件
+
+```objc
+#import "XLPageViewController.h"
+```
+
+#### 1.2 遵守协议
+
+```objc
+@interface ViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+```
+
+
+#### 1.3 初始化外观配置类。
+
+```objc
+  XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
+```
+
+***config**负责所有的外观配置，**defaultConfig**方法设定了默认参数，使用时可按需配置。
+
+#### 1.4 初始化分页控制器
+
+```objc
+  XLPageViewController *pageViewController = [[XLPageViewController alloc] initWithConfig:config];
+  pageViewController.view.frame = self.view.bounds;
+  pageViewController.delegate = self;
+  pageViewController.dataSource = self;
+  [self.view addSubview:pageViewController.view];
+  [self addChildViewController:pageViewController];
+```
+
+*需要把**pageViewController**添加为当前视图控制器的**子试图控制器**，这样才能实现子试图控制器中的界面跳转。
+
 ### 2、协议
