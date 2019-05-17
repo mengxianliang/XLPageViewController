@@ -172,7 +172,7 @@
 
 #### 4.1 和子view冲突问题
 
-* 当pageViewController的子视图控制器中存可滚动的子view(UISlider、UIScrollView...)和ageViewController发生冲突是，可设置子view的xl_letMeScrollFirst属性为真，这样可以避免和子view的滚动冲突。
+当pageViewController的子视图控制器中存可滚动的子view(UISlider、UIScrollView...)和ageViewController发生冲突是，可设置子view的    xl_letMeScrollFirst属性为真，这样可以避免和子view的滚动冲突。
 
 ```objc
   slider.xl_letMeScrollFirst = true;
@@ -180,6 +180,6 @@
 
 ## 其他
 
-* 频道管理工具[XLChannelControl](https://github.com/mengxianliang/XLChannelControl)
-* 开发过的其他UI工具[XLUIKit](https://github.com/mengxianliang/XLUIKit)
+* 频道管理工具**[XLChannelControl](https://github.com/mengxianliang/XLChannelControl)**
 
+* 开发过的其他UI工具**[XLUIKit](https://github.com/mengxianliang/XLUIKit)**
