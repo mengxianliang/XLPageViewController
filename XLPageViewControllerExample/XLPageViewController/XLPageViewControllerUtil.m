@@ -32,7 +32,7 @@
         NSLog(@"Warning !!! color is nil");
         return [UIColor blackColor];
     }
-    
+
     progress = progress >= 1 ? 1 : progress;
 
     progress = progress <= 0 ? 0 : progress;

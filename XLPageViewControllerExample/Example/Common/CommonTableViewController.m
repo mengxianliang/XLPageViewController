@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self buildTable];
-    NSLog(@"我被创建了--%@",self.title);
 }
 
 - (void)buildTable {

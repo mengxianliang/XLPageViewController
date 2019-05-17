@@ -17,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol XLPageViewControllerDelegate <NSObject>
 
+
+/**
+ 当页面切换完成时回调该方法，返回切换到的位置
+
+ @param pageViewController 实例
+ @param index 切换的位置
+ */
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index;
 
 @end

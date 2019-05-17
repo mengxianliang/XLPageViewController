@@ -7,7 +7,7 @@
 //  基础功能展示
 
 #import <UIKit/UIKit.h>
-#import "XLPageViewControllerConfig.h"
+#import "XLPageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
