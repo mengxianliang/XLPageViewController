@@ -108,12 +108,14 @@
 
 #### 2.2 XLPageViewControllerDataSrouce
 
-根据
-根据index
-根据index创建对应
-的
-的视图
-的视图控制器
+根据index创建对应的视图控制器，
+每个
+每个试图控制器
+每个试图控制器只会
+被
+被创建
+被创建一次
+被创建一次，
 
 ```objc
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index;
