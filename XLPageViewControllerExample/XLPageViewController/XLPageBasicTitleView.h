@@ -4,7 +4,8 @@
 //
 //  Created by MengXianLiang on 2019/5/8.
 //  Copyright © 2019 jwzt. All rights reserved.
-//
+//  https://github.com/mengxianliang/XLPageViewController
+//  分页控制器标题栏
 
 #import <UIKit/UIKit.h>
 #import "XLPageTitleCell.h"

@@ -4,7 +4,7 @@
 //
 //  Created by MengXianLiang on 2019/5/8.
 //  Copyright © 2019 jwzt. All rights reserved.
-//
+//  https://github.com/mengxianliang/XLPageViewController
 
 #import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"

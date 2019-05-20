@@ -4,7 +4,8 @@
 //
 //  Created by MengXianLiang on 2019/5/8.
 //  Copyright © 2019 jwzt. All rights reserved.
-//
+//  https://github.com/mengxianliang/XLPageViewController
+//  工具类
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
