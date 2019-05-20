@@ -39,7 +39,6 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 @interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce,XLPageTitleViewDelegate>
 
-
 //所有的子视图，都加载在contentView上
 @property (nonatomic, strong) XLPageContentView *contentView;
 //标题
@@ -56,6 +55,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 @property (nonatomic, assign) XLScrollDirection scrollDirection;
 //当前配置信息
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
+
+//上一次代理返回的index
+@property (nonatomic, assign) NSInteger lastDelegateIndex;
 
 @end
 
@@ -111,6 +113,9 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     
     //默认可以滚动
     self.scrollEnabled = YES;
+    
+    //初始化上一次返回的index
+    self.lastDelegateIndex = -1;
 }
 
 //初始化vc缓存数组
@@ -345,6 +350,8 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 //执行代理方法
 - (void)delegateSelectedAdIndex:(NSInteger)index {
+    if (index == self.lastDelegateIndex) {return;}
+    self.lastDelegateIndex = index;
     if ([self.delegate respondsToSelector:@selector(pageViewController:didSelectedAtIndex:)]) {
         [self.delegate pageViewController:self didSelectedAtIndex:index];
     }
