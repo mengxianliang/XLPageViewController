@@ -180,7 +180,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.delegate pageTitleViewDidSelectedAtIndex:indexPath.row];
+    BOOL switchSuccess = [self.delegate pageTitleViewDidSelectedAtIndex:indexPath.row];
+    if (!switchSuccess) {return;}
     self.selectedIndex = indexPath.row;
 }
 

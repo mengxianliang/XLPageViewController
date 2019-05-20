@@ -49,11 +49,14 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 //显示过的vc数组，用于试图控制器缓存
 @property (nonatomic, strong) NSMutableArray *shownVCArr;
 //是否加载了pageVC
-@property (nonatomic, assign) BOOL haveLoadedPageVC;
+@property (nonatomic, assign) BOOL pageVCDidLoad;
+//判断pageVC是否在切换中
+@property (nonatomic, assign) BOOL pageVCAnimating;
 //滚动方向
 @property (nonatomic, assign) XLScrollDirection scrollDirection;
 //当前配置信息
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
+
 @end
 
 @implementation XLPageViewController
@@ -140,13 +143,21 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     }
     
     //自动选中当前位置_selectedIndex
-    if (!self.haveLoadedPageVC) {
+    if (!self.pageVCDidLoad) {
+        //设置加载标记为已加载
+        self.pageVCDidLoad = true;
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
 }
 
 #pragma mark -
 #pragma mark UIPageViewControllerDelegate
+//滚动切换时调用
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+    self.pageVCAnimating = true;
+}
+
+//滚动切换时调用
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
     //如果向左滚动，当前位置-1
     if (self.scrollDirection == XLScrollDirectionLeft) {
@@ -160,6 +171,8 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     self.titleView.selectedIndex = _selectedIndex;
     //回调代理方法
     [self delegateSelectedAdIndex:_selectedIndex];
+    //切换中属性更新
+    self.pageVCAnimating = false;
 }
 
 #pragma mark -
@@ -208,18 +221,23 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     return nil;
 }
 
-- (void)pageTitleViewDidSelectedAtIndex:(NSInteger)index {
+- (BOOL)pageTitleViewDidSelectedAtIndex:(NSInteger)index {
+    BOOL switchSuccess = [self switchToViewControllerAdIndex:index animated:true];
+    if (!switchSuccess) {
+        return false;
+    }
     self.titleView.stopAnimation = true;
-    [self switchToViewControllerAdIndex:index animated:true];
     [self delegateSelectedAdIndex:index];
+    return true;
 }
 
 #pragma mark -
 #pragma mark Setter
 //设置选中位置
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
+    BOOL switchSuccess = [self switchToViewControllerAdIndex:selectedIndex animated:true];
+    if (!switchSuccess) {return;}
     self.titleView.stopAnimation = true;
-    [self switchToViewControllerAdIndex:selectedIndex animated:true];
 }
 
 //滑动开关
@@ -239,10 +257,13 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 #pragma mark -
 #pragma mark 切换位置方法
-- (void)switchToViewControllerAdIndex:(NSInteger)index animated:(BOOL)animated {
-    if ([self numberOfPage] == 0) {return;}
-    //设置加载标记为已加载
-    self.haveLoadedPageVC = true;
+- (BOOL)switchToViewControllerAdIndex:(NSInteger)index animated:(BOOL)animated {
+    if ([self numberOfPage] == 0) {return NO;}
+    //如果正在加载中 返回
+    if (self.pageVCAnimating) {return NO;}
+    //设置正在加载标记
+    BOOL animating = animated && index != _selectedIndex;
+    self.pageVCAnimating = animating;
     //更新当前位置
     _selectedIndex = index;
     //设置滚动方向
@@ -250,11 +271,14 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     if (_titleView.lastSelectedIndex > _selectedIndex) {
         direction = UIPageViewControllerNavigationDirectionReverse;
     }
-    
     //设置当前展示VC
-    [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:animated completion:nil];
+    __weak typeof(self)weakSelf = self;
+    [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:animated completion:^(BOOL finished) {
+        weakSelf.pageVCAnimating = false;
+    }];
     //标题居中
     self.titleView.selectedIndex = _selectedIndex;
+    return YES;
 }
 
 #pragma mark -

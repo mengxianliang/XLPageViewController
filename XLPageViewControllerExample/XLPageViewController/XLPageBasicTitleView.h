@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param index 所选位置
  */
-- (void)pageTitleViewDidSelectedAtIndex:(NSInteger)index;
+- (BOOL)pageTitleViewDidSelectedAtIndex:(NSInteger)index;
 
 @end
 
