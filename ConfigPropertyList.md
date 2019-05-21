@@ -20,7 +20,7 @@
 |shadowLineColor|阴影颜色 默认 黑色|
 |XLPageShadowLineCap| 阴影末端形状 默认 XLPageShadowLineCapRound|
 |shadowLineAnimationType|阴影动画效果 默认 XLPageShadowLineAnimationTypePan|
-|shadowLineAlignment|阴影对齐 默认XLPageShadowLineAlignmentBottom|
+|shadowLineAlignment|阴影对齐 默认 XLPageShadowLineAlignmentBottom|
 |separatorLineHidden|隐藏底部分割线 默认 NO|
 |separatorLineHeight|底部分割线高度 默认 0.5|
 |separatorLineColor| 底部分割线颜色 默认 lightGrayColor|
