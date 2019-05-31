@@ -85,7 +85,7 @@
 
 #### 1.4 创建分页控制器
 
-*注：需要把```pageViewController```添加为当前视图控制器的子试图控制器，才能实现```pageViewController```子试图控制器中的界面跳转。*
+*注：需要把```pageViewController```添加为当前视图控制器的子视图控制器，才能实现子视图控制器中的界面跳转。*
   
 ```objc
   XLPageViewController *pageViewController = [[XLPageViewController alloc] initWithConfig:config];
@@ -101,7 +101,7 @@
 #### 2.1 XLPageViewControllerDelegate
 
 ```objc
-//位置回调方法：回调切换位置
+//回调切换位置
 - (void)pageViewController:(XLPageViewController *)pageViewController didSelectedAtIndex:(NSInteger)index;
 ```
 
@@ -139,13 +139,15 @@
 @end
 ```
 
-#### 3.2 注册cell、添加创建cell的数据源方法
+#### 3.2 注册cell、添加创建cell
 
 ```objc
+//需要先注册cell
 [self.pageViewController registerClass:CustomPageTitleCell.class forTitleViewCellWithReuseIdentifier:@"CustomPageTitleCell"];
 ```
 
 ```objc
+//cell创建方法
 - (XLPageTitleCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index {
     CustomPageTitleCell *cell = [pageViewController dequeueReusableTitleViewCellWithIdentifier:@"CustomPageTitleCell" forIndex:index];
     return cell;
@@ -155,12 +157,12 @@
 #### 3.3 复写cell父类方法
 
 ```objc
-//通过此父类方法配置cell是否被选中样式
+//通过此父类方法配置标题cell是否被选中样式
 - (void)configCellOfSelected:(BOOL)selected {
 
 }
 
-//通过此父类方法配置cell动画 type:区分是当前选中cell/将要被选中的cell progress，动画进度0~1
+//通过此父类方法配置标题cell动画；type:区分是当前选中cell/将要被选中的cell；progress:动画进度0~1
 - (void)showAnimationOfProgress:(CGFloat)progress type:(XLPageTitleCellAnimationType)type {
     
 }
@@ -169,9 +171,9 @@
 
 ### 4、特殊情况处理
 
-#### 4.1 和子view冲突问题
+#### 4.1 和子view滚动冲突问题
 
-当```pageViewController```的子视图中存可滚动的子view，例如UISlider、UIScrollView等，如果子view和```pageViewController```发生滚动冲突时，可设置子view的```xl_letMeScrollFirst```属性为true。
+当```pageViewController```的子视图中存在可滚动的子view，例如UISlider、UIScrollView等，如果子view和```pageViewController```发生滚动冲突时，可设置子view的```xl_letMeScrollFirst```属性为true。
 
 ```objc
   slider.xl_letMeScrollFirst = true;
