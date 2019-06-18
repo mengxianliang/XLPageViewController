@@ -52,7 +52,7 @@
 
 | 场景 | 示例 | 
 | ---- | ---- | 
-|自定义Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-1.gif)|
+|自定义标题Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-1.gif)|
 |频道定制|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-2.gif)|
 |多级嵌套|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-3.gif)|
 |子View滚动冲突|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-4.gif)|
