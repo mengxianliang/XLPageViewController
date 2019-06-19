@@ -3,12 +3,26 @@
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/8.
-//  Copyright © 2019 jwzt. All rights reserved.
+//  Copyright © 2019 xianliang meng. All rights reserved.
 //  https://github.com/mengxianliang/XLPageViewController
 
 #import "XLPageBasicTitleView.h"
 #import "XLPageViewControllerUtil.h"
 #import "XLPageTitleCell.h"
+
+#pragma mark -
+#pragma mark CellModel类
+@interface XLPageTitleCellModel : NSObject
+
+@property (nonatomic, assign) CGRect frame;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
+@end
+
+@implementation XLPageTitleCellModel
+
+@end
 
 #pragma mark - 布局类
 #pragma mark XLPageBasicTitleViewFolowLayout
@@ -90,6 +104,9 @@
 //底部分割线
 @property (nonatomic, strong) UIView *separatorLine;
 
+//cell的模型
+@property (nonatomic, strong) NSMutableArray *cellModels;
+
 @end
 
 @implementation XLPageBasicTitleView
@@ -102,6 +119,8 @@
 }
 
 - (void)initTitleViewWithConfig:(XLPageViewControllerConfig *)config {
+    
+    self.cellModels = [[NSMutableArray alloc] init];
     
     self.config = config;
     
@@ -152,7 +171,6 @@
     
     self.separatorLine.frame = CGRectMake(0, self.bounds.size.height - self.config.separatorLineHeight, self.bounds.size.width, self.config.separatorLineHeight);
     
-    self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
     [self fixShadowLineCenter];
     [self.collectionView sendSubviewToBack:self.shadowLine];
     [self bringSubviewToFront:self.separatorLine];
@@ -176,6 +194,7 @@
     cell.config = self.config;
     cell.textLabel.text = [self.dataSource pageTitleViewTitleForIndex:indexPath.row];
     [cell configCellOfSelected:(indexPath.row == self.selectedIndex)];
+    [self addCellModel:indexPath frame:cell.frame];
     return cell;
 }
 
@@ -183,6 +202,23 @@
     BOOL switchSuccess = [self.delegate pageTitleViewDidSelectedAtIndex:indexPath.row];
     if (!switchSuccess) {return;}
     self.selectedIndex = indexPath.row;
+}
+
+#pragma mark -
+#pragma mark 添加CellModel
+- (void)addCellModel:(NSIndexPath *)indexPath frame:(CGRect)frame {
+    XLPageTitleCellModel *newModel = [[XLPageTitleCellModel alloc] init];
+    newModel.frame = frame;
+    newModel.indexPath = indexPath;
+    bool contain = NO;
+    for (XLPageTitleCellModel *model in self.cellModels) {
+        if (model.indexPath.row == indexPath.row) {
+            contain = YES;
+        }
+    }
+    if (!contain) {
+        [self.cellModels addObject:newModel];
+    }
 }
 
 #pragma mark -
@@ -212,7 +248,8 @@
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];
     
     //设置阴影位置
-    self.shadowLine.center = [self shadowLineCenterForIndex:_selectedIndex];
+    CGPoint center = [self shadowLineCenterForIndex:_selectedIndex];
+    self.shadowLine.center = center;
     //保存上次选中位置
     _lastSelectedIndex = _selectedIndex;
 }
@@ -220,10 +257,15 @@
 - (void)fixShadowLineCenter {
     if (self.config.titleViewStyle == XLPageTitleViewStyleSegmented) {return;}
     //避免cell不在屏幕上显示，延时0.01秒加载
-    if (self.shadowLine.center.x <= 0) {
+    CGPoint shadowCenter = [self shadowLineCenterForIndex:_selectedIndex];
+    if (shadowCenter.x > 0) {
+        self.shadowLine.center = shadowCenter;
+    }else {
+        if (self.shadowLine.center.x <= 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
-            self.shadowLine.center = [self shadowLineCenterForIndex:self.selectedIndex];
-        });
+                self.shadowLine.center = [self shadowLineCenterForIndex:self.selectedIndex];
+            });
+        }
     }
 }
 
@@ -261,14 +303,22 @@
 #pragma mark 阴影位置
 - (CGPoint)shadowLineCenterForIndex:(NSInteger)index {
     XLPageTitleCell *cell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    CGFloat centerX = cell.center.x;
+    CGRect cellFrame = cell.frame;
+    if (!cell) {
+        for (XLPageTitleCellModel *model  in self.cellModels) {
+            if (model.indexPath.row == index) {
+                cellFrame = model.frame;
+            }
+        }
+    }
+    CGFloat centerX = CGRectGetMidX(cellFrame);
     CGFloat separatorLineHeight = self.config.separatorLineHidden ? 0 : self.config.separatorLineHeight;
     CGFloat centerY = self.bounds.size.height - self.config.shadowLineHeight/2.0f - separatorLineHeight;
     if (self.config.shadowLineAlignment == XLPageShadowLineAlignmentTop) {
         centerY = self.config.shadowLineHeight/2.0f;
     }
     if (self.config.shadowLineAlignment == XLPageShadowLineAlignmentCenter) {
-        centerY = cell.center.y;
+        centerY = CGRectGetMidY(cellFrame);
     }
     return CGPointMake(centerX, centerY);
 }

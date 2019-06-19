@@ -3,7 +3,7 @@
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/6.
-//  Copyright © 2019 jwzt. All rights reserved.
+//  Copyright © 2019 xianliang meng. All rights reserved.
 //  https://github.com/mengxianliang/XLPageViewController
 
 #import "XLPageViewController.h"
@@ -209,6 +209,14 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
     self.titleView.stopAnimation = false;
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.titleView.stopAnimation = false;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    self.titleView.stopAnimation = false;
+}
+
 #pragma mark -
 #pragma mark PageTitleViewDataSource&Delegate
 - (NSInteger)pageTitleViewNumberOfTitle {
@@ -305,7 +313,7 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 #pragma mark -
 #pragma mark 辅助方法
-//指定位置的视图控制器
+//指定位置的视图控制器 缓存方法
 - (UIViewController *)viewControllerForIndex:(NSInteger)index {
     
     //如果越界，则返回nil

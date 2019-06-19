@@ -3,7 +3,7 @@
 //  XLPageViewControllerExample
 //
 //  Created by MengXianLiang on 2019/5/16.
-//  Copyright © 2019 jwzt. All rights reserved.
+//  Copyright © 2019 xianliang meng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
