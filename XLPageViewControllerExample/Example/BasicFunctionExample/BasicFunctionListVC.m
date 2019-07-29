@@ -192,9 +192,9 @@
 }
 
 - (NSArray *)vcTitlesOfIndexPath:(NSIndexPath *)indexPath {
-    NSArray *titleArr = @[@"今天",@"是个",@"好日子",@"心想的",@"事儿",@"都能成",@"明天",@"是个",@"好日子",@"打开了家门",@"咱迎春风",@"~~~"];
+    NSArray *titleArr = @[@"关注",@"推荐",@"热点",@"问答",@"科技",@"国风",@"直播",@"新时代",@"北京",@"国际",@"数码",@"小说",@"军事"];
     if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 ||indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7) {
-        titleArr = @[@"今天",@"是个",@"好日子"];
+        titleArr = @[@"关注",@"推荐",@"热点"];
     }
     return titleArr;
 }

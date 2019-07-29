@@ -30,13 +30,6 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 
 @end
 
-
-typedef NS_ENUM(NSInteger,XLScrollDirection) {
-    XLScrollDirectionNone = 0,
-    XLScrollDirectionLeft = 1,
-    XLScrollDirectionRight = 2,
-};
-
 @interface XLPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource,UIScrollViewDelegate,XLPageTitleViewDataSrouce,XLPageTitleViewDelegate>
 
 //所有的子视图，都加载在contentView上
@@ -47,15 +40,14 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 @property (nonatomic, strong) UIPageViewController *pageVC;
 //显示过的vc数组，用于试图控制器缓存
 @property (nonatomic, strong) NSMutableArray *shownVCArr;
+//所有标题集合
+@property (nonatomic, strong) NSMutableArray *allTitleArr;
 //是否加载了pageVC
 @property (nonatomic, assign) BOOL pageVCDidLoad;
 //判断pageVC是否在切换中
 @property (nonatomic, assign) BOOL pageVCAnimating;
-//滚动方向
-@property (nonatomic, assign) XLScrollDirection scrollDirection;
 //当前配置信息
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
-
 //上一次代理返回的index
 @property (nonatomic, assign) NSInteger lastDelegateIndex;
 
@@ -153,6 +145,11 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
         self.pageVCDidLoad = true;
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
+    
+    self.allTitleArr = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < [self numberOfPage]; i++) {
+        [self.allTitleArr addObject:[self titleForIndex:i]];
+    }
 }
 
 #pragma mark -
@@ -164,14 +161,10 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 
 //滚动切换时调用
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
-    //如果向左滚动，当前位置-1
-    if (self.scrollDirection == XLScrollDirectionLeft) {
-        _selectedIndex = _selectedIndex <= 0 ? 0 : _selectedIndex - 1;
-    }
-    //如果向右滚动，当前位置+1
-    if (self.scrollDirection == XLScrollDirectionRight) {
-        _selectedIndex = _selectedIndex >= [self numberOfPage] - 1 ? [self numberOfPage] - 1 : _selectedIndex + 1;
-    }
+    if (!completed) {return;}
+    //更新选中位置
+    UIViewController *vc = self.pageVC.viewControllers.firstObject;
+    _selectedIndex = [self.allTitleArr indexOfObject:vc.title];
     //标题居中
     self.titleView.selectedIndex = _selectedIndex;
     //回调代理方法
@@ -194,14 +187,6 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 #pragma mark ScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
-    //判断滚动方向
-    if (value == 0) {
-        self.scrollDirection = XLScrollDirectionNone;
-    }else if (value < 0) {
-        self.scrollDirection = XLScrollDirectionLeft;
-    }else if (value > 0) {
-        self.scrollDirection = XLScrollDirectionRight;
-    }
     self.titleView.animationProgress = value/scrollView.bounds.size.width;
 }
 
@@ -297,7 +282,13 @@ typedef NS_ENUM(NSInteger,XLScrollDirection) {
 #pragma mark -
 #pragma mark 刷新方法
 - (void)reloadData {
+    //刷新标题栏UI
     [self.titleView reloadData];
+    //刷新标题数据
+    [self.allTitleArr removeAllObjects];
+    for (NSInteger i = 0; i < [self numberOfPage]; i++) {
+        [self.allTitleArr addObject:[self titleForIndex:i]];
+    }
 }
 
 #pragma mark -
