@@ -234,6 +234,7 @@
 }
 
 - (void)updateLayout {
+    
     if (_selectedIndex == _lastSelectedIndex) {return;}
     
     //更新cellUI
@@ -242,7 +243,6 @@
     [UIView performWithoutAnimation:^{
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath1,indexPath2]];
     }];
-    
     
     //自动居中
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];

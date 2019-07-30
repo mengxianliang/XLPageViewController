@@ -269,14 +269,14 @@
 		5EFC0B9C228D6BCB0024F6C9 /* XLChannelControl */ = {
 			isa = PBXGroup;
 			children = (
-				5EFC0B9D228D6BCB0024F6C9 /* XLChannelControl.m */,
-				5EFC0B9E228D6BCB0024F6C9 /* XLChannelView.h */,
-				5EFC0B9F228D6BCB0024F6C9 /* XLChannelHeader.h */,
-				5EFC0BA0228D6BCB0024F6C9 /* XLChannelItem.h */,
-				5EFC0BA1228D6BCB0024F6C9 /* XLChannelHeader.m */,
-				5EFC0BA2228D6BCB0024F6C9 /* XLChannelView.m */,
 				5EFC0BA3228D6BCB0024F6C9 /* XLChannelControl.h */,
+				5EFC0B9D228D6BCB0024F6C9 /* XLChannelControl.m */,
+				5EFC0B9F228D6BCB0024F6C9 /* XLChannelHeader.h */,
+				5EFC0BA1228D6BCB0024F6C9 /* XLChannelHeader.m */,
+				5EFC0BA0228D6BCB0024F6C9 /* XLChannelItem.h */,
 				5EFC0BA4228D6BCB0024F6C9 /* XLChannelItem.m */,
+				5EFC0B9E228D6BCB0024F6C9 /* XLChannelView.h */,
+				5EFC0BA2228D6BCB0024F6C9 /* XLChannelView.m */,
 			);
 			path = XLChannelControl;
 			sourceTree = "<group>";

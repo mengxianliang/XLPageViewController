@@ -93,6 +93,7 @@
     XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
     switch (indexPath.row) {
         case 0:
+            
             break;
         case 1:
             //在导航栏中显示标题
