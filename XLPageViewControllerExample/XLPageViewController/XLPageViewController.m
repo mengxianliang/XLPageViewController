@@ -146,6 +146,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
         [self switchToViewControllerAdIndex:_selectedIndex animated:false];
     }
     
+    //初始化标题数组
     self.allTitleArr = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < [self numberOfPage]; i++) {
         [self.allTitleArr addObject:[self titleForIndex:i]];
@@ -185,33 +186,45 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 
 #pragma mark -
 #pragma mark ScrollViewDelegate
+//滚动时计算标题动画进度
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
     self.titleView.animationProgress = value/scrollView.bounds.size.width;
 }
 
+//更新执行动画状态
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     self.titleView.stopAnimation = false;
 }
 
+////更新执行动画状态
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.titleView.stopAnimation = false;
+}
+
+//更新执行动画状态
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     self.titleView.stopAnimation = false;
 }
 
+//更新执行动画状态
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     self.titleView.stopAnimation = false;
 }
 
 #pragma mark -
 #pragma mark PageTitleViewDataSource&Delegate
+//titleview数据源方法
 - (NSInteger)pageTitleViewNumberOfTitle {
     return [self numberOfPage];
 }
 
+//titleview数据源方法
 - (NSString *)pageTitleViewTitleForIndex:(NSInteger)index {
     return [self titleForIndex:index];
 }
 
+//titleview数据源方法
 - (XLPageTitleCell *)pageTitleViewCellForItemAtIndex:(NSInteger)index {
     if ([self.dataSource respondsToSelector:@selector(pageViewController:titleViewCellForItemAtIndex:)]) {
         return [self.dataSource pageViewController:self titleViewCellForItemAtIndex:index];
@@ -219,6 +232,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     return nil;
 }
 
+//titleview代理方法
 - (BOOL)pageTitleViewDidSelectedAtIndex:(NSInteger)index {
     BOOL switchSuccess = [self switchToViewControllerAdIndex:index animated:true];
     if (!switchSuccess) {
@@ -312,10 +326,11 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
         return nil;
     }
     
-    //获取当前vc和当前标题
+    //获取当前vc
     UIViewController *currentVC = self.pageVC.viewControllers.firstObject;
+    //当前标题
     NSString *currentTitle = currentVC.title;
-
+    //目标切换位置标题
     NSString *targetTitle = [self titleForIndex:index];
 
     //如果和当前位置一样，则返回当前vc
@@ -329,6 +344,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
             return vc;
         }
     }
+    
     //如果之前没显示过，则通过dataSource创建
     UIViewController *vc = [self.dataSource pageViewController:self viewControllerForIndex:index];
     vc.title = [self titleForIndex:index];
