@@ -24,7 +24,9 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view =  [super hitTest:point withEvent:event];
     BOOL pageViewScrollEnabled = !view.xl_letMeScrollFirst;
-    self.scrollBlock(pageViewScrollEnabled);
+    if (self.scrollBlock) {
+        self.scrollBlock(pageViewScrollEnabled);
+    }
     return view;
 }
 
@@ -38,6 +40,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 @property (nonatomic, strong) XLPageBasicTitleView *titleView;
 //分页控制器
 @property (nonatomic, strong) UIPageViewController *pageVC;
+//ScrollView
+@property (nonatomic, strong) UIScrollView *scrollView;
 //显示过的vc数组，用于试图控制器缓存
 @property (nonatomic, strong) NSMutableArray *shownVCArr;
 //所有标题集合
@@ -66,6 +70,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 }
 
 - (void)initUIWithConfig:(XLPageViewControllerConfig *)config {
+    
     //保存配置
     self.config = config;
     
@@ -74,7 +79,9 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     [self.view addSubview:self.contentView];
     __weak typeof(self)weakSelf = self;
     self.contentView.scrollBlock = ^(BOOL scrollEnabled) {
-        weakSelf.scrollEnabled = scrollEnabled;
+        if (weakSelf.scrollEnabled) {
+            weakSelf.scrollView.scrollEnabled = scrollEnabled;
+        }
     };
     
     //防止Navigation引起的缩进
@@ -96,10 +103,12 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     self.pageVC.dataSource = self;
     [self.contentView addSubview:self.pageVC.view];
     [self addChildViewController:self.pageVC];
+    
     //设置ScrollView代理
     for (UIScrollView *scrollView in self.pageVC.view.subviews) {
         if ([scrollView isKindOfClass:[UIScrollView class]]) {
-            scrollView.delegate = self;
+            self.scrollView = scrollView;
+            self.scrollView.delegate = self;
         }
     }
     
@@ -255,11 +264,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 //滑动开关
 - (void)setScrollEnabled:(BOOL)scrollEnabled {
     _scrollEnabled = scrollEnabled;
-    for (UIScrollView *scrollView in self.pageVC.view.subviews) {
-        if ([scrollView isKindOfClass:[UIScrollView class]]) {
-            scrollView.scrollEnabled = scrollEnabled;
-        }
-    }
+    self.scrollView.scrollEnabled = scrollEnabled;
 }
 
 //设置右侧按钮
@@ -314,7 +319,6 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 - (XLPageTitleCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
     return [self.titleView dequeueReusableCellWithIdentifier:identifier forIndex:index];
 }
-
 
 #pragma mark -
 #pragma mark 辅助方法
