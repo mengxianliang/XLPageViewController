@@ -256,6 +256,10 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 #pragma mark Setter
 //设置选中位置
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
+    //范围越界，抛出异常
+    if (selectedIndex < 0 || selectedIndex > [self numberOfPage]) {
+        [NSException raise:@"selectedIndex is not right ！！！" format:@"It is out of range"];
+    }
     BOOL switchSuccess = [self switchToViewControllerAdIndex:selectedIndex animated:true];
     if (!switchSuccess) {return;}
     self.titleView.stopAnimation = true;
@@ -329,7 +333,6 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     if (index < 0 || index >= [self numberOfPage]) {
         return nil;
     }
-    
     //获取当前vc
     UIViewController *currentVC = self.pageVC.viewControllers.firstObject;
     //当前标题

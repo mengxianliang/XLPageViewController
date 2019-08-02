@@ -256,6 +256,8 @@
 
 - (void)fixShadowLineCenter {
     if (self.config.titleViewStyle == XLPageTitleViewStyleSegmented) {return;}
+    //避免找不到Cell,先滚动到指定位置
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
     //避免cell不在屏幕上显示，延时0.01秒加载
     CGPoint shadowCenter = [self shadowLineCenterForIndex:_selectedIndex];
     if (shadowCenter.x > 0) {

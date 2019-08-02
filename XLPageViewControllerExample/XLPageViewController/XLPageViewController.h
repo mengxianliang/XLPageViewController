@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol XLPageViewControllerDelegate <NSObject>
 
-
 /**
  当页面切换完成时回调该方法，返回切换到的位置
 
@@ -32,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol XLPageViewControllerDataSrouce <NSObject>
 
 @required
+
 /**
  根据index返回对应的ViewController
 
@@ -83,14 +83,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSInteger selectedIndex;
 
-
 /**
  滚动开关 默认 开
  */
 @property (nonatomic, assign) BOOL scrollEnabled;
 
 /**
- 右侧按钮
+ 标题栏右侧按钮
  */
 @property (nonatomic, strong) UIButton *rightButton;
 
@@ -117,6 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  返回复用的cell
  */
 - (__kindof XLPageTitleCell *)dequeueReusableTitleViewCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END
