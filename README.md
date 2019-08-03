@@ -1,7 +1,7 @@
 ![title](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Image/title.png)
 
-##目录
-* [1、特点](## 特点:)
+## 目录
+[TOC]
 
 ## 特点:
 
