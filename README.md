@@ -1,9 +1,9 @@
 ![title](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Image/title.png)
 
 ## 目录
-[TOC]
 
 ## 特点:
+------
 
 * 采用UICollectionView+UIPageViewController方案，高性能，低功耗。
 * 支持刷新，内置缓存(非复用)机制，节省内存。
@@ -11,6 +11,7 @@
 * 支持用户自定义标题样式。
 
 ## 结构:
+------
 
 ![结构图](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Image/structure.png)
 
