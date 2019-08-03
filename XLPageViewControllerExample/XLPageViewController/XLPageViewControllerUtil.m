@@ -140,7 +140,23 @@ static NSString *LetMeScrollFirstKey = @"LetMeScrollFirstKey";
 }
 
 - (BOOL)xl_letMeScrollFirst {
-    return [objc_getAssociatedObject(self, &LetMeScrollFirstKey) boolValue];;
+    return [objc_getAssociatedObject(self, &LetMeScrollFirstKey) boolValue];
+}
+
+@end
+
+
+@implementation UIViewController (Title)
+
+static NSString *XLVCTitleKey = @"XLVCTitleKey";
+
+- (void)setXl_title:(NSString *)xl_title {
+    objc_setAssociatedObject(self, &LetMeScrollFirstKey,
+                             xl_title, OBJC_ASSOCIATION_COPY);
+}
+
+- (NSString *)xl_title {
+    return objc_getAssociatedObject(self, &LetMeScrollFirstKey);
 }
 
 @end

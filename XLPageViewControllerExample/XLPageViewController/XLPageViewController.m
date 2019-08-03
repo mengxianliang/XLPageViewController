@@ -174,7 +174,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     if (!completed) {return;}
     //更新选中位置
     UIViewController *vc = self.pageVC.viewControllers.firstObject;
-    _selectedIndex = [self.allTitleArr indexOfObject:vc.title];
+    _selectedIndex = [self.allTitleArr indexOfObject:vc.xl_title];
     //标题居中
     self.titleView.selectedIndex = _selectedIndex;
     //回调代理方法
@@ -336,7 +336,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //获取当前vc
     UIViewController *currentVC = self.pageVC.viewControllers.firstObject;
     //当前标题
-    NSString *currentTitle = currentVC.title;
+    NSString *currentTitle = currentVC.xl_title;
     //目标切换位置标题
     NSString *targetTitle = [self titleForIndex:index];
 
@@ -347,15 +347,20 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     
     //如果之前显示过，则从内存中读取
     for (UIViewController *vc in self.shownVCArr) {
-        if ([vc.title isEqualToString:targetTitle]) {
+        if ([vc.xl_title isEqualToString:targetTitle]) {
             return vc;
         }
     }
     
     //如果之前没显示过，则通过dataSource创建
     UIViewController *vc = [self.dataSource pageViewController:self viewControllerForIndex:index];
+    //设置扩展id，用户定位对应视图控制器
+    vc.xl_title = [self titleForIndex:index];
+    //设置试图控制器标题
     vc.title = [self titleForIndex:index];
+    //把vc添加到缓存集合
     [self.shownVCArr addObject:vc];
+    //添加子视图控制器
     [self addChildViewController:vc];
     return vc;
 }

@@ -38,4 +38,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ 子视图控制器的缓存，添加扩展标题
+ */
+@interface UIViewController (Title)
+
+/**
+ 添加扩展标题
+ */
+@property (nonatomic, copy) NSString *xl_title;
+
+@end
+
 NS_ASSUME_NONNULL_END
