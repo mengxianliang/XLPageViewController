@@ -194,6 +194,14 @@
 
 使用时需注意**标题不要重复**，**标题**是定位ViewController的唯一ID。
 
+## 更新
+
+```diff
+- 2019/08/1 
+- 2019/08/03 处理Segmented样式，点击标题切换慢的问题
+- 2019/08/03 添加UIViewController扩展标题，避免因title改变导致的异常
+```
+
 ## 其他
 
 * 频道管理工具[XLChannelControl](https://github.com/mengxianliang/XLChannelControl)
