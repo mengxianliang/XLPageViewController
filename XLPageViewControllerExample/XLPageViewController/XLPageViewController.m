@@ -281,7 +281,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 - (BOOL)switchToViewControllerAdIndex:(NSInteger)index animated:(BOOL)animated {
     if ([self numberOfPage] == 0) {return NO;}
     //如果正在加载中 返回
-    if (self.pageVCAnimating) {return NO;}
+    if (self.pageVCAnimating && self.config.titleViewStyle == XLPageTitleViewStyleBasic) {return NO;}
     //设置正在加载标记
     BOOL animating = animated && index != _selectedIndex;
     self.pageVCAnimating = animating;
