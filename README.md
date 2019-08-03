@@ -1,6 +1,6 @@
 ![title](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Image/title.png)
 
-## 目录
+## 目录:
 
 * [特点](#特点)
 * [结构](#结构)
@@ -8,6 +8,7 @@
 * [基本属性](#基本属性)
 * [特殊用法](#特殊用法)
 * [使用](#使用)
+* [其他](#其他)
 
 
 ## 特点:
