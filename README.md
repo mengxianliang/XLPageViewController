@@ -1,5 +1,17 @@
 ![title](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Image/title.png)
 
+## 目录:
+
+* [特点](#特点)
+* [结构](#结构)
+* [App举例](#App举例)
+* [基本属性](#基本属性)
+* [特殊用法](#特殊用法)
+* [使用](#使用)
+* [更新](#更新)
+* [其他](#其他)
+
+
 ## 特点:
 
 * 采用UICollectionView+UIPageViewController方案，高性能，低功耗。
@@ -181,7 +193,17 @@
 
 ### 5、注意事项
 
-使用时需注意标题不要重复，标题是定位ViewController的唯一ID。
+使用时需注意**标题不要重复**，**标题**是定位ViewController的唯一ID。
+
+## 更新
+
+```diff
+! 2019/07/29 解决快速滑动导致显示错乱问题
+! 2019/07/31 修正scrollEnabled属性不生效问题
+! 2019/08/01 处理预设selectedIndex如果超出屏幕时，标题选中位置错乱问题
+! 2019/08/03 处理当标题栏样式是Segmented时，点击标题切换慢的问题
++ 2019/08/03 添加UIViewController扩展标题属性，避免因title改变导致的异常
+```
 
 ## 其他
 
