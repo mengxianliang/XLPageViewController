@@ -83,13 +83,13 @@
 #### 1.2 遵守协议
 
 ```objc
-@interface ViewController ()<XLPageViewControllerDelegate,XLPageViewControllerDataSrouce>
+@interface ViewController ()<XLPageViewControllerDelegate, XLPageViewControllerDataSrouce>
 ```
 
 
-#### 1.3 创建外观配置类。
+#### 1.3 创建外观配置类
 
-*注：config负责所有的外观配置，```defaultConfig```方法设定了默认参数，使用时可按需配置。* [Config属性列表](https://github.com/mengxianliang/XLPageViewController/blob/master/ConfigPropertyList.md)
+*注：config负责所有的外观配置，```defaultConfig```方法设定了默认参数，使用时可按需配置。* [→Config属性列表](https://github.com/mengxianliang/XLPageViewController/blob/master/ConfigPropertyList.md)
 
 ```objc
   XLPageViewControllerConfig *config = [XLPageViewControllerConfig defaultConfig];
@@ -119,6 +119,8 @@
 
 #### 2.2 XLPageViewControllerDataSrouce
 
+**@required**
+
 ```objc
 //根据index创建对应的视图控制器，每个试图控制器只会被创建一次。
 - (UIViewController *)pageViewController:(XLPageViewController *)pageViewController viewControllerForIndex:(NSInteger)index;
@@ -133,6 +135,8 @@
 //返回分页数
 - (NSInteger)pageViewControllerNumberOfPage;
 ```
+
+**@optional**
 
 ```objc
 //标题cell复用方法，自定义标题cell时用到
@@ -159,7 +163,7 @@
 ```
 
 ```objc
-//cell创建方法
+//自定义标题cell创建方法
 - (XLPageTitleCell *)pageViewController:(XLPageViewController *)pageViewController titleViewCellForItemAtIndex:(NSInteger)index {
     CustomPageTitleCell *cell = [pageViewController dequeueReusableTitleViewCellWithIdentifier:@"CustomPageTitleCell" forIndex:index];
     return cell;
@@ -188,7 +192,9 @@
 当```pageViewController```的子视图中存在可滚动的子view，例如UISlider、UIScrollView等，如果子view和```pageViewController```发生滚动冲突时，可设置子view的```xl_letMeScrollFirst```属性为true。
 
 ```objc
+  UISlider *slider = [[UISlider alloc] init];
   slider.xl_letMeScrollFirst = true;
+  [childVC.view addSubview:slider];
 ```
 
 ### 5、注意事项
