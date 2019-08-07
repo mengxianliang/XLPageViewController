@@ -44,6 +44,7 @@
 
 //测试的headerview
 - (UIView *)tableHeaderView {
+    
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, header.bounds.size.width - 100, 35)];
     //设置"让我先滚"属性，可避免和子view冲突
