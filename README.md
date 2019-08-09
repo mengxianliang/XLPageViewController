@@ -47,8 +47,8 @@
 |标题栏-局左|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-5.gif)|
 |标题栏-局中|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-6.gif)|
 |标题栏-局右|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-7.gif)|
+|标题栏-自定义高度|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-9.gif)|
 |标题-自定义宽度|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-8.gif)|
-|标题-自定义高度|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-9.gif)|
 |标题-文字局上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-10.gif)|
 |标题-文字居下|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-11.gif)|
 |标题-关闭标题颜色过渡|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-12.gif)|
