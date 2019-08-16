@@ -4,7 +4,7 @@
 //
 //  Created by MengXianLiang on 2019/5/14.
 //  Copyright © 2019 xianliang meng. All rights reserved.
-//  频道管理例子
+//  频道管理举例
 
 #import <UIKit/UIKit.h>
 #import "XLPageViewControllerConfig.h"
