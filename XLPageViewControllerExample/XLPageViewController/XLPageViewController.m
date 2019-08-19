@@ -54,6 +54,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 @property (nonatomic, strong) XLPageViewControllerConfig *config;
 //上一次代理返回的index
 @property (nonatomic, assign) NSInteger lastDelegateIndex;
+//手指拖拽距离
+@property (nonatomic, assign) CGFloat dragStartX;
 
 @end
 
@@ -186,11 +188,45 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 #pragma mark -
 #pragma mark UIPageViewControllerDataSource
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    //修正因为拖拽距离过大，导致空白界面问题
+    [self fixSelectedIndexWhenDragingBefore];
     return [self viewControllerForIndex:_selectedIndex - 1];
 }
 
 - (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    //修正因为拖拽距离过大，导致空白界面问题
+    [self fixSelectedIndexWhenDragingAfter];
     return [self viewControllerForIndex:_selectedIndex + 1];
+}
+
+//修正因拖拽距离过大，导致出现空白界面问题
+- (void)fixSelectedIndexWhenDragingBefore {
+    //计算手动拖拽的距离，避免快速滑动时触发以下算法
+    CGFloat dragDistance = fabs(self.scrollView.contentOffset.x - self.dragStartX);
+    //判断1、是否是手指正在拖拽 2、是否滑动距离够大。如果两者成立，则表示需要手动修正位置
+    if (self.scrollView.isTracking && dragDistance >= self.scrollView.bounds.size.width) {
+        self.pageVCAnimating = NO;
+        NSInteger targetIndex = _selectedIndex - 1;
+        targetIndex = targetIndex < 0 ? 0 : targetIndex;
+        self.selectedIndex = targetIndex;
+        self.titleView.stopAnimation = NO;
+        [self delegateSelectedAdIndex:_selectedIndex];
+    }
+}
+
+//修正因拖拽距离过大，导致出现空白界面问题
+- (void)fixSelectedIndexWhenDragingAfter {
+    //计算手动拖拽的距离，避免快速滑动时触发以下算法
+    CGFloat dragDistance = fabs(self.scrollView.contentOffset.x - self.dragStartX);
+    //判断1、是否是手指正在拖拽 2、是否滑动距离够大。如果两者成立，则表示需要手动修正位置
+    if (self.scrollView.isTracking && dragDistance >= self.scrollView.bounds.size.width) {
+        self.pageVCAnimating = NO;
+        NSInteger targetIndex = _selectedIndex + 1;
+        targetIndex = targetIndex >= [self numberOfPage] ? [self numberOfPage] - 1 : targetIndex;
+        self.selectedIndex = targetIndex;
+        self.titleView.stopAnimation = NO;
+        [self delegateSelectedAdIndex:_selectedIndex];
+    }
 }
 
 #pragma mark -
@@ -214,6 +250,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 //更新执行动画状态
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     self.titleView.stopAnimation = false;
+    //保存手指拖拽起始位置
+    self.dragStartX = scrollView.contentOffset.x;
 }
 
 //更新执行动画状态
