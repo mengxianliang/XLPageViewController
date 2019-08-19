@@ -210,7 +210,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
         targetIndex = targetIndex < 0 ? 0 : targetIndex;
         self.selectedIndex = targetIndex;
         self.titleView.stopAnimation = NO;
-        [self delegateSelectedAdIndex:_selectedIndex];
+        //执行代理方法
+        [self delegateSelectedAdIndex:targetIndex];
     }
 }
 
@@ -225,7 +226,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
         targetIndex = targetIndex >= [self numberOfPage] ? [self numberOfPage] - 1 : targetIndex;
         self.selectedIndex = targetIndex;
         self.titleView.stopAnimation = NO;
-        [self delegateSelectedAdIndex:_selectedIndex];
+        //执行代理方法
+        [self delegateSelectedAdIndex:targetIndex];
     }
 }
 
