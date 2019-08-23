@@ -18,6 +18,8 @@ static CGFloat CellScaleValueMax = 1.25f;
 
 @property (nonatomic, strong) UILabel *rightLabel;
 
+@property (nonatomic, assign) BOOL isSelected;
+
 @end
 
 @implementation CustomPageTitleCell3
@@ -67,6 +69,12 @@ static CGFloat CellScaleValueMax = 1.25f;
     self.rightLabel.frame = CGRectMake(self.bounds.size.width - rightLabelW, 0, rightLabelW, self.bounds.size.height);
     
     self.line.frame = CGRectMake(lineX , lineY, lineW, lineH);
+    
+    if (self.isSelected) {
+        self.transform = CGAffineTransformMakeScale(CellScaleValueMax, CellScaleValueMax);
+    }else {
+        self.transform = CGAffineTransformIdentity;
+    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -78,6 +86,8 @@ static CGFloat CellScaleValueMax = 1.25f;
 //通过此父类方法配置cell是否被选中
 - (void)configCellOfSelected:(BOOL)selected {
     [super configCellOfSelected:selected];
+    
+    self.isSelected = selected;
     
     UIColor *color = selected ? self.config.titleSelectedColor : self.config.titleNormalColor;
     [self updateSubviewsColor:color];
