@@ -63,6 +63,14 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 
 #pragma mark -
 #pragma mark 初始化方法
+//初始化需要使用initWithConfig方法
+- (instancetype)init {
+    if (self = [super init]) {
+        [NSException raise:@"Do not use this method" format:@"Must be initialized by initWithConfig"];
+    }
+    return self;
+}
+
 - (instancetype)initWithConfig:(XLPageViewControllerConfig *)config {
     if (self = [super init]) {
         [self initUIWithConfig:config];
