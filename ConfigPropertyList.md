@@ -13,7 +13,7 @@
 |titleViewHeight|标题栏高度 默认 40|
 |titleViewBackgroundColor|标题栏背景色 默认 透明|
 |titleViewInset|标题栏内容缩进 默认 UIEdgeInsetsMake(0, 10, 0, 10)|
-|titleViewAlignment|标题栏显示位置 默认 XLPageTitleViewAlignmentLeft|
+|titleViewAlignment|标题栏对齐方式 默认 XLPageTitleViewAlignmentLeft|
 |titleViewStyle|标题栏样式 默认 XLPageTitleViewStyleBasic|
 |showTitleInNavigationBar|是否在NavigationBar上显示标题栏 默认NO|
 |**阴影相关**||
