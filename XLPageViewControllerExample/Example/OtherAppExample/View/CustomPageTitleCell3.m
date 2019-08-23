@@ -17,6 +17,7 @@ static CGFloat CellScaleValueMax = 1.25f;
 @property (nonatomic, strong) UIView *line;
 
 @property (nonatomic, strong) UILabel *rightLabel;
+
 @end
 
 @implementation CustomPageTitleCell3
