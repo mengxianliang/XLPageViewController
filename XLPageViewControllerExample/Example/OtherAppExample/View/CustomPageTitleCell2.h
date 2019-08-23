@@ -4,7 +4,7 @@
 //
 //  Created by MengXianLiang on 2019/5/14.
 //  Copyright © 2019 xianliang meng. All rights reserved.
-//
+//  网易新闻自定义标题cell
 
 #import "XLPageTitleCell.h"
 
