@@ -34,7 +34,6 @@ static CGFloat CellScaleValueMax = 1.25f;
 - (void)initCustomCell {
     //隐藏父类cell中的label
     self.textLabel.hidden = true;
-    
     //添加新控件
     self.leftLabel = [[UILabel alloc] init];
     self.leftLabel.textAlignment = NSTextAlignmentRight;
