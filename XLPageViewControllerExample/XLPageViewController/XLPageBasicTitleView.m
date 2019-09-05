@@ -239,10 +239,16 @@
     
     //更新cellUI
     NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:_selectedIndex inSection:0];
-    NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:_lastSelectedIndex inSection:0];
     [UIView performWithoutAnimation:^{
-        [self.collectionView reloadItemsAtIndexPaths:@[indexPath1,indexPath2]];
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath1]];
     }];
+    //如果上次选中的index已经不存在了，则无需刷新
+    if (_lastSelectedIndex < [self.dataSource pageTitleViewNumberOfTitle]) {
+        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:_lastSelectedIndex inSection:0];
+        [UIView performWithoutAnimation:^{
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath2]];
+        }];
+    }
     
     //自动居中
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];
