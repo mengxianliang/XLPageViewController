@@ -238,16 +238,27 @@
     if (_selectedIndex == _lastSelectedIndex) {return;}
     
     //更新cellUI
-    NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:_selectedIndex inSection:0];
-    [UIView performWithoutAnimation:^{
-        [self.collectionView reloadItemsAtIndexPaths:@[indexPath1]];
-    }];
+    NSIndexPath *currentIndexPath = [NSIndexPath indexPathForRow:_selectedIndex inSection:0];
+    XLPageTitleCell *currentCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:currentIndexPath];
+    [currentCell configCellOfSelected:YES];
+    //延时刷新
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView performWithoutAnimation:^{
+            [self.collectionView reloadItemsAtIndexPaths:@[currentIndexPath]];
+        }];
+    });
     //如果上次选中的index已经不存在了，则无需刷新
     if (_lastSelectedIndex < [self.dataSource pageTitleViewNumberOfTitle]) {
-        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:_lastSelectedIndex inSection:0];
-        [UIView performWithoutAnimation:^{
-            [self.collectionView reloadItemsAtIndexPaths:@[indexPath2]];
-        }];
+        //更新UI
+        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:_lastSelectedIndex inSection:0];
+        XLPageTitleCell *lastCell = (XLPageTitleCell *)[self.collectionView cellForItemAtIndexPath:lastIndexPath];
+        [lastCell configCellOfSelected:NO];
+        //延时刷新
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView performWithoutAnimation:^{
+                [self.collectionView reloadItemsAtIndexPaths:@[lastIndexPath]];
+            }];
+        });
     }
     
     //自动居中

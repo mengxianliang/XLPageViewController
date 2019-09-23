@@ -212,7 +212,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //计算手动拖拽的距离，避免快速滑动时触发以下算法
     CGFloat dragDistance = fabs(self.scrollView.contentOffset.x - self.dragStartX);
     //判断1、是否是手指正在拖拽 2、是否滑动距离够大。如果两者成立，则表示需要手动修正位置
-    if (self.scrollView.isTracking && dragDistance >= self.scrollView.bounds.size.width) {
+    if (self.scrollView.isTracking && dragDistance > self.scrollView.bounds.size.width) {
         self.pageVCAnimating = NO;
         NSInteger targetIndex = _selectedIndex - 1;
         targetIndex = targetIndex < 0 ? 0 : targetIndex;
@@ -228,7 +228,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //计算手动拖拽的距离，避免快速滑动时触发以下算法
     CGFloat dragDistance = fabs(self.scrollView.contentOffset.x - self.dragStartX);
     //判断1、是否是手指正在拖拽 2、是否滑动距离够大。如果两者成立，则表示需要手动修正位置
-    if (self.scrollView.isTracking && dragDistance >= self.scrollView.bounds.size.width) {
+    if (self.scrollView.isTracking && dragDistance > self.scrollView.bounds.size.width) {
         self.pageVCAnimating = NO;
         NSInteger targetIndex = _selectedIndex + 1;
         targetIndex = targetIndex >= [self numberOfPage] ? [self numberOfPage] - 1 : targetIndex;
