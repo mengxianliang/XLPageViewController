@@ -44,12 +44,12 @@
 |基本样式-标题显示在导航栏上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-2.gif)|
 |Segmented样式-标题正常显示|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-3.gif)|
 |Segmented样式-标题显示在导航栏上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-4.gif)|
-|标题栏-局左|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-5.gif)|
-|标题栏-局中|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-6.gif)|
-|标题栏-局右|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-7.gif)|
+|标题栏-居左|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-5.gif)|
+|标题栏-居中|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-6.gif)|
+|标题栏-居右|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-7.gif)|
 |标题栏-自定义高度|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-9.gif)|
 |标题-自定义宽度|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-8.gif)|
-|标题-文字局上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-10.gif)|
+|标题-文字居上|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-10.gif)|
 |标题-文字居下|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-11.gif)|
 |标题-关闭标题颜色过渡|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-12.gif)|
 |阴影动画-缩放|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/2-13.gif)|
