@@ -176,11 +176,13 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 #pragma mark UIPageViewControllerDelegate
 //滚动切换时调用
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
-    self.pageVCAnimating = true;
+    self.pageVCAnimating = YES;
 }
 
 //滚动切换时调用
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    //切换中属性更新
+    self.pageVCAnimating = NO;
     if (!completed) {return;}
     //更新选中位置
     UIViewController *vc = self.pageVC.viewControllers.firstObject;
@@ -189,8 +191,6 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     self.titleView.selectedIndex = _selectedIndex;
     //回调代理方法
     [self delegateSelectedAdIndex:_selectedIndex];
-    //切换中属性更新
-    self.pageVCAnimating = false;
 }
 
 #pragma mark -
@@ -343,7 +343,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //设置当前展示VC
     __weak typeof(self)weakSelf = self;
     [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:animated completion:^(BOOL finished) {
-        weakSelf.pageVCAnimating = false;
+        weakSelf.pageVCAnimating = NO;
     }];
     //标题居中
     self.titleView.selectedIndex = _selectedIndex;
