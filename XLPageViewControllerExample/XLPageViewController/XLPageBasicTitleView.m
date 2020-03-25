@@ -174,6 +174,9 @@
     [self fixShadowLineCenter];
     [self.collectionView sendSubviewToBack:self.shadowLine];
     [self bringSubviewToFront:self.separatorLine];
+    if (!self.config.shadowLineHidden) {
+        self.shadowLine.hidden = [self.dataSource pageTitleViewNumberOfTitle] == 0;
+    }
 }
 
 #pragma mark -
@@ -316,6 +319,10 @@
 - (void)reloadData {
     self.layout.haveUpdateInset = false;
     [self.collectionView reloadData];
+    if (!self.config.shadowLineHidden) {
+        self.shadowLine.hidden = [self.dataSource pageTitleViewNumberOfTitle] == 0;
+    }
+    [self fixShadowLineCenter];
 }
 
 #pragma mark -
