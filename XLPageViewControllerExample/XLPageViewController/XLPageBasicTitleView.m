@@ -269,7 +269,13 @@
     
     //设置阴影位置
     CGPoint center = [self shadowLineCenterForIndex:_selectedIndex];
-    self.shadowLine.center = center;
+    if (center.x <= 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self fixShadowLineCenter];
+        });
+    }else {
+        self.shadowLine.center = center;
+    }
     //保存上次选中位置
     _lastSelectedIndex = _selectedIndex;
 }
