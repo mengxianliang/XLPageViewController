@@ -315,6 +315,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     BOOL switchSuccess = [self switchToViewControllerAdIndex:selectedIndex animated:true];
     if (!switchSuccess) {return;}
     self.titleView.stopAnimation = true;
+    //更新代理反馈的index
+    self.lastDelegateIndex = selectedIndex;
 }
 
 //滑动开关
