@@ -10,6 +10,9 @@
 #import "XLPageBasicTitleView.h"
 #import "XLPageSegmentedTitleView.h"
 
+//调用setViewControllers方法时，可能会用到延时
+static float SetViewControllersMethodDelay = 0.1;
+
 typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 
 @interface XLPageContentView : UIView
@@ -162,7 +165,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     if (!self.pageVCDidLoad) {
         //设置加载标记为已加载
         self.pageVCDidLoad = true;
-        [self switchToViewControllerAdIndex:_selectedIndex animated:false];
+        [self switchToViewControllerAdIndex:_selectedIndex animated:NO];
     }
     
     //初始化标题数组
@@ -295,12 +298,15 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 
 //titleview代理方法
 - (BOOL)pageTitleViewDidSelectedAtIndex:(NSInteger)index {
-    BOOL switchSuccess = [self switchToViewControllerAdIndex:index animated:true];
+    BOOL switchSuccess = [self switchToViewControllerAdIndex:index animated:YES];
     if (!switchSuccess) {
         return false;
     }
     self.titleView.stopAnimation = true;
-    [self delegateSelectedAdIndex:index];
+    //点击标题切换时会延时加载，所以要延时回调代理方法，避免出现获取当前VC不正确问题
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(SetViewControllersMethodDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self delegateSelectedAdIndex:index];
+    });
     return true;
 }
 
@@ -312,7 +318,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     if (selectedIndex < 0 || selectedIndex > [self numberOfPage]) {
         [NSException raise:@"selectedIndex is not right ！！！" format:@"It is out of range"];
     }
-    BOOL switchSuccess = [self switchToViewControllerAdIndex:selectedIndex animated:true];
+    BOOL switchSuccess = [self switchToViewControllerAdIndex:selectedIndex animated:YES];
     if (!switchSuccess) {return;}
     self.titleView.stopAnimation = true;
     //更新代理反馈的index
@@ -336,9 +342,9 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     if ([self numberOfPage] == 0) {return NO;}
     //如果正在加载中 返回
     if (self.pageVCAnimating && self.config.titleViewStyle == XLPageTitleViewStyleBasic) {return NO;}
+    if (index == _selectedIndex && index > 0) {return NO;}
     //设置正在加载标记
-    BOOL animating = animated && index != _selectedIndex;
-    self.pageVCAnimating = animating;
+    self.pageVCAnimating = animated;
     //更新当前位置
     _selectedIndex = index;
     //设置滚动方向
@@ -349,7 +355,9 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //设置当前展示VC
     __weak typeof(self)weakSelf = self;
     self.view.userInteractionEnabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //延时是为了避免切换视图时有其它操作阻塞UI
+    float delayTime = animated ? SetViewControllersMethodDelay : 0;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:animated completion:^(BOOL finished) {
             weakSelf.pageVCAnimating = NO;
             weakSelf.view.userInteractionEnabled = YES;
