@@ -130,6 +130,11 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     
     //初始化上一次返回的index
     self.lastDelegateIndex = -1;
+    
+    //兼容全屏返回手势识别
+    self.scrollView.xl_otherGestureBlock = ^BOOL(UIGestureRecognizer * _Nonnull gestureRecognizer) {
+        return weakSelf.selectedIndex == 0 && weakSelf.needRespondFullScreenBackGesture;
+    };
 }
 
 //初始化vc缓存数组
@@ -252,6 +257,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
     self.titleView.animationProgress = value/scrollView.bounds.size.width;
+    BOOL scrollDisababled = value < 0 && self.selectedIndex == 0 && self.needRespondFullScreenBackGesture;
+    scrollView.scrollEnabled = !scrollDisababled;
 }
 
 //更新执行动画状态

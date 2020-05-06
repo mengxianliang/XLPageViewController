@@ -89,6 +89,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL scrollEnabled;
 
 /**
+ 需要响应全屏返回手势
+ */
+@property (nonatomic, assign) BOOL needRespondFullScreenBackGesture;
+
+/**
  标题栏右侧按钮
  */
 @property (nonatomic, strong) UIButton *rightButton;

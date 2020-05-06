@@ -13,6 +13,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+//------------------------------CUT------------------------------
+
 @interface XLPageViewControllerUtil : NSObject
 
 //文字宽度
@@ -26,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+//------------------------------CUT------------------------------
 /**
  兼容子view滚动，添加"让我先滚"属性
  */
@@ -38,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+//------------------------------CUT------------------------------
 /**
  子视图控制器的缓存，添加扩展标题
  */
@@ -47,6 +51,17 @@ NS_ASSUME_NONNULL_BEGIN
  添加扩展标题
  */
 @property (nonatomic, copy) NSString *xl_title;
+
+@end
+
+
+//------------------------------CUT------------------------------
+
+typedef BOOL(^XLGestureRecognizerBlock)(UIGestureRecognizer *gestureRecognizer);
+
+@interface UIScrollView (GestureRecognizer)<UIGestureRecognizerDelegate>
+
+@property (nonatomic, copy) XLGestureRecognizerBlock xl_otherGestureBlock;
 
 @end
 

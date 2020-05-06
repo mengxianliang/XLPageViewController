@@ -160,3 +160,54 @@ static NSString *XLVCTitleKey = @"XLVCTitleKey";
 }
 
 @end
+
+@implementation UIScrollView (GestureRecognizer)
+
+static NSString *XLGestureBlockKey = @"XLGestureBlockKey";
+
++ (void)load {
+    [self addRecognizeSimultaneouslyObserver];
+}
+
++ (void)addRecognizeSimultaneouslyObserver {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class class = [self class];
+        
+        SEL originalSelector = @selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:);
+        SEL swizzledSelector = @selector(xl_gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:);
+        
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+        
+        BOOL didAddMethod = class_addMethod(class,
+                                            originalSelector,
+                                            method_getImplementation(swizzledMethod),
+                                            method_getTypeEncoding(swizzledMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod(class,
+                                swizzledSelector,
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
+}
+
+- (BOOL)xl_gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    BOOL recognize = self.xl_otherGestureBlock ? self.xl_otherGestureBlock(otherGestureRecognizer) : YES;
+    return recognize;
+}
+
+- (void)setXl_otherGestureBlock:(XLGestureRecognizerBlock)xl_otherGestureBlock {
+    objc_setAssociatedObject(self, &XLGestureBlockKey,
+    xl_otherGestureBlock, OBJC_ASSOCIATION_COPY);
+}
+
+- (XLGestureRecognizerBlock)xl_otherGestureBlock {
+    return objc_getAssociatedObject(self, &XLGestureBlockKey);
+}
+
+@end
