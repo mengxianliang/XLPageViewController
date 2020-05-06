@@ -18,6 +18,7 @@
 * 支持刷新，内置缓存(非复用)机制，节省内存。
 * 默认配置样式丰富，可实现大部分主流App样式。
 * 支持用户自定义标题样式。
+* 支持全屏返回手势。
 
 ## 结构:
 
@@ -67,7 +68,7 @@
 |自定义标题Cell|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-1.gif)|
 |频道定制|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-2.gif)|
 |多级嵌套|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-3.gif)|
-|子View滚动冲突|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-4.gif)|
+|子View手势冲突|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-4.gif)|
 |手动切换|![image](https://github.com/mengxianliang/XLPageViewController/blob/master/Images/Gif/3-5.gif)|
 
 ## 使用:
@@ -187,7 +188,7 @@
 
 ### 4、特殊情况处理
 
-#### 4.1 和子view滚动冲突问题
+#### 4.1 和子view手势冲突问题
 
 当```pageViewController```的子视图中存在可滚动的子view，例如UISlider、UIScrollView等，如果子view和```pageViewController```发生滚动冲突时，可设置子view的```xl_letMeScrollFirst```属性为true。
 
@@ -195,6 +196,14 @@
   UISlider *slider = [[UISlider alloc] init];
   slider.xl_letMeScrollFirst = true;
   [childVC.view addSubview:slider];
+```
+
+#### 4.2 全屏返回手势问题
+
+当```pageViewController```和全屏返回手势一起使用时，将```pageViewController```的```needRespondFullScreenBackGesture```设置成YES。当滚动到第一个分页时，向右滑动会优先响应全屏返回。
+
+```objc
+  self.pageViewController.needRespondFullScreenBackGesture = YES;
 ```
 
 ### 5、注意事项
@@ -217,6 +226,7 @@
 ! 2020/03/25 解决从网络获取标题，刷新后阴影位置没有更新问题
 ! 2020/04/02 解决设置selectedIndex时，可能出现底部阴影显示出错问题
 ! 2020/04/23 解决设置selectedIndex后，代理方法可能不执行问题
++ 2020/05/05 添加全屏手势解决方案
 ```
 
 ## 其他
