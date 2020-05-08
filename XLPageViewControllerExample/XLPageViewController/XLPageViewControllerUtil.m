@@ -197,7 +197,7 @@ static NSString *XLGestureBlockKey = @"XLGestureBlockKey";
 }
 
 - (BOOL)xl_gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    BOOL recognize = self.xl_otherGestureBlock ? self.xl_otherGestureBlock(otherGestureRecognizer) : YES;
+    BOOL recognize = self.xl_otherGestureBlock ? self.xl_otherGestureBlock(otherGestureRecognizer) : NO;
     return recognize;
 }
 
