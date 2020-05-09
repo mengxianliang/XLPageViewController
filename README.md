@@ -200,10 +200,10 @@
 
 #### 4.2 全屏返回手势问题
 
-当```pageViewController```和全屏返回手势一起使用时，将```pageViewController```的```needRespondFullScreenBackGesture```设置成YES。当滚动到第一个分页时，向右滑动会优先响应全屏返回。
+当```pageViewController```和全屏返回手势一起使用时，需要将其它手势的delegate的类名添加到```respondOtherGestureDelegateClassList```属性中。当滚动到第一个分页时，向右滑动会优先响应全屏返回。以**FDFullscreenPopGesture**为例：
 
 ```objc
-  self.pageViewController.needRespondFullScreenBackGesture = YES;
+  self.pageViewController.respondOtherGestureDelegateClassList = @[@"_FDFullscreenPopGestureRecognizerDelegate"];
 ```
 
 ### 5、注意事项
