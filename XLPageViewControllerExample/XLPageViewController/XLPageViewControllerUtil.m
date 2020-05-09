@@ -163,7 +163,7 @@ static NSString *XLVCTitleKey = @"XLVCTitleKey";
 
 @implementation UIScrollView (GestureRecognizer)
 
-static NSString *XLGestureBlockKey = @"XLGestureBlockKey";
+static NSString *XLOtherGestureRecognizerBlockKey = @"XLOtherGestureRecognizerBlockKey";
 
 + (void)load {
     [self addRecognizeSimultaneouslyObserver];
@@ -197,17 +197,17 @@ static NSString *XLGestureBlockKey = @"XLGestureBlockKey";
 }
 
 - (BOOL)xl_gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    BOOL recognize = self.xl_otherGestureBlock ? self.xl_otherGestureBlock(otherGestureRecognizer) : NO;
+    BOOL recognize = self.xl_otherGestureRecognizerBlock ? self.xl_otherGestureRecognizerBlock(otherGestureRecognizer) : NO;
     return recognize;
 }
 
-- (void)setXl_otherGestureBlock:(XLGestureRecognizerBlock)xl_otherGestureBlock {
-    objc_setAssociatedObject(self, &XLGestureBlockKey,
-    xl_otherGestureBlock, OBJC_ASSOCIATION_COPY);
+- (void)setXl_otherGestureRecognizerBlock:(XLOtherGestureRecognizerBlock)xl_otherGestureRecognizerBlock {
+    objc_setAssociatedObject(self, &XLOtherGestureRecognizerBlockKey,
+    xl_otherGestureRecognizerBlock, OBJC_ASSOCIATION_COPY);
 }
 
-- (XLGestureRecognizerBlock)xl_otherGestureBlock {
-    return objc_getAssociatedObject(self, &XLGestureBlockKey);
+- (XLOtherGestureRecognizerBlock)xl_otherGestureRecognizerBlock {
+    return objc_getAssociatedObject(self, &XLOtherGestureRecognizerBlockKey);
 }
 
 @end

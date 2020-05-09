@@ -57,11 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 //------------------------------CUT------------------------------
 
-typedef BOOL(^XLGestureRecognizerBlock)(UIGestureRecognizer *gestureRecognizer);
+typedef BOOL(^XLOtherGestureRecognizerBlock)(UIGestureRecognizer *otherGestureRecognizer);
 
 @interface UIScrollView (GestureRecognizer)<UIGestureRecognizerDelegate>
 
-@property (nonatomic, copy) XLGestureRecognizerBlock xl_otherGestureBlock;
+@property (nonatomic, copy) XLOtherGestureRecognizerBlock xl_otherGestureRecognizerBlock;
 
 @end
 

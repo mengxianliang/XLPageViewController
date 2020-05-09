@@ -132,8 +132,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     self.lastDelegateIndex = -1;
     
     //兼容全屏返回手势识别
-    self.scrollView.xl_otherGestureBlock = ^BOOL(UIGestureRecognizer * _Nonnull gestureRecognizer) {
-        return weakSelf.selectedIndex == 0 && weakSelf.needRespondFullScreenBackGesture;
+    self.scrollView.xl_otherGestureRecognizerBlock = ^BOOL(UIGestureRecognizer * _Nonnull otherGestureRecognizer) {
+        return weakSelf.selectedIndex == 0 && [self.respondOtherGestureDelegateClassList containsObject:NSStringFromClass(otherGestureRecognizer.delegate.class)];
     };
 }
 
@@ -257,7 +257,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
     self.titleView.animationProgress = value/scrollView.bounds.size.width;
-    BOOL scrollDisababled = value < 0 && self.selectedIndex == 0 && self.needRespondFullScreenBackGesture;
+    BOOL scrollDisababled = value < 0 && self.selectedIndex == 0 && self.respondOtherGestureDelegateClassList.count;
     scrollView.scrollEnabled = !scrollDisababled;
 }
 

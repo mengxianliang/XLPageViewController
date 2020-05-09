@@ -89,9 +89,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL scrollEnabled;
 
 /**
- 需要响应全屏返回手势
+ 添加识别其它手势的代理类
  */
-@property (nonatomic, assign) BOOL needRespondFullScreenBackGesture;
+@property (nonatomic, strong) NSArray <NSString *>* respondOtherGestureDelegateClassList;
 
 /**
  标题栏右侧按钮
