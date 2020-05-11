@@ -169,8 +169,8 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //自动选中当前位置_selectedIndex
     if (!self.pageVCDidLoad) {
         //设置加载标记为已加载
-        self.pageVCDidLoad = true;
         [self switchToViewControllerAdIndex:_selectedIndex animated:NO];
+        self.pageVCDidLoad = YES;
     }
     
     //初始化标题数组
@@ -349,7 +349,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     if ([self numberOfPage] == 0) {return NO;}
     //如果正在加载中 返回
     if (self.pageVCAnimating && self.config.titleViewStyle == XLPageTitleViewStyleBasic) {return NO;}
-    if (index == _selectedIndex && index > 0) {return NO;}
+    if (index == _selectedIndex && index >= 0 && self.pageVCDidLoad) {return NO;}
     //设置正在加载标记
     self.pageVCAnimating = animated;
     //更新当前位置
