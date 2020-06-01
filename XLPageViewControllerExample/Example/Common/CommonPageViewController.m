@@ -29,7 +29,6 @@
     self.pageViewController.view.frame = self.view.bounds;
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
-    self.pageViewController.bounces = NO;
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
 }
