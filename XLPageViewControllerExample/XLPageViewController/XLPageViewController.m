@@ -128,6 +128,9 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     //默认可以滚动
     self.scrollEnabled = YES;
     
+    //默认打开自动回答弹
+    self.bounces = YES;
+    
     //初始化上一次返回的index
     self.lastDelegateIndex = -1;
     
@@ -258,9 +261,16 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
     self.titleView.animationProgress = value/scrollView.bounds.size.width;
     
+    //设置拖拽手势问题
     if (self.respondOtherGestureDelegateClassList.count > 0) {
         BOOL scrollDisababled = value < 0 && self.selectedIndex == 0 && self.respondOtherGestureDelegateClassList.count;
         scrollView.scrollEnabled = !scrollDisababled;
+    }
+    
+    //设置边缘回弹问题
+    BOOL dragToTheEdge = (self.selectedIndex == 0 && value < 0) || (self.selectedIndex == [self numberOfPage] - 1 && value > 0);
+    if (dragToTheEdge && scrollView.isDragging && !self.bounces) {
+        scrollView.scrollEnabled = NO;
     }
 }
 
@@ -269,7 +279,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     self.titleView.stopAnimation = false;
 }
 
-////更新执行动画状态
+//更新执行动画状态
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     self.titleView.stopAnimation = false;
 }
@@ -284,6 +294,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 //更新执行动画状态
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     self.titleView.stopAnimation = false;
+    scrollView.scrollEnabled = self.scrollEnabled;
 }
 
 #pragma mark -

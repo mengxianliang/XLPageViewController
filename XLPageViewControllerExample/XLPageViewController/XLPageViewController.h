@@ -88,6 +88,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL scrollEnabled;
 
+
+/**
+ 滚动到边缘自动回弹 默认 开
+ */
+@property (nonatomic, assign) BOOL bounces;
+
 /**
  添加识别其它手势的代理类
  */
