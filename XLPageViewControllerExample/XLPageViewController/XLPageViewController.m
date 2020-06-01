@@ -257,8 +257,11 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat value = scrollView.contentOffset.x - scrollView.bounds.size.width;
     self.titleView.animationProgress = value/scrollView.bounds.size.width;
-    BOOL scrollDisababled = value < 0 && self.selectedIndex == 0 && self.respondOtherGestureDelegateClassList.count;
-    scrollView.scrollEnabled = !scrollDisababled;
+    
+    if (self.respondOtherGestureDelegateClassList.count > 0) {
+        BOOL scrollDisababled = value < 0 && self.selectedIndex == 0 && self.respondOtherGestureDelegateClassList.count;
+        scrollView.scrollEnabled = !scrollDisababled;
+    }
 }
 
 //更新执行动画状态
