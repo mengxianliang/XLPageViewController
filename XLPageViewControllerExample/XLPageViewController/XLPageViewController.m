@@ -136,7 +136,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     
     //兼容全屏返回手势识别
     self.scrollView.xl_otherGestureRecognizerBlock = ^BOOL(UIGestureRecognizer * _Nonnull otherGestureRecognizer) {
-        return weakSelf.selectedIndex == 0 && [self.respondOtherGestureDelegateClassList containsObject:NSStringFromClass(otherGestureRecognizer.delegate.class)];
+        return weakSelf.selectedIndex == 0 && [weakSelf.respondOtherGestureDelegateClassList containsObject:NSStringFromClass(otherGestureRecognizer.delegate.class)];
     };
 }
 
