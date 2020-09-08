@@ -392,6 +392,7 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
 #pragma mark -
 #pragma mark 刷新方法
 - (void)reloadData {
+    self.pageVCDidLoad = NO;
     //刷新标题栏UI
     [self.titleView reloadData];
     //刷新标题数据
