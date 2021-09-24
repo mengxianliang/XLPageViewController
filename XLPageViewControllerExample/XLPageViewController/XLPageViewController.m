@@ -375,15 +375,17 @@ typedef void(^XLContentScollBlock)(BOOL scrollEnabled);
     }
     //设置当前展示VC
     __weak typeof(self)weakSelf = self;
-    self.view.userInteractionEnabled = NO;
+    [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:NO completion:^(BOOL finished) {
+        weakSelf.pageVCAnimating = NO;
+    }];
+    
     //延时是为了避免切换视图时有其它操作阻塞UI
+    self.view.userInteractionEnabled = NO;
     float delayTime = animated ? SetViewControllersMethodDelay : 0;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.pageVC setViewControllers:@[[self viewControllerForIndex:index]] direction:direction animated:animated completion:^(BOOL finished) {
-            weakSelf.pageVCAnimating = NO;
-            weakSelf.view.userInteractionEnabled = YES;
-        }];
+        weakSelf.view.userInteractionEnabled = YES;
     });
+    
     //标题居中
     self.titleView.selectedIndex = _selectedIndex;
     return YES;

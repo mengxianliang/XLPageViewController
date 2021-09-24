@@ -36,30 +36,11 @@
 }
 
 - (void)setBarBackgourndColor:(UIColor *)barBackgourndColor {
-    [self.navigationBar setBackgroundImage:[self imageWithColor:barBackgourndColor] forBarMetrics:UIBarMetricsDefault];
-}
-
-- (UIImage *)imageWithColor:(UIColor *)color {
-    static NSCache *imageCache;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        imageCache = [[NSCache alloc] init];
-    });
-    UIImage *image = [imageCache objectForKey:color];
-    if (image) {
-        return image;
+    for (UIView *view in self.navigationBar.subviews) {
+        if ([view isMemberOfClass:NSClassFromString(@"_UIBarBackground")]) {
+            view.backgroundColor = barBackgourndColor;
+        }
     }
-    
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    [imageCache setObject:image forKey:color];
-    return image;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
